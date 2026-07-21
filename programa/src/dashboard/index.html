@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polvo - Dashboard</title>
+    <link rel="stylesheet" href="../shared/titlebar.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+
+<body>
+    <!-- Custom Titlebar -->
+    <div class="titlebar">
+        <span class="titlebar-label" id="titlebar-label">DADOS</span>
+        <div class="titlebar-controls">
+            <button class="titlebar-btn minimize" id="btn-minimize" title="Minimizar">
+                <svg viewBox="0 0 12 12">
+                    <line x1="1" y1="6" x2="11" y2="6" />
+                </svg>
+            </button>
+            <button class="titlebar-btn maximize" id="btn-maximize" title="Maximizar">
+                <svg viewBox="0 0 12 12" class="icon-maximize"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/></svg>
+                <svg viewBox="0 0 12 12" class="icon-restore" style="display:none;"><rect x="3" y="1.5" width="7.5" height="7.5" rx="1"/><polyline points="1.5,4 1.5,10 8,10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="titlebar-btn close" id="btn-close" title="Fechar">
+                <svg viewBox="0 0 12 12">
+                    <line x1="1" y1="1" x2="11" y2="11" />
+                    <line x1="11" y1="1" x2="1" y2="11" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="dashboard">
+        <!-- Top Navigation Bar -->
+        <div class="nav-bar">
+            <div class="nav-menu-wrap">
+                <button class="nav-menu-btn" id="btn-main-menu" type="button" aria-label="Abrir menu principal" aria-expanded="false" aria-controls="main-menu-dropdown">
+                    <span class="nav-menu-icon" aria-hidden="true">
+                        <span class="nav-menu-line"></span>
+                        <span class="nav-menu-line"></span>
+                        <span class="nav-menu-line"></span>
+                    </span>
+                    <span class="nav-menu-text">Menu</span>
+                </button>
+                <div class="main-menu-dropdown hidden" id="main-menu-dropdown">
+                    <button class="main-menu-item active" type="button" data-main-menu-action="tab" data-target-tab="dados" data-menu-key="dados">Dados</button>
+                    <button class="main-menu-item" type="button" data-main-menu-action="tab" data-target-tab="pre-filtro" data-target-subtab="pre-live" data-menu-key="pre-live">Filtro Pre-live</button>
+                    <button class="main-menu-item" type="button" data-main-menu-action="tab" data-target-tab="live-filtro" data-target-subtab="live" data-menu-key="live">Filtro Live</button>
+                    <button class="main-menu-item" type="button" data-main-menu-action="tab" data-target-tab="cronograma" data-menu-key="cronograma">Cronograma</button>
+                    <button class="main-menu-item" type="button" data-main-menu-action="panel" data-menu-key="panel">Relat&oacute;rio</button>
+                    <button class="main-menu-item" type="button" data-main-menu-action="report-view" data-target-report-view="sugestoes" data-menu-key="sugestoes">Sugest&otilde;es</button>
+                    <button class="main-menu-item" type="button" data-main-menu-action="report-view" data-target-report-view="atualizacoes" data-menu-key="atualizacoes">Atualiza&ccedil;&otilde;es</button>
+                    <button class="main-menu-item" type="button" data-main-menu-action="tab" data-target-tab="geral" data-menu-key="geral">Configura&ccedil;&otilde;es</button>
+                </div>
+            </div>
+            <button class="nav-menu-btn nav-back-btn" id="btn-back-to-table" type="button" style="display:none;" aria-label="Voltar para tela principal">Voltar</button>
+            <div class="nav-tabs legacy-nav-tabs">
+                <button class="nav-tab active" data-tab="dados">Dados</button>
+                <button class="nav-tab" data-tab="geral">Geral</button>
+                <button class="nav-tab" data-tab="pre-filtro">Pre-Filtro</button>
+                <button class="nav-tab" data-tab="live-filtro">Live Filtro</button>
+                <button class="nav-tab" data-tab="cronograma">Cronograma</button>
+            </div>
+            <div class="nav-data-controls">
+                <div class="nav-subtabs">
+                    <button class="sub-tab" data-subtab="pre-live">Pre-Live</button>
+                    <button class="sub-tab active" data-subtab="live">Live</button>
+                </div>
+                <div class="data-font-controls" id="data-font-controls">
+                    <span class="data-font-label">Fonte</span>
+                    <button class="data-font-btn" id="btn-data-font-reset" type="button">Padr&atilde;o</button>
+                    <button class="data-font-btn" id="btn-data-font-minus" type="button" aria-label="Diminuir fonte">-</button>
+                    <button class="data-font-btn" id="btn-data-font-plus" type="button" aria-label="Aumentar fonte">+</button>
+                    <span class="data-font-value" id="data-font-value">90%</span>
+                </div>
+            </div>
+            <div class="nav-logo">
+                <div class="user-chip" id="user-chip">
+                    <div class="user-chip-main">
+                        <span class="user-chip-email" id="user-email">-</span>
+                        <span class="user-chip-days" id="user-days">-</span>
+                    </div>
+                    <div class="user-chip-actions">
+                        <button class="user-chip-btn renew hidden" id="btn-renew">Renovar</button>
+                        <button class="user-chip-btn panel-top-btn hidden" id="btn-open-painel">Painel</button>
+                        <button class="user-chip-btn logout" id="btn-logout">Sair</button>
+                    </div>
+                </div>
+                <span class="socket-status connected" id="socket-status" title="Socket connection">●</span>
+                <div class="nav-logo-mark">
+                    <img src="../assets/logo.svg" alt="Polvo" class="nav-logo-img" />
+                    <span class="app-version-label" id="app-version-label">v-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Left Sidebar Panel -->
+            <div class="sidebar-panel">
+
+                <!-- ===== DADOS PANEL ===== -->
+                <div class="tab-panel active" id="panel-dados">
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="action-btn" id="btn-planilhar">Planilhar</button>
+                        <button class="action-btn" id="btn-recolher">Recolher</button>
+                    </div>
+
+                    <!-- Signal List: Yellow=sportName | Yellow=receivedAt | Blue=league bet1/bet2 | Cyan=event bet1/bet2 | Blue solid=bookmaker1 | Green double=entryType1+odd1 | Cyan solid=bookmaker2 | Dark double=entryType2+odd2 -->
+                    <div class="signal-list" id="signal-list">
+                        <div class="signal-item border-yellow"><span>-</span></div>
+                        <div class="signal-item signal-item-datetime border-yellow"><span>-</span><span>-</span></div>
+                        <div class="signal-item border-blue"><span>-</span></div>
+                        <div class="signal-item border-blue"><span>-</span><span>-</span></div>
+                        <div class="signal-item border-cyan"><span>-</span></div>
+                        <div class="signal-item border-cyan"><span>-</span><span>-</span></div>
+                        <div class="signal-item highlight-blue"><span>-</span></div>
+                        <div class="signal-item signal-item-double border-green"><span>-</span><span>-</span></div>
+                        <div class="signal-item highlight-cyan"><span>-</span></div>
+                        <div class="signal-item signal-item-double border-none"><span>-</span><span>-</span></div>
+                    </div>
+                    <h4 class="dados-section-title">Calculadora</h4>
+                    <!-- Calculator -->
+                    <div class="calculator-section">
+                        <table class="calc-table">
+                            <thead>
+                                <tr>
+                                    <th>Casa</th>
+                                    <th>Odd</th>
+                                    <th>Stake</th>
+                                    <th>Lucro</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="calc-row calc-row-1">
+                                    <td>
+                                        <button type="button" class="casa-combo-block casa-combo-blue calc-casa-btn">-</button>
+                                    </td>
+                                    <td>
+                                        <div class="spin-input-wrap">
+                                            <input type="number" class="calc-input" value="2.00" step="0.01" min="1">
+                                            <div class="spin-controls">
+                                                <button type="button" class="spin-btn spin-up" aria-label="Aumentar odd"></button>
+                                                <button type="button" class="spin-btn spin-down" aria-label="Diminuir odd"></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="money-cell">
+                                        <div class="money-input-wrap spin-input-wrap">
+                                            <input type="number" class="calc-input" value="150.00" step="0.01" min="0">
+                                            <div class="spin-controls">
+                                                <button type="button" class="spin-btn spin-up" aria-label="Aumentar stake"></button>
+                                                <button type="button" class="spin-btn spin-down" aria-label="Diminuir stake"></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="calc-result">-</span></td>
+                                </tr>
+                                <tr class="calc-row calc-row-2">
+                                    <td>
+                                        <button type="button" class="casa-combo-block casa-combo-green calc-casa-btn">-</button>
+                                    </td>
+                                    <td>
+                                        <div class="spin-input-wrap">
+                                            <input type="number" class="calc-input" value="2.00" step="0.01" min="1">
+                                            <div class="spin-controls">
+                                                <button type="button" class="spin-btn spin-up" aria-label="Aumentar odd"></button>
+                                                <button type="button" class="spin-btn spin-down" aria-label="Diminuir odd"></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="money-cell">
+                                        <div class="money-input-wrap spin-input-wrap">
+                                            <input type="number" class="calc-input" value="150.00" step="0.01" min="0">
+                                            <div class="spin-controls">
+                                                <button type="button" class="spin-btn spin-up" aria-label="Aumentar stake"></button>
+                                                <button type="button" class="spin-btn spin-down" aria-label="Diminuir stake"></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="calc-result">-</span></td>
+                                </tr>
+                                <tr class="calc-total-row">
+                                    <td><button class="casa-btn casa-calc">Calculadora</button></td>
+                                    <td>Total</td>
+                                    <td class="money-cell">
+                                        <div class="money-input-wrap spin-input-wrap">
+                                            <input type="number" class="calc-input" value="150.00" step="0.01" min="0">
+                                            <div class="spin-controls">
+                                                <button type="button" class="spin-btn spin-up" aria-label="Aumentar total"></button>
+                                                <button type="button" class="spin-btn spin-down" aria-label="Diminuir total"></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><button class="calc-result-btn">-</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4 class="dados-section-title">Atalhos de stake</h4>
+                    <!-- Quick Stakes: grade de atalhos -->
+                    <div class="quick-stakes">
+                        <div class="quick-stakes-combo">
+                            <div class="quick-stakes-grid">
+                                <div class="quick-pair">
+                                    <button class="quick-btn quick-btn-top" data-house="1">Inserir</button>
+                                    <div class="quick-input-wrap">
+                                        <input type="number" class="quick-input" value="500.00" step="0.01" min="0">
+                                        <div class="quick-spin-controls">
+                                            <button type="button" class="spin-btn spin-up" aria-label="Aumentar atalho"></button>
+                                            <button type="button" class="spin-btn spin-down" aria-label="Diminuir atalho"></button>
+                                        </div>
+                                    </div>
+                                    <button class="quick-btn quick-btn-bottom" data-house="2">Inserir</button>
+                                </div>
+                                <div class="quick-pair">
+                                    <button class="quick-btn quick-btn-top" data-house="1">Inserir</button>
+                                    <div class="quick-input-wrap">
+                                        <input type="number" class="quick-input" value="1500.00" step="0.01" min="0">
+                                        <div class="quick-spin-controls">
+                                            <button type="button" class="spin-btn spin-up" aria-label="Aumentar atalho"></button>
+                                            <button type="button" class="spin-btn spin-down" aria-label="Diminuir atalho"></button>
+                                        </div>
+                                    </div>
+                                    <button class="quick-btn quick-btn-bottom" data-house="2">Inserir</button>
+                                </div>
+                                <div class="quick-pair">
+                                    <button class="quick-btn quick-btn-top" data-house="1">Inserir</button>
+                                    <div class="quick-input-wrap">
+                                        <input type="number" class="quick-input" value="500.00" step="0.01" min="0">
+                                        <div class="quick-spin-controls">
+                                            <button type="button" class="spin-btn spin-up" aria-label="Aumentar atalho"></button>
+                                            <button type="button" class="spin-btn spin-down" aria-label="Diminuir atalho"></button>
+                                        </div>
+                                    </div>
+                                    <button class="quick-btn quick-btn-bottom" data-house="2">Inserir</button>
+                                </div>
+                                <div class="quick-pair">
+                                    <button class="quick-btn quick-btn-top" data-house="1">Inserir</button>
+                                    <div class="quick-input-wrap">
+                                        <input type="number" class="quick-input" value="100.00" step="0.01" min="0">
+                                        <div class="quick-spin-controls">
+                                            <button type="button" class="spin-btn spin-up" aria-label="Aumentar atalho"></button>
+                                            <button type="button" class="spin-btn spin-down" aria-label="Diminuir atalho"></button>
+                                        </div>
+                                    </div>
+                                    <button class="quick-btn quick-btn-bottom" data-house="2">Inserir</button>
+                                </div>
+                                <div class="quick-pair">
+                                    <button class="quick-btn quick-btn-top" data-house="1">Inserir</button>
+                                    <div class="quick-input-wrap">
+                                        <input type="number" class="quick-input" value="500.00" step="0.01" min="0">
+                                        <div class="quick-spin-controls">
+                                            <button type="button" class="spin-btn spin-up" aria-label="Aumentar atalho"></button>
+                                            <button type="button" class="spin-btn spin-down" aria-label="Diminuir atalho"></button>
+                                        </div>
+                                    </div>
+                                    <button class="quick-btn quick-btn-bottom" data-house="2">Inserir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="dados-section-title">Opções de cálculo</h4>
+                    <!-- Bottom Checkboxes -->
+                    <div class="dados-checkboxes">
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="fixar-casa"> Fixar casa
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="auto-stake" checked> Automatizar stake
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ===== GERAL PANEL ===== -->
+                <div class="tab-panel" id="panel-geral">
+                    <!-- Configura&ccedil;&otilde;es -->
+                    <div class="settings-section">
+                        <h3 class="section-title">Configura&ccedil;&otilde;es</h3>
+                        <div class="settings-list">
+                            <label class="checkbox-item">
+                                <input type="checkbox"> Recolher lista de jogos ao abrir um evento
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox"> Trazer ao primeiro plano ao receber novo sinal
+                            </label>
+                            <label class="checkbox-item inline">
+                                <input type="checkbox"> Arredondar calculadora em múltiplos de
+                                <input type="number" class="inline-input" value="5" min="1" step="1">
+                            </label>
+                            <label class="checkbox-item inline">
+                                <input type="checkbox"> Fixar Bet365
+                                <select class="inline-select">
+                                    <option value="esquerdo" selected>Esquerdo</option>
+                                    <option value="direito">Direito</option>
+                                </select>
+                            </label>
+                            <label class="checkbox-item inline">
+                                <input type="checkbox"> Fixar Pinnacle
+                                <select class="inline-select">
+                                    <option value="esquerdo">Esquerdo</option>
+                                    <option value="direito" selected>Direito</option>
+                                </select>
+                            </label>
+                            <label class="checkbox-item inline">
+                                <input type="checkbox" id="alert-sound-enabled-general"> Som de alerta
+                                <select class="inline-select" id="alert-sound-select-general">
+                                    <option value="beep" selected>Beep</option>
+                                    <option value="stop">Stop</option>
+                                </select>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox"> Fundo verde na lista de sinais
+                            </label>
+                            <label class="checkbox-item inline">
+                                <input type="checkbox"> Valor do dólar
+                                <input type="number" class="inline-input" value="5.98" min="0" step="0.01">
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Automação -->
+                    <div class="settings-section">
+                        <h3 class="section-title">Automação</h3>
+                        <div class="settings-list">
+                            <label class="checkbox-item">
+                                <input type="checkbox"> Auto-seleção de mercados
+                            </label>
+                            <label class="checkbox-item inline">
+                                <input type="checkbox"> Fixar Pinnacle na calculadora
+                                <input type="number" class="inline-input" value="500" min="0" step="1">
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="calc-auto-odds" checked> Atualizar ODDS na calculadora automaticamente
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Mudar localização -->
+                    <div class="settings-section">
+                        <h3 class="section-title">Mudar localização</h3>
+                        <div class="location-group">
+                            <input type="text" class="location-input" placeholder="Nova localização...">
+                            <button class="btn-update" id="btn-atualizar">Atualizar</button>
+                        </div>
+                        <div class="browser-picker-row">
+                            <button class="btn-browser-picker" id="btn-browser-settings" type="button" aria-label="Escolher navegador">
+                                <svg class="btn-browser-picker-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5v-11z"></path>
+                                    <path d="M4.8 9.2h14.4"></path>
+                                    <circle cx="8" cy="6.6" r="0.9"></circle>
+                                    <circle cx="11" cy="6.6" r="0.9"></circle>
+                                    <circle cx="14" cy="6.6" r="0.9"></circle>
+                                </svg>
+                                <span>Escolher navegador</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== PRÉ-FILTRO PANEL ===== -->
+                <div class="tab-panel" id="panel-pre-filtro">
+                    <!-- Porcentagem mínima nas próximas -->
+                    <div class="settings-section">
+                        <h3 class="section-title">Porcentagem mínima nas próximas</h3>
+                        <div class="percent-grid">
+                            <div class="percent-row">
+                                <div class="percent-item"><span class="percent-label">00-03 horas</span><input
+                                        type="number" class="percent-input" value="2.00" step="0.01"></div>
+                                <div class="percent-item"><span class="percent-label">03-06 horas</span><input
+                                        type="number" class="percent-input" value="2.00" step="0.01"></div>
+                            </div>
+                            <div class="percent-row">
+                                <div class="percent-item"><span class="percent-label">06-12 horas</span><input
+                                        type="number" class="percent-input" value="2.00" step="0.01"></div>
+                                <div class="percent-item"><span class="percent-label">12-18 horas</span><input
+                                        type="number" class="percent-input" value="2.00" step="0.01"></div>
+                            </div>
+                            <div class="percent-row">
+                                <div class="percent-item"><span class="percent-label">18-24 horas</span><input
+                                        type="number" class="percent-input" value="2.00" step="0.01"></div>
+                                <div class="percent-item"><span class="percent-label">24-36 horas</span><input
+                                        type="number" class="percent-input" value="2.00" step="0.01"></div>
+                            </div>
+                            <div class="percent-row">
+                                <div class="percent-item"><span class="percent-label">36-48 horas</span><input
+                                        type="number" class="percent-input" value="2.00" step="0.01"></div>
+                                <div class="percent-item"><span class="percent-label">02 a 03 dias</span><input
+                                        type="number" class="percent-input" value="2.00" step="0.01"></div>
+                            </div>
+                            <div class="percent-row">
+                                <div class="percent-item"><span class="percent-label">03 a 04 dias</span><input
+                                        type="number" class="percent-input" value="2.00" step="0.01"></div>
+                                <div class="percent-item"><span class="percent-label">04 a 05 dias</span><input
+                                        type="number" class="percent-input" value="2.00" step="0.01"></div>
+                            </div>
+                            <div class="percent-row">
+                                <div class="percent-item"><span class="percent-label">05 a 06 dias</span><input
+                                        type="number" class="percent-input" value="2.00" step="0.01"></div>
+                                <div class="percent-item"><span class="percent-label">06 a 07 dias</span><input
+                                        type="number" class="percent-input" value="2.00" step="0.01"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filter Buttons -->
+                    <div class="filter-buttons">
+                        <button class="filter-btn">Filtro 1</button>
+                        <button class="filter-btn">Filtro 2</button>
+                        <button class="filter-btn">Filtro 3</button>
+                        <button class="filter-btn btn-red">Limpar Lista</button>
+                    </div>
+
+                    <!-- Max Percentage Filter -->
+                    <label class="checkbox-item inline" style="margin: 8px 0;">
+                        <input type="checkbox"> Filtro de porcentagem máxima
+                        <input type="number" class="inline-input" value="150" min="0" step="1" style="width:60px;">
+                    </label>
+
+                    <!-- Casa & Esporte Filters -->
+                    <div class="filter-columns">
+                        <div class="filter-column">
+                            <div class="filter-title-row">
+                                <h4 class="filter-col-title">Filtro de casa</h4>
+                                <button type="button" class="filter-search-toggle"
+                                    data-search-target="filtro-casa-pre-search" aria-label="Buscar casa">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                        <path d="M10.5 18a7.5 7.5 0 1 1 5.3-12.8 7.5 7.5 0 0 1-5.3 12.8Z"></path>
+                                        <path d="m16 16 5 5"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <input id="filtro-casa-pre-search" class="filter-search-input" type="search"
+                                placeholder="Buscar casa..." autocomplete="off" hidden>
+                            <div class="filter-list" id="filtro-casa-pre">
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                            </div>
+                            <div class="filter-actions">
+                                <button class="filter-action-btn btn-green" data-target="filtro-casa-pre"
+                                    data-action="all">Todos</button>
+                                <button class="filter-action-btn btn-green" data-target="filtro-casa-pre"
+                                    data-action="none">Nenhum</button>
+                            </div>
+                        </div>
+                        <div class="filter-column">
+                            <h4 class="filter-col-title">Filtro de esporte</h4>
+                            <div class="filter-list" id="filtro-esporte-pre">
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                            </div>
+                            <div class="filter-actions">
+                                <button class="filter-action-btn btn-red-alt" data-target="filtro-esporte-pre"
+                                    data-action="all">Todos</button>
+                                <button class="filter-action-btn btn-red-alt" data-target="filtro-esporte-pre"
+                                    data-action="none">Nenhum</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== LIVE FILTRO PANEL ===== -->
+                <div class="tab-panel" id="panel-live-filtro">
+                    <!-- Configura&ccedil;&otilde;es -->
+                    <div class="settings-section">
+                        <h3 class="section-title">Configura&ccedil;&otilde;es</h3>
+                        <div class="settings-list">
+                            <label class="checkbox-item inline">
+                                <input type="checkbox"> Porcentagem:
+                                <input type="number" class="inline-input" value="5" min="0" step="1">
+                                <span style="color: rgba(255,255,255,0.4);">a</span>
+                                <input type="number" class="inline-input" value="5" min="0" step="1">
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox"> Futebol: Desabilitar handicap de gols
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox"> Desabilitar sinais com chance de reembolso (Gols/HC)
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox"> Basquete: Desabilitar mercado de quartos
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox"> Futebol: Desabilitar escanteios
+                            </label>
+                            <label class="checkbox-item inline">
+                                <input type="checkbox" id="alert-sound-enabled-live"> Som de alerta
+                                <select class="inline-select" id="alert-sound-select-live">
+                                    <option value="beep" selected>Beep</option>
+                                    <option value="stop">Stop</option>
+                                </select>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox"> Trazer ao primeiro plano ao receber novo sinal
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox"> Recolher lista de jogos ao abrir um evento
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Casa & Esporte Filters -->
+                    <div class="filter-columns">
+                        <div class="filter-column">
+                            <div class="filter-title-row">
+                                <h4 class="filter-col-title">Filtro de casa</h4>
+                                <button type="button" class="filter-search-toggle"
+                                    data-search-target="filtro-casa-live-search" aria-label="Buscar casa">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                        <path d="M10.5 18a7.5 7.5 0 1 1 5.3-12.8 7.5 7.5 0 0 1-5.3 12.8Z"></path>
+                                        <path d="m16 16 5 5"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <input id="filtro-casa-live-search" class="filter-search-input" type="search"
+                                placeholder="Buscar casa..." autocomplete="off" hidden>
+                            <div class="filter-list" id="filtro-casa-live">
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Casa x</label>
+                            </div>
+                            <div class="filter-actions">
+                                <button class="filter-action-btn btn-green" data-target="filtro-casa-live"
+                                    data-action="all">Todos</button>
+                                <button class="filter-action-btn btn-green" data-target="filtro-casa-live"
+                                    data-action="none">Nenhum</button>
+                            </div>
+                        </div>
+                        <div class="filter-column">
+                            <h4 class="filter-col-title">Filtro de esporte</h4>
+                            <div class="filter-list" id="filtro-esporte-live">
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                            </div>
+                            <div class="filter-actions">
+                                <button class="filter-action-btn btn-red-alt" data-target="filtro-esporte-live"
+                                    data-action="all">Todos</button>
+                                <button class="filter-action-btn btn-red-alt" data-target="filtro-esporte-live"
+                                    data-action="none">Nenhum</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-panel" id="panel-cronograma">
+                    <div class="filter-column" style="width:100%;">
+                        <h4 class="filter-col-title">Filtro de esporte</h4>
+                        <div class="filter-list" id="filtro-esporte-crono">
+                            <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                            <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                            <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                            <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                            <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                            <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                            <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                            <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                            <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                            <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                            <label class="checkbox-item"><input type="checkbox" checked> Esporte x</label>
+                        </div>
+                        <div class="filter-actions">
+                            <button class="filter-action-btn btn-green" data-target="filtro-esporte-crono"
+                                data-action="all">Todos</button>
+                            <button class="filter-action-btn btn-green" data-target="filtro-esporte-crono"
+                                data-action="none">Nenhum</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Table + Log -->
+            <div class="data-area" id="data-area">
+                <div class="data-table-container" id="data-table-container">
+                    <table class="data-table" id="data-table">
+                        <thead>
+                            <tr>
+                                <th>Idade</th>
+                                <th>Porc.</th>
+                                <th>Esporte</th>
+                                <th>Evento</th>
+                                <th>Casa 1</th>
+                                <th>Odd 1</th>
+                                <th>Casa 2</th>
+                                <th>Odd 2</th>
+                                <th>Mercado 1</th>
+                                <th>Mercado 2</th>
+                            </tr>
+                        </thead>
+                        <tbody id="data-table-body">
+                            <!-- Rows populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="data-pagination" id="data-pagination">
+                    <button type="button" class="page-btn" id="page-prev">Anterior</button>
+                    <span class="page-info" id="page-info">Pagina 1/1</span>
+                    <button type="button" class="page-btn" id="page-next">Proxima</button>
+                </div>
+                <div class="planilha-panel hidden" id="planilha-panel">
+                    <div class="planilha-header report-shell-header">
+                        <div class="planilha-title-wrap">
+                            <strong class="planilha-title" id="report-shell-title">Relatorios</strong>
+                            <span class="planilha-subtitle" id="report-shell-subtitle">Estruture, acompanhe e refine a operacao em um unico lugar.</span>
+                        </div>
+                        <div class="report-nav" id="report-nav">
+                            <button type="button" class="report-nav-btn is-active" data-report-view="dashboard">
+                                <span class="report-nav-icon" aria-hidden="true">
+                                    <svg viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.918 10.0005H7.082C6.66587 9.99708 6.26541 10.1591 5.96873 10.4509C5.67204 10.7427 5.50343 11.1404 5.5 11.5565V17.4455C5.5077 18.3117 6.21584 19.0078 7.082 19.0005H9.918C10.3341 19.004 10.7346 18.842 11.0313 18.5502C11.328 18.2584 11.4966 17.8607 11.5 17.4445V11.5565C11.4966 11.1404 11.328 10.7427 11.0313 10.4509C10.7346 10.1591 10.3341 9.99708 9.918 10.0005Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.918 4.0006H7.082C6.23326 3.97706 5.52559 4.64492 5.5 5.4936V6.5076C5.52559 7.35629 6.23326 8.02415 7.082 8.0006H9.918C10.7667 8.02415 11.4744 7.35629 11.5 6.5076V5.4936C11.4744 4.64492 10.7667 3.97706 9.918 4.0006Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.082 13.0007H17.917C18.3333 13.0044 18.734 12.8425 19.0309 12.5507C19.3278 12.2588 19.4966 11.861 19.5 11.4447V5.55666C19.4966 5.14054 19.328 4.74282 19.0313 4.45101C18.7346 4.1592 18.3341 3.9972 17.918 4.00066H15.082C14.6659 3.9972 14.2654 4.1592 13.9687 4.45101C13.672 4.74282 13.5034 5.14054 13.5 5.55666V11.4447C13.5034 11.8608 13.672 12.2585 13.9687 12.5503C14.2654 12.8421 14.6659 13.0041 15.082 13.0007Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.082 19.0006H17.917C18.7661 19.0247 19.4744 18.3567 19.5 17.5076V16.4936C19.4744 15.6449 18.7667 14.9771 17.918 15.0006H15.082C14.2333 14.9771 13.5256 15.6449 13.5 16.4936V17.5066C13.525 18.3557 14.2329 19.0241 15.082 19.0006Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                                <span>Dashboard</span>
+                            </button>
+                            <button type="button" class="report-nav-btn" data-report-view="surebets">
+                                <span class="report-nav-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path opacity="0.1" d="M8.976 3C4.05476 3 3 4.05476 3 8.976V15.024C3 19.9452 4.05476 21 8.976 21H9V9H21V8.976C21 4.05476 19.9452 3 15.024 3H8.976Z" fill="currentColor"/>
+                                        <path d="M3 8.976C3 4.05476 4.05476 3 8.976 3H15.024C19.9452 3 21 4.05476 21 8.976V15.024C21 19.9452 19.9452 21 15.024 21H8.976C4.05476 21 3 19.9452 3 15.024V8.976Z" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M21 9L3 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9 21L9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                                <span>Surebets</span>
+                            </button>
+                            <button type="button" class="report-nav-btn" data-report-view="analise-global">
+                                <span class="report-nav-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="11" cy="16" r="3" fill="currentColor" opacity="0.18"></circle>
+                                        <path d="M18,16h1a1,1,0,0,0,1-1V3H4V15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                        <path d="M8.83,18.12,6,21M11,13a3,3,0,1,0,3,3A3,3,0,0,0,11,13ZM8,8h8M3,3H21" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                    </svg>
+                                </span>
+                                <span>Analise Global</span>
+                            </button>
+                            <button type="button" class="report-nav-btn" data-report-view="analise-individual">
+                                <span class="report-nav-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17,12v5m-4,0V15M3,15l2.83-2.83M8,7a3,3,0,1,0,3,3A3,3,0,0,0,8,7Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                        <path d="M8,3H20a1,1,0,0,1,1,1V20a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V17" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                    </svg>
+                                </span>
+                                <span>Analise Individual</span>
+                            </button>
+                        </div>
+                    </div>
+                    <section class="report-view is-active" id="report-view-dashboard">
+                        <div class="report-dashboard-toolbar">
+                            <div class="report-dashboard-presets" id="report-dashboard-presets">
+                                <button type="button" class="report-dashboard-pill" data-dashboard-range="1d">1 Dia</button>
+                                <button type="button" class="report-dashboard-pill" data-dashboard-range="7d">7 Dias</button>
+                                <button type="button" class="report-dashboard-pill" data-dashboard-range="15d">15 Dias</button>
+                                <button type="button" class="report-dashboard-pill is-active" data-dashboard-range="30d">30 Dias</button>
+                                <button type="button" class="report-dashboard-pill" data-dashboard-range="year">Anual</button>
+                                <button type="button" class="report-dashboard-pill" data-dashboard-range="custom">Personalizado</button>
+                            </div>
+                            <div class="report-dashboard-date-controls">
+                                <label class="report-date-field">
+                                    <span>Inicial</span>
+                                    <input type="date" id="report-dashboard-start-date">
+                                </label>
+                                <label class="report-date-field">
+                                    <span>Final</span>
+                                    <input type="date" id="report-dashboard-end-date">
+                                </label>
+                            </div>
+                            <div class="report-dashboard-mode-group" id="report-dashboard-mode-group">
+                                <button type="button" class="report-dashboard-mode-btn is-active" data-dashboard-mode="todos">Todos</button>
+                                <button type="button" class="report-dashboard-mode-btn" data-dashboard-mode="pre-live">Pre-Live</button>
+                                <button type="button" class="report-dashboard-mode-btn" data-dashboard-mode="live">Live</button>
+                            </div>
+                        </div>
+
+                        <div class="report-dashboard-stats" id="report-dashboard-stats">
+                            <article class="report-metric-card">
+                                <span class="report-metric-label">Lucro do Periodo</span>
+                                <strong class="report-metric-value" id="report-metric-period-profit">R$ 0,00</strong>
+                            </article>
+                            <article class="report-metric-card">
+                                <span class="report-metric-label">Lucro Medio</span>
+                                <strong class="report-metric-value" id="report-metric-average-profit">R$ 0,00</strong>
+                            </article>
+                            <article class="report-metric-card">
+                                <span class="report-metric-label">ROI Medio</span>
+                                <strong class="report-metric-value" id="report-metric-average-roi">0,00%</strong>
+                            </article>
+                            <article class="report-metric-card">
+                                <span class="report-metric-label">Entradas</span>
+                                <strong class="report-metric-value" id="report-metric-entries">0</strong>
+                            </article>
+                            <article class="report-metric-card">
+                                <span class="report-metric-label">Gastos</span>
+                                <strong class="report-metric-value" id="report-metric-expenses">R$ 0,00</strong>
+                            </article>
+                            <article class="report-metric-card">
+                                <span class="report-metric-label">Saldo Final</span>
+                                <strong class="report-metric-value" id="report-metric-final-balance">R$ 0,00</strong>
+                            </article>
+                        </div>
+
+                        <div class="report-dashboard-grid">
+                            <article class="report-chart-card report-chart-card-wide">
+                                <div class="report-chart-head">
+                                    <h3>Evolucao do Lucro</h3>
+                                    <span id="report-chart-cumulative-meta">0 pontos</span>
+                                </div>
+                                <div class="report-chart-body" id="report-chart-cumulative"></div>
+                            </article>
+                            <article class="report-chart-card report-chart-card-wide">
+                                <div class="report-chart-head">
+                                    <h3>Lucro Diario</h3>
+                                    <span id="report-chart-daily-meta">0 dias</span>
+                                </div>
+                                <div class="report-chart-body" id="report-chart-daily"></div>
+                            </article>
+                            <article class="report-chart-card">
+                                <div class="report-chart-head">
+                                    <h3>Lucro por Dia da Semana</h3>
+                                    <span>Seg a Dom</span>
+                                </div>
+                                <div class="report-chart-body" id="report-chart-weekday"></div>
+                            </article>
+                            <article class="report-chart-card">
+                                <div class="report-chart-head">
+                                    <h3>Lucro por Hora</h3>
+                                    <span>00h a 23h</span>
+                                </div>
+                                <div class="report-chart-body" id="report-chart-hour"></div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="report-view" id="report-view-surebets">
+                    <div class="planilha-toolbar-top">
+                        <div class="planilha-period-controls">
+                            <span class="planilha-period-label">Periodo:</span>
+                            <select class="planilha-period-select" id="planilha-period-month"></select>
+                            <select class="planilha-period-select" id="planilha-period-year"></select>
+                        </div>
+                        <div class="planilha-register-actions">
+                            <button type="button" class="planilha-top-btn planilha-top-btn-primary" id="btn-planilha-registrar-gastos">
+                                <svg class="planilha-top-btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M7 3h8l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15 3v4h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10 14h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                </svg>
+                                <span>Registrar Gastos</span>
+                            </button>
+                            <button type="button" class="planilha-top-btn planilha-top-btn-primary" id="btn-planilha-registrar-aposta">
+                                <svg class="planilha-top-btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                                    <path d="M12 8v8M8 12h8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                </svg>
+                                <span>Registrar Aposta</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="planilha-toolbar-filters">
+                        <div class="planilha-search-wrap">
+                            <input type="text" id="planilha-search-input" class="planilha-search-input" placeholder="Buscar time ou evento...">
+                        </div>
+                        <div class="planilha-filter-wrap">
+                            <button type="button" class="planilha-filter-btn is-active" data-planilha-filter-mode="todos">Todos</button>
+                            <button type="button" class="planilha-filter-btn" data-planilha-filter-mode="pre-live">Pre-Live</button>
+                            <button type="button" class="planilha-filter-btn" data-planilha-filter-mode="live">Live</button>
+                            <button type="button" class="planilha-filter-btn" id="btn-planilha-definir-datas">Definir Datas</button>
+                            <button type="button" class="planilha-filter-btn" data-planilha-filter-mode="pendentes">Pendentes</button>
+                            <button type="button" class="planilha-filter-btn" id="btn-planilha-recolher">Recolher</button>
+                        </div>
+                    </div>
+                    <div class="planilha-summary" id="planilha-summary">
+                        <div class="planilha-stat">
+                            <span class="planilha-stat-label">Registros</span>
+                            <strong class="planilha-stat-value" id="planilha-total-registros">0</strong>
+                        </div>
+                        <div class="planilha-stat">
+                            <span class="planilha-stat-label">Lucro Min. (R$)</span>
+                            <strong class="planilha-stat-value" id="planilha-lucro-min">0,00</strong>
+                        </div>
+                        <div class="planilha-stat">
+                            <span class="planilha-stat-label">ROI Médio</span>
+                            <strong class="planilha-stat-value" id="planilha-roi-medio">0,00%</strong>
+                        </div>
+                        <div class="planilha-stat">
+                            <span class="planilha-stat-label">Gastos (R$)</span>
+                            <strong class="planilha-stat-value" id="planilha-total-gastos">R$ 0,00</strong>
+                        </div>
+                        <div class="planilha-stat">
+                            <span class="planilha-stat-label">Saldo Final (R$)</span>
+                            <strong class="planilha-stat-value" id="planilha-saldo-final">R$ 0,00</strong>
+                        </div>
+                    </div>
+                    <div class="planilha-cards-wrap">
+                        <div class="planilha-cards" id="planilha-table-body">
+                            <div class="planilha-empty">Nenhum registro planilhado ainda.</div>
+                        </div>
+                    </div>
+                    </section>
+
+                    <section class="report-view" id="report-view-analise-global">
+                        <div class="report-analysis-shell" id="report-analysis-global"></div>
+                    </section>
+
+                    <section class="report-view" id="report-view-analise-individual">
+                        <div class="report-analysis-shell" id="report-analysis-individual"></div>
+                    </section>
+
+                    <section class="report-view" id="report-view-sugestoes">
+                        <div class="report-suggestions-shell" id="report-suggestions"></div>
+                    </section>
+                    <section class="report-view" id="report-view-atualizacoes">
+                        <div class="report-updates-placeholder">
+                            <div class="report-updates-placeholder-icon" aria-hidden="true">
+                                <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15,6V1.76l-1.7,1.7A7,7,0,1,0,14.92,9H13.51a5.63,5.63,0,1,1-1.2-4.55L10.76,6Z" fill="currentColor"></path>
+                                </svg>
+                            </div>
+                            <h3>Atualizacoes</h3>
+                            <p>Em construcao. Essa aba vai receber as publicacoes oficiais em breve.</p>
+                        </div>
+                    </section>
+                    <div class="report-tooltip" id="report-tooltip" aria-hidden="true"></div>
+                </div>
+                <div class="browser-workspace" id="browser-workspace" style="display:none;">
+                    <div class="browser-toolbar">
+                        <div class="browser-current" id="browser-current">
+                            <span class="browser-icon browser-dot browser-system" id="browser-current-icon"></span>
+                            <span class="browser-name" id="browser-current-name">Padr&atilde;o do sistema</span>
+                        </div>
+                        <div class="browser-toolbar-actions">
+                            <div class="browser-pane-controls">
+                                <button type="button" class="browser-pane-btn" id="btn-browser-focus-left" title="Maximizar Casa 1">Casa 1</button>
+                                <button type="button" class="browser-pane-btn active" id="btn-browser-focus-split" title="Mostrar as duas casas">Dividir</button>
+                                <button type="button" class="browser-pane-btn" id="btn-browser-focus-right" title="Maximizar Casa 2">Casa 2</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="browser-split">
+                        <webview id="browser-view-1" class="browser-view" allowpopups></webview>
+                        <div class="browser-divider" id="browser-divider" title="Arraste para redimensionar"></div>
+                        <webview id="browser-view-2" class="browser-view" allowpopups></webview>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cronograma Chart (shown when Cronograma tab is active) -->
+            <div class="chart-container" id="chart-container" style="display:none;">
+                <div class="chart-header">Horario</div>
+                <div class="chart-body" id="chart-body">
+                    <!-- Bars populated by JS -->
+                </div>
+            </div>
+            <div class="access-lock-overlay hidden" id="access-lock-overlay" aria-live="polite">
+                <div class="access-lock-card">
+                    <div class="access-lock-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M7 10V8a5 5 0 0 1 10 0v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                            <path d="M6.5 10h11A1.5 1.5 0 0 1 19 11.5v7A1.5 1.5 0 0 1 17.5 20h-11A1.5 1.5 0 0 1 5 18.5v-7A1.5 1.5 0 0 1 6.5 10Z" stroke="currentColor" stroke-width="1.8" />
+                            <path d="M12 14v2.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <strong id="access-lock-title">Acesso bloqueado</strong>
+                    <p id="access-lock-message">Seu plano atual nao libera esta area.</p>
+                    <button type="button" id="btn-unlock-access" class="access-lock-btn">Desbloquear acesso</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Decorative Bar -->
+    <div class="bottom-bar">
+        <div class="bottom-bar-glow"></div>
+        <div class="bottom-bar-line"></div>
+    </div>
+
+    <script src="../shared/logger-renderer.js"></script>
+    <div class="browser-settings-modal hidden" id="browser-settings-modal">
+        <div class="browser-settings-card">
+            <h3>Selecionar navegador</h3>
+            <p>Escolha seu navegador padrao para abrir Casa 1 e Casa 2 no modo Recolher.</p>
+            <div class="browser-options" id="browser-options">
+                <button type="button" class="browser-option" data-browser="system"><span class="browser-dot browser-system"></span><span>Padr&atilde;o do sistema</span></button>
+                <button type="button" class="browser-option" data-browser="chrome"><span class="browser-dot browser-chrome"></span><span>Google Chrome</span></button>
+                <button type="button" class="browser-option" data-browser="edge"><span class="browser-dot browser-edge"></span><span>Microsoft Edge</span></button>
+                <button type="button" class="browser-option" data-browser="firefox"><span class="browser-dot browser-firefox"></span><span>Mozilla Firefox</span></button>
+            </div>
+            <div class="browser-settings-actions">
+                <button type="button" class="page-btn" id="btn-browser-settings-close">Fechar</button>
+            </div>
+        </div>
+    </div>
+    <div class="app-alert-modal hidden" id="app-alert-modal">
+        <div class="app-alert-card">
+            <h3 class="app-alert-title" id="app-alert-title">Aviso</h3>
+            <p class="app-alert-message" id="app-alert-message">-</p>
+            <div class="app-alert-actions">
+                <button type="button" class="page-btn" id="app-alert-cancel">Cancelar</button>
+                <button type="button" class="page-btn" id="app-alert-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="planilha-modal hidden" id="planilha-gasto-modal">
+        <div class="planilha-modal-card planilha-modal-card-sm">
+            <div class="planilha-modal-head">
+                <div class="planilha-modal-title-wrap">
+                    <svg class="planilha-modal-title-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M7 3h8l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 3v4h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10 14h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                    <h3>Registrar Gasto</h3>
+                </div>
+                <button type="button" class="planilha-modal-close" id="btn-planilha-gasto-close" aria-label="Fechar">X</button>
+            </div>
+            <div class="planilha-modal-body">
+                <div class="planilha-form-group">
+                    <label for="planilha-gasto-descricao">Descricao do Gasto</label>
+                    <input id="planilha-gasto-descricao" type="text" class="planilha-modal-input" placeholder="Ex: Mensalidade, VPS, API..." maxlength="120">
+                </div>
+                <div class="planilha-form-row">
+                    <div class="planilha-form-group">
+                        <label for="planilha-gasto-data">Data</label>
+                        <input id="planilha-gasto-data" type="date" class="planilha-modal-input">
+                    </div>
+                    <div class="planilha-form-group">
+                        <label for="planilha-gasto-valor">Valor (R$)</label>
+                        <input id="planilha-gasto-valor" type="number" class="planilha-modal-input" min="0" step="0.01" placeholder="0,00">
+                    </div>
+                </div>
+            </div>
+            <div class="planilha-modal-actions">
+                <button type="button" class="planilha-modal-btn" id="btn-planilha-gasto-cancelar">Cancelar</button>
+                <button type="button" class="planilha-modal-btn planilha-modal-btn-primary" id="btn-planilha-gasto-salvar">Salvar Gasto</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="planilha-modal hidden" id="planilha-date-filter-modal">
+        <div class="planilha-modal-card planilha-modal-card-sm">
+            <div class="planilha-modal-head">
+                <div class="planilha-modal-title-wrap">
+                    <span class="planilha-modal-title-icon">DATA</span>
+                    <h3>Filtrar Surebets por Data</h3>
+                </div>
+                <button type="button" class="planilha-modal-close" id="btn-planilha-date-filter-close">Fechar</button>
+            </div>
+            <div class="planilha-modal-body">
+                <label class="planilha-modal-field">
+                    <span>Data inicial</span>
+                    <input id="planilha-date-filter-start" type="date" class="planilha-modal-input">
+                </label>
+                <label class="planilha-modal-field">
+                    <span>Data final</span>
+                    <input id="planilha-date-filter-end" type="date" class="planilha-modal-input">
+                </label>
+            </div>
+            <div class="planilha-modal-actions">
+                <button type="button" class="planilha-modal-btn" id="btn-planilha-date-filter-clear">Limpar</button>
+                <button type="button" class="planilha-modal-btn" id="btn-planilha-date-filter-cancel">Cancelar</button>
+                <button type="button" class="planilha-modal-btn planilha-modal-btn-primary" id="btn-planilha-date-filter-apply">Aplicar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="planilha-modal hidden" id="planilha-aposta-modal">
+        <div class="planilha-modal-card planilha-modal-card-lg">
+            <div class="planilha-modal-head">
+                <div class="planilha-modal-title-wrap">
+                    <svg class="planilha-modal-title-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                        <path d="M12 8v8M8 12h8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                    <h3>Nova Aposta</h3>
+                </div>
+                <button type="button" class="planilha-modal-close" id="btn-planilha-aposta-close" aria-label="Fechar">X</button>
+            </div>
+            <div class="planilha-modal-body">
+                <div class="planilha-form-row planilha-aposta-top-row">
+                    <div class="planilha-form-group">
+                        <label for="planilha-aposta-esporte">Esporte</label>
+                        <input id="planilha-aposta-esporte" type="text" class="planilha-modal-input" list="planilha-aposta-esportes-list" placeholder="Digite para buscar esporte...">
+                    </div>
+                    <div class="planilha-form-group">
+                        <label for="planilha-aposta-liga">Liga</label>
+                        <input id="planilha-aposta-liga" type="text" class="planilha-modal-input" placeholder="Ex: Premier League">
+                    </div>
+                    <div class="planilha-form-group">
+                        <label for="planilha-aposta-tipo">Tipo de Sinal</label>
+                        <select id="planilha-aposta-tipo" class="planilha-modal-input">
+                            <option value="pre-live">Pre-Live</option>
+                            <option value="live">Live</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="planilha-aposta-columns">
+                    <section class="planilha-aposta-col">
+                        <div class="planilha-aposta-col-title">Casa 1</div>
+                        <div class="planilha-form-row">
+                            <div class="planilha-form-group">
+                                <label for="planilha-aposta-data1">Data e Hora</label>
+                                <input id="planilha-aposta-data1" type="datetime-local" class="planilha-modal-input">
+                            </div>
+                            <div class="planilha-form-group">
+                        <label for="planilha-aposta-casa1">Casa</label>
+                        <input id="planilha-aposta-casa1" type="text" class="planilha-modal-input" list="planilha-aposta-casas-list" placeholder="Digite para buscar casa...">
+                    </div>
+                        </div>
+                        <div class="planilha-form-group">
+                            <label for="planilha-aposta-evento">Evento</label>
+                            <input id="planilha-aposta-evento" type="text" class="planilha-modal-input" placeholder="Ex: Time A - Time B">
+                        </div>
+                        <div class="planilha-form-group">
+                            <label for="planilha-aposta-mercado1">Mercado</label>
+                            <input id="planilha-aposta-mercado1" type="text" class="planilha-modal-input" placeholder="Ex: Time1 vence">
+                        </div>
+                        <div class="planilha-form-row">
+                            <div class="planilha-form-group">
+                                <label for="planilha-aposta-odd1">Odd</label>
+                                <input id="planilha-aposta-odd1" type="number" class="planilha-modal-input" min="1" step="0.01" placeholder="Odd">
+                            </div>
+                            <div class="planilha-form-group">
+                                <label for="planilha-aposta-stake1">Stake</label>
+                                <input id="planilha-aposta-stake1" type="number" class="planilha-modal-input" min="0" step="0.01" placeholder="Stake">
+                            </div>
+                        </div>
+                    </section>
+                    <section class="planilha-aposta-col">
+                        <div class="planilha-aposta-col-title">Casa 2</div>
+                        <div class="planilha-form-row">
+                            <div class="planilha-form-group">
+                                <label for="planilha-aposta-data2">Data e Hora</label>
+                                <input id="planilha-aposta-data2" type="datetime-local" class="planilha-modal-input">
+                            </div>
+                            <div class="planilha-form-group">
+                        <label for="planilha-aposta-casa2">Casa</label>
+                        <input id="planilha-aposta-casa2" type="text" class="planilha-modal-input" list="planilha-aposta-casas-list" placeholder="Digite para buscar casa...">
+                    </div>
+                        </div>
+                        <div class="planilha-form-group">
+                            <label for="planilha-aposta-evento2">Evento (Casa 2)</label>
+                            <input id="planilha-aposta-evento2" type="text" class="planilha-modal-input" placeholder="Opcional, se diferente">
+                        </div>
+                        <div class="planilha-form-group">
+                            <label for="planilha-aposta-mercado2">Mercado</label>
+                            <input id="planilha-aposta-mercado2" type="text" class="planilha-modal-input" placeholder="Ex: Time2 vence">
+                        </div>
+                        <div class="planilha-form-row">
+                            <div class="planilha-form-group">
+                                <label for="planilha-aposta-odd2">Odd</label>
+                                <input id="planilha-aposta-odd2" type="number" class="planilha-modal-input" min="1" step="0.01" placeholder="Odd">
+                            </div>
+                            <div class="planilha-form-group">
+                                <label for="planilha-aposta-stake2">Stake</label>
+                                <input id="planilha-aposta-stake2" type="number" class="planilha-modal-input" min="0" step="0.01" placeholder="Stake">
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <datalist id="planilha-aposta-esportes-list"></datalist>
+                <datalist id="planilha-aposta-casas-list"></datalist>
+            </div>
+            <div class="planilha-modal-actions">
+                <button type="button" class="planilha-modal-btn" id="btn-planilha-aposta-cancelar">Cancelar</button>
+                <button type="button" class="planilha-modal-btn planilha-modal-btn-primary" id="btn-planilha-aposta-salvar">Salvar Operacao</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnMainMenu = document.getElementById('btn-main-menu');
+            const mainMenuDropdown = document.getElementById('main-menu-dropdown');
+            const mainMenuItems = Array.from(document.querySelectorAll('.main-menu-item'));
+            const navTabs = Array.from(document.querySelectorAll('.nav-tab'));
+            const btnOpenPainel = document.getElementById('btn-open-painel');
+            const reportNavButtons = Array.from(document.querySelectorAll('.report-nav-btn[data-report-view]'));
+
+            if (!btnMainMenu || !mainMenuDropdown || !mainMenuItems.length) return;
+
+            const closeMenu = () => {
+                mainMenuDropdown.classList.add('hidden');
+                btnMainMenu.classList.remove('active');
+                btnMainMenu.setAttribute('aria-expanded', 'false');
+            };
+
+            const openMenu = () => {
+                mainMenuDropdown.classList.remove('hidden');
+                btnMainMenu.classList.add('active');
+                btnMainMenu.setAttribute('aria-expanded', 'true');
+            };
+
+            const syncMenuActive = () => {
+                const painelAtivo = !!(btnOpenPainel && btnOpenPainel.classList.contains('active'));
+                let key = 'dados';
+                if (painelAtivo) {
+                    const activeReportView = document.querySelector('.report-view.is-active');
+                    const activeReportId = activeReportView && activeReportView.id ? activeReportView.id : '';
+                    if (activeReportId === 'report-view-sugestoes') key = 'sugestoes';
+                    else if (activeReportId === 'report-view-atualizacoes') key = 'atualizacoes';
+                    else key = 'panel';
+                } else {
+                    const activeTab = navTabs.find((tab) => tab.classList.contains('active'));
+                    const tabName = (activeTab && activeTab.dataset && activeTab.dataset.tab) ? activeTab.dataset.tab : 'dados';
+                    if (tabName === 'pre-filtro') key = 'pre-live';
+                    else if (tabName === 'live-filtro') key = 'live';
+                    else key = tabName;
+                }
+                mainMenuItems.forEach((item) => {
+                    item.classList.toggle('active', (item.dataset.menuKey || '').trim() === key);
+                });
+            };
+
+            btnMainMenu.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (mainMenuDropdown.classList.contains('hidden')) openMenu();
+                else closeMenu();
+            });
+
+            mainMenuDropdown.addEventListener('click', (e) => {
+                const item = e.target.closest('.main-menu-item');
+                if (!item) return;
+                e.preventDefault();
+
+                const action = (item.dataset.mainMenuAction || '').trim();
+                if (action === 'panel') {
+                    if (btnOpenPainel) btnOpenPainel.click();
+                    closeMenu();
+                    setTimeout(syncMenuActive, 40);
+                    return;
+                }
+
+                if (action === 'report-view') {
+                    const targetReportView = (item.dataset.targetReportView || '').trim().toLowerCase();
+                    if (typeof window.__openPlanilhaPanel === 'function') {
+                        window.__openPlanilhaPanel(targetReportView || 'dashboard');
+                    } else if (btnOpenPainel) {
+                        if (!btnOpenPainel.classList.contains('active')) {
+                            btnOpenPainel.click();
+                        }
+                        const fallbackBtn = document.querySelector('.report-nav-btn[data-report-view="' + targetReportView + '"]');
+                        if (fallbackBtn) fallbackBtn.click();
+                    }
+                    closeMenu();
+                    setTimeout(syncMenuActive, 40);
+                    return;
+                }
+
+                if (action === 'tab') {
+                    if (btnOpenPainel && btnOpenPainel.classList.contains('active')) {
+                        btnOpenPainel.click();
+                    }
+                    const targetTabName = (item.dataset.targetTab || '').trim();
+                    const targetTab = navTabs.find((tab) => (tab.dataset.tab || '') === targetTabName);
+                    if (targetTab) targetTab.click();
+
+                    const targetSubtabName = (item.dataset.targetSubtab || '').trim();
+                    if (targetSubtabName) {
+                        const targetSubtab = document.querySelector('.sub-tab[data-subtab="' + targetSubtabName + '"]');
+                        if (targetSubtab) targetSubtab.click();
+                    }
+                }
+                closeMenu();
+                setTimeout(syncMenuActive, 40);
+            });
+
+            document.addEventListener('click', (e) => {
+                if (mainMenuDropdown.classList.contains('hidden')) return;
+                if (btnMainMenu.contains(e.target) || mainMenuDropdown.contains(e.target)) return;
+                closeMenu();
+            });
+
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeMenu();
+            });
+
+            navTabs.forEach((tab) => {
+                tab.addEventListener('click', () => {
+                    closeMenu();
+                    setTimeout(syncMenuActive, 40);
+                });
+            });
+
+            if (btnOpenPainel) {
+                btnOpenPainel.addEventListener('click', () => {
+                    setTimeout(syncMenuActive, 40);
+                });
+            }
+
+            reportNavButtons.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    setTimeout(syncMenuActive, 40);
+                });
+            });
+
+            syncMenuActive();
+        });
+    </script>
+</body>
+
+</html>
+
+
+

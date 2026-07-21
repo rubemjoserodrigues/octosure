@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg: #0f1724;
+    --surface: #101c2e;
+    --surface-2: #0c1522;
+    --border: rgba(83, 132, 196, 0.52);
+    --text: #eaf3ff;
+    --muted: rgba(210, 225, 244, 0.78);
+    --blue: #2b80d6;
+    --blue-soft: rgba(43, 128, 214, 0.24);
+    --red: #ef4444;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Sora', sans-serif;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+}
+
+.detached-shell {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    background: var(--bg);
+}
+
+.detached-toolbar {
+    height: 56px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, #13233a 0%, #0f1c2f 100%);
+    padding: 0 10px;
+    -webkit-app-region: drag;
+}
+
+.detached-toolbar-left {
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detached-side {
+    height: 28px;
+    border-radius: 7px;
+    border: 1px solid rgba(58, 134, 217, 0.72);
+    background: var(--blue-soft);
+    color: #d6ebff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 9px;
+}
+
+.detached-bookmaker,
+.detached-toolbar-center {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.detached-bookmaker {
+    color: var(--muted);
+    max-width: 260px;
+}
+
+.detached-toolbar-center {
+    text-align: center;
+}
+
+.detached-toolbar-right {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    -webkit-app-region: no-drag;
+}
+
+.detached-btn {
+    height: 30px;
+    border-radius: 7px;
+    border: 1px solid rgba(83, 132, 196, 0.8);
+    background: var(--blue-soft);
+    color: #dcefff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 0 10px;
+    cursor: pointer;
+    transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+}
+
+.detached-btn:hover {
+    background: rgba(43, 128, 214, 0.38);
+}
+
+.detached-btn-copy {
+    min-width: 96px;
+}
+
+.detached-btn-window {
+    width: 30px;
+    min-width: 30px;
+    padding: 0;
+    font-size: 12px;
+    line-height: 28px;
+}
+
+.detached-btn-copy.copied {
+    border-color: rgba(0, 163, 58, 0.95);
+    background: rgba(0, 163, 58, 0.3);
+}
+
+.detached-btn-close {
+    border-color: rgba(239, 68, 68, 0.85);
+    background: rgba(239, 68, 68, 0.2);
+    color: #ffd5d5;
+}
+
+.detached-btn-close:hover {
+    background: rgba(239, 68, 68, 0.34);
+}
+
+.detached-url-row {
+    height: 38px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-bottom: 1px solid rgba(83, 132, 196, 0.38);
+    background: var(--surface-2);
+}
+
+.detached-url {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    color: #dce9fb;
+    font-size: 11px;
+    line-height: 24px;
+    padding: 0 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.detached-content {
+    position: relative;
+    min-height: 0;
+    background: #0b1220;
+}
+
+.detached-hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(210, 225, 244, 0.85);
+    font-size: 14px;
+    font-weight: 600;
+    background: #0b1220;
+    pointer-events: none;
+}

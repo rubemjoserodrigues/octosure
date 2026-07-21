@@ -1,0 +1,44 @@
+﻿{
+    "appId":  "net.octosure.visual-installer",
+    "productName":  "Octosure Instalador",
+    "asar":  true,
+    "compression":  "maximum",
+    "directories":  {
+                        "output":  "dist-installer",
+                        "buildResources":  "src/assets"
+                    },
+    "files":  [
+                  "installer-shell/**/*",
+                  "src/assets/iconeapp.ico",
+                  "src/assets/iconeapp.png",
+                  "src/assets/logo.svg",
+                  "package.json"
+              ],
+    "extraResources":  [
+                           {
+                               "from":  "dist",
+                               "to":  "setup",
+                               "filter":  [
+                                              "Octosure Setup 1.0.27.exe"
+                                          ]
+                           }
+                       ],
+    "extraMetadata":  {
+                          "name":  "octosure-installer",
+                          "main":  "installer-shell/main.js"
+                      },
+    "win":  {
+                "icon":  "src/assets/iconeapp.ico",
+                "target":  [
+                               {
+                                   "target":  "portable",
+                                   "arch":  [
+                                                "x64"
+                                            ]
+                               }
+                           ]
+            },
+    "portable":  {
+                     "artifactName":  "Octosure Instalador ${version}.${ext}"
+                 }
+}

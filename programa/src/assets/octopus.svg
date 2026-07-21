@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="#2d8cf0">
+  <!-- Head -->
+  <ellipse cx="100" cy="65" rx="35" ry="38"/>
+  <!-- Eyes -->
+  <ellipse cx="88" cy="60" rx="6" ry="7" fill="#0a0f1a"/>
+  <ellipse cx="112" cy="60" rx="6" ry="7" fill="#0a0f1a"/>
+  <ellipse cx="89" cy="58" rx="2.5" ry="3" fill="#ffffff"/>
+  <ellipse cx="113" cy="58" rx="2.5" ry="3" fill="#ffffff"/>
+  <!-- Body -->
+  <ellipse cx="100" cy="100" rx="28" ry="18"/>
+  <!-- Tentacles -->
+  <!-- Left outer tentacle -->
+  <path d="M72,100 Q45,120 35,150 Q30,165 40,160 Q50,155 55,140 Q60,125 72,110" fill="#2d8cf0"/>
+  <!-- Left middle tentacle -->
+  <path d="M78,105 Q60,130 55,160 Q52,175 62,170 Q70,165 72,148 Q75,132 82,115" fill="#2d8cf0"/>
+  <!-- Left inner tentacle -->
+  <path d="M88,108 Q78,135 78,165 Q78,180 88,175 Q95,170 92,150 Q90,135 92,118" fill="#2d8cf0"/>
+  <!-- Center tentacle -->
+  <path d="M96,112 Q95,140 98,168 Q100,182 105,168 Q108,140 106,112" fill="#2d8cf0"/>
+  <!-- Right inner tentacle -->
+  <path d="M112,108 Q122,135 122,165 Q122,180 112,175 Q105,170 108,150 Q110,135 108,118" fill="#2d8cf0"/>
+  <!-- Right middle tentacle -->
+  <path d="M122,105 Q140,130 145,160 Q148,175 138,170 Q130,165 128,148 Q125,132 118,115" fill="#2d8cf0"/>
+  <!-- Right outer tentacle -->
+  <path d="M128,100 Q155,120 165,150 Q170,165 160,160 Q150,155 145,140 Q140,125 128,110" fill="#2d8cf0"/>
+  <!-- Curled ends -->
+  <circle cx="40" cy="160" r="5" fill="#2d8cf0"/>
+  <circle cx="62" cy="172" r="5" fill="#2d8cf0"/>
+  <circle cx="88" cy="177" r="5" fill="#2d8cf0"/>
+  <circle cx="112" cy="177" r="5" fill="#2d8cf0"/>
+  <circle cx="138" cy="172" r="5" fill="#2d8cf0"/>
+  <circle cx="160" cy="160" r="5" fill="#2d8cf0"/>
+</svg>

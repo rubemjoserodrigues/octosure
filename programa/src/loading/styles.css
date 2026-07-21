@@ -1,0 +1,126 @@
+/* ===== Loading Screen Styles ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input, button, select, textarea, option {
+    font-family: 'Sora', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap');
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Sora', 'Segoe UI', sans-serif;
+    background: linear-gradient(170deg, #0d1520 0%, #0a0f1a 40%, #080c15 100%);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== Main Container ===== */
+.loading-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* ===== Logo ===== */
+.logo-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45, 140, 240, 0.08) 0%, transparent 70%);
+    animation: logoPulse 3s ease-in-out infinite;
+}
+
+.logo {
+    width: 160px;
+    height: 160px;
+    filter: drop-shadow(0 0 30px rgba(45, 140, 240, 0.25));
+    animation: logoFloat 4s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes logoPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+/* ===== Progress Bar ===== */
+.progress-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.03);
+    overflow: hidden;
+}
+
+.progress-glow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(to top, rgba(45, 140, 240, 0.15), transparent);
+    pointer-events: none;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #1a6dd4, #2d8cf0, #4da6ff, #2d8cf0);
+    background-size: 300% 100%;
+    border-radius: 0 2px 2px 0;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    box-shadow: 0 0 12px rgba(45, 140, 240, 0.5), 0 0 4px rgba(45, 140, 240, 0.8);
+    animation: progressShine 2s linear infinite;
+}
+
+@keyframes progressShine {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 300% 0%;
+    }
+}

@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Janela Casa</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div class="detached-shell">
+        <header class="detached-toolbar">
+            <div class="detached-toolbar-left">
+                <span class="detached-side" id="detached-side">Casa 1</span>
+                <span class="detached-bookmaker" id="detached-bookmaker">-</span>
+            </div>
+            <div class="detached-toolbar-center" id="detached-event" title="-">-</div>
+            <div class="detached-toolbar-right">
+                <button type="button" class="detached-btn detached-btn-copy" id="btn-copy-url">Copiar URL</button>
+                <button type="button" class="detached-btn detached-btn-window" id="btn-min" title="Minimizar">&minus;</button>
+                <button type="button" class="detached-btn detached-btn-window" id="btn-max" title="Maximizar/Restaurar">&#9633;</button>
+                <button type="button" class="detached-btn detached-btn-window detached-btn-close" id="btn-close" title="Fechar">&#10005;</button>
+            </div>
+        </header>
+        <div class="detached-url-row">
+            <span class="detached-url" id="detached-url" title="-">-</span>
+        </div>
+        <main class="detached-content">
+            <div class="detached-hint" id="detached-hint">Carregando evento...</div>
+        </main>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

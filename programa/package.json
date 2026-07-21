@@ -1,0 +1,74 @@
+{
+  "name": "octosure",
+  "version": "1.0.27",
+  "description": "Octosure - Desktop Application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "start:ws": "npx cross-env SOCKET_SECRET=changeme SOCKET_URL=http://localhost:3000 electron .",
+    "mock:socket": "node mock-socket-server.js",
+    "build:portable": "electron-builder --win portable --x64 --publish never",
+    "build:nsis": "electron-builder --win nsis --x64 --publish never",
+    "build:visual-installer": "electron-builder --config installer-shell/electron-builder.json --win portable --x64 --publish never"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron-updater": "^6.8.3",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "electron": "^40.4.1",
+    "electron-builder": "^26.8.1",
+    "socket.io": "^4.7.2"
+  },
+  "build": {
+    "appId": "net.octosure.desktop",
+    "productName": "Octosure",
+    "asar": true,
+    "compression": "maximum",
+    "directories": {
+      "buildResources": "src/assets"
+    },
+    "electronLanguages": [
+      "en-US",
+      "pt-BR"
+    ],
+    "files": [
+      "main.js",
+      "preload.js",
+      "logger.js",
+      "src/**/*",
+      "package.json",
+      "!src/dev-bypass{,/**}",
+      "!dist{,/**}",
+      "!**/*.md",
+      "!**/*.map",
+      "!**/*.log",
+      "!mock-socket-server.js"
+    ],
+    "win": {
+      "icon": "src/assets/iconeapp.ico",
+      "signAndEditExecutable": true,
+      "publish": [
+        {
+          "provider": "generic",
+          "url": "https://octosure.net/updates"
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "Octosure",
+      "artifactName": "${productName} Setup ${version}.${ext}",
+      "installerIcon": "src/assets/iconeapp.ico",
+      "uninstallerIcon": "src/assets/iconeapp.ico",
+      "installerHeaderIcon": "src/assets/iconeapp.ico"
+    }
+  }
+}

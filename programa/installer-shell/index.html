@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Octosure Installer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="titlebar">
+    <div class="brand-mini">
+      <img src="../src/assets/iconeapp.png" alt="Octosure">
+      <span>Octosure Instalador</span>
+    </div>
+    <div class="window-actions">
+      <button id="btn-minimize" title="Minimizar">-</button>
+      <button id="btn-close" title="Fechar">×</button>
+    </div>
+  </div>
+
+  <main class="shell">
+    <section class="hero">
+      <img class="hero-logo" src="../src/assets/logo.svg" alt="Octosure">
+      <p class="eyebrow">Octosure Desktop</p>
+      <h1>Instalando</h1>
+      <p class="hero-copy">Maior sistema de Surebets do Brasil.</p>
+    </section>
+
+    <section class="panel">
+      <div class="status-card">
+        <span id="status-pill" class="status-pill">Iniciando</span>
+        <h2 id="status-title">Preparando instalacao</h2>
+        <p id="status-text">Nao feche esta janela. A instalacao comeca automaticamente e deve levar poucos instantes.</p>
+
+        <div class="progress-wrap">
+          <div class="progress-track">
+            <div id="progress-bar" class="progress-bar"></div>
+          </div>
+          <span id="progress-label">0%</span>
+        </div>
+
+        <button id="btn-install" class="primary-action" hidden>Instalar agora</button>
+        <button id="btn-open" class="secondary-action" hidden>Abrir Octosure</button>
+        <p id="error-text" class="error-text" hidden></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

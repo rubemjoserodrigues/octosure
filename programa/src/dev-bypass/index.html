@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polvo - Dev Bypass</title>
+    <link rel="stylesheet" href="../shared/titlebar.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="titlebar">
+        <span class="titlebar-label">DEV BYPASS</span>
+        <div class="titlebar-controls">
+            <button class="titlebar-btn minimize" id="btn-minimize" title="Minimizar">
+                <svg viewBox="0 0 12 12"><line x1="1" y1="6" x2="11" y2="6" /></svg>
+            </button>
+            <button class="titlebar-btn maximize" id="btn-maximize" title="Maximizar">
+                <svg viewBox="0 0 12 12" class="icon-maximize"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/></svg>
+                <svg viewBox="0 0 12 12" class="icon-restore" style="display:none;"><rect x="3" y="1.5" width="7.5" height="7.5" rx="1"/><polyline points="1.5,4 1.5,10 8,10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="titlebar-btn close" id="btn-close" title="Fechar">
+                <svg viewBox="0 0 12 12"><line x1="1" y1="1" x2="11" y2="11" /><line x1="11" y1="1" x2="1" y2="11" /></svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="bypass-container">
+        <div class="bypass-card">
+            <h1 class="bypass-title">Modo desenvolvedor</h1>
+            <p class="bypass-desc">Pula login e abre o dashboard usando o servidor mock (emula dados do socket).</p>
+            <p class="bypass-hint">Certifique-se de que o servidor mock está rodando: <code>npm run mock:socket</code></p>
+            <button type="button" class="bypass-btn" id="btn-go-dashboard">
+                Ir para dashboard (dev)
+            </button>
+            <a href="#" class="bypass-back" id="link-back">← Voltar ao login</a>
+        </div>
+    </div>
+
+    <script src="../shared/logger-renderer.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

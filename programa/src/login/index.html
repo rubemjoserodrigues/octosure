@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Octosure - Login</title>
+    <link rel="stylesheet" href="../shared/titlebar.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Custom Titlebar -->
+    <div class="titlebar">
+        <span class="titlebar-label">LOGIN</span>
+        <div class="titlebar-controls">
+            <button class="titlebar-btn minimize" id="btn-minimize" title="Minimizar">
+                <svg viewBox="0 0 12 12">
+                    <line x1="1" y1="6" x2="11" y2="6" />
+                </svg>
+            </button>
+            <button class="titlebar-btn maximize" id="btn-maximize" title="Maximizar">
+                <svg viewBox="0 0 12 12" class="icon-maximize"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/></svg>
+                <svg viewBox="0 0 12 12" class="icon-restore" style="display:none;"><rect x="3" y="1.5" width="7.5" height="7.5" rx="1"/><polyline points="1.5,4 1.5,10 8,10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="titlebar-btn close" id="btn-close" title="Fechar">
+                <svg viewBox="0 0 12 12">
+                    <line x1="1" y1="1" x2="11" y2="11" />
+                    <line x1="11" y1="1" x2="1" y2="11" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="login-container">
+        <div class="login-card">
+            <div class="logo-wrapper">
+                <img src="../assets/logo.svg" alt="Octosure" class="logo" />
+            </div>
+
+            <p class="login-title" id="login-title">Entre com <strong>e-mail</strong> e <strong>senha</strong></p>
+
+            <div class="auth-tabs" role="tablist">
+                <button type="button" class="auth-tab active" id="tab-login">Login</button>
+                <button type="button" class="auth-tab" id="tab-register">Cadastro</button>
+            </div>
+
+            <form id="login-form" class="login-form" autocomplete="off">
+                <div id="register-fields" class="register-fields" style="display: none;">
+                    <div id="register-account-step" class="register-step register-account-step">
+                        <div class="register-step-head">
+                            <span>1</span>
+                            <strong>Dados da conta</strong>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="input-name" class="input-field" placeholder="Nome completo" />
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="input-document" class="input-field" placeholder="CPF ou CNPJ" inputmode="numeric" />
+                        </div>
+                        <div class="input-group">
+                            <input type="tel" id="input-phone" class="input-field" placeholder="Telefone com DDD" inputmode="tel" />
+                        </div>
+                    </div>
+                    <div id="register-plan-step" class="register-step register-plan-step" style="display: none;">
+                        <div class="register-step-head">
+                            <span>2</span>
+                            <strong>Escolha o plano</strong>
+                        </div>
+                        <div id="plans-panel" class="plans-panel">
+                            <p class="plans-loading">Carregando planos...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group auth-input-group">
+                    <input type="email" id="input-email" class="input-field" placeholder="E-mail" autofocus />
+                </div>
+                <div class="input-group auth-input-group">
+                    <input type="password" id="input-password" class="input-field" placeholder="Senha" />
+                </div>
+
+                <div id="step-2fa" class="step-2fa" style="display: none;">
+                    <div class="input-group">
+                        <label class="input-label" for="input-code">Código de verificação</label>
+                        <input type="text" id="input-code" class="input-field" placeholder="123456" maxlength="6" inputmode="numeric" />
+                    </div>
+                    <button type="button" class="btn-validate btn-verify-code" id="btn-verify-code">
+                        Verificar código
+                    </button>
+                </div>
+
+                <p id="login-error" class="login-error" style="display: none;" role="alert"></p>
+                <div id="register-notice" class="register-notice" style="display: none;">
+                    <span id="register-notice-text"></span>
+                    <div class="register-notice-actions">
+                        <button type="button" id="btn-register-login">Fazer login</button>
+                        <button type="button" id="btn-register-plan">Assinar plano</button>
+                    </div>
+                </div>
+                <button type="button" class="btn-renew-placeholder" id="btn-renew-placeholder" style="display: none;">
+                    Assinar plano
+                </button>
+
+                <button type="submit" class="btn-validate" id="btn-validate">
+                    Entrar
+                </button>
+
+                <div id="pix-panel" class="pix-panel" style="display: none;">
+                    <div class="pix-panel-header">
+                        <strong>Pix gerado</strong>
+                        <span id="pix-status">Aguardando pagamento</span>
+                    </div>
+                    <div class="pix-content">
+                        <div class="pix-qr-wrap">
+                            <img id="pix-qr-image" class="pix-qr-image" alt="QR Code Pix" />
+                            <span id="pix-qr-fallback">Gerando QR Code...</span>
+                        </div>
+                        <div class="pix-copy-wrap">
+                            <span>Pix copia e cola</span>
+                            <textarea id="pix-code" readonly></textarea>
+                            <button type="button" class="btn-copy-pix" id="btn-copy-pix">Copiar Pix</button>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#" class="support-link" id="support-link">
+                    Entrar em contato com suporte
+                </a>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bottom Decorative Bar -->
+    <div class="bottom-bar">
+        <div class="bottom-bar-glow"></div>
+        <div class="bottom-bar-line"></div>
+    </div>
+
+    <script src="../shared/logger-renderer.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
