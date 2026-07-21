@@ -1,0 +1,1660 @@
+﻿#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+from dataclasses import dataclass
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Iterable
+from urllib.parse import urlsplit
+
+import psycopg2
+from psycopg2.extras import Json, execute_values
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+TESTELOCAL_DIR = REPO_ROOT / "TESTELOCAL"
+if str(TESTELOCAL_DIR) not in sys.path:
+    sys.path.insert(0, str(TESTELOCAL_DIR))
+
+from catalogar_casa_local import (  # type: ignore
+    build_clone_urls,
+    extract_event_id_from_url,
+    normalize_host,
+    resolve_oddsrabbit,
+    resolve_oddsrabbit_playwright,
+)
+
+
+@dataclass(frozen=True)
+class WorkerSpec:
+    root: int
+    table_current: str
+    table_history: str
+
+
+PRESETS: dict[str, list[WorkerSpec]] = {
+    "core": [
+        WorkerSpec(447, "localgeralvps_bet7k_current", "localgeralvps_bet7k_history"),
+        WorkerSpec(10, "localgeralvps_bet365_current", "localgeralvps_bet365_history"),
+        WorkerSpec(329, "localgeralvps_superbet_current", "localgeralvps_superbet_history"),
+    ],
+    "plus": [
+        WorkerSpec(447, "localgeralvps_bet7k_current", "localgeralvps_bet7k_history"),
+        WorkerSpec(10, "localgeralvps_bet365_current", "localgeralvps_bet365_history"),
+        WorkerSpec(329, "localgeralvps_superbet_current", "localgeralvps_superbet_history"),
+        WorkerSpec(61, "localgeralvps_goldenpalace_current", "localgeralvps_goldenpalace_history"),
+        WorkerSpec(34, "localgeralvps_vbet_current", "localgeralvps_vbet_history"),
+        WorkerSpec(127, "localgeralvps_fortunejack_current", "localgeralvps_fortunejack_history"),
+        WorkerSpec(19, "localgeralvps_unibet_current", "localgeralvps_unibet_history"),
+        WorkerSpec(76, "localgeralvps_stoiximan_current", "localgeralvps_stoiximan_history"),
+        WorkerSpec(488, "localgeralvps_vaidebet_current", "localgeralvps_vaidebet_history"),
+        WorkerSpec(461, "localgeralvps_betnacional_current", "localgeralvps_betnacional_history"),
+        WorkerSpec(11, "localgeralvps_betfair_current", "localgeralvps_betfair_history"),
+        WorkerSpec(48, "localgeralvps_betsson_current", "localgeralvps_betsson_history"),
+        WorkerSpec(83, "localgeralvps_novibet_current", "localgeralvps_novibet_history"),
+        WorkerSpec(1, "localgeralvps_pinnacle_current", "localgeralvps_pinnacle_history"),
+        WorkerSpec(700, "localgeralvps_expekt_current", "localgeralvps_expekt_history"),
+        WorkerSpec(9, "localgeralvps_bwin_current", "localgeralvps_bwin_history"),
+    ],
+    "all_with_luva": [
+        WorkerSpec(447, "localgeralvps_bet7k_current", "localgeralvps_bet7k_history"),
+        WorkerSpec(10, "localgeralvps_bet365_current", "localgeralvps_bet365_history"),
+        WorkerSpec(329, "localgeralvps_superbet_current", "localgeralvps_superbet_history"),
+        WorkerSpec(61, "localgeralvps_goldenpalace_current", "localgeralvps_goldenpalace_history"),
+        WorkerSpec(34, "localgeralvps_vbet_current", "localgeralvps_vbet_history"),
+        WorkerSpec(127, "localgeralvps_fortunejack_current", "localgeralvps_fortunejack_history"),
+        WorkerSpec(19, "localgeralvps_unibet_current", "localgeralvps_unibet_history"),
+        WorkerSpec(76, "localgeralvps_stoiximan_current", "localgeralvps_stoiximan_history"),
+        WorkerSpec(488, "localgeralvps_vaidebet_current", "localgeralvps_vaidebet_history"),
+        WorkerSpec(461, "localgeralvps_betnacional_current", "localgeralvps_betnacional_history"),
+        WorkerSpec(11, "localgeralvps_betfair_current", "localgeralvps_betfair_history"),
+        WorkerSpec(48, "localgeralvps_betsson_current", "localgeralvps_betsson_history"),
+        WorkerSpec(83, "localgeralvps_novibet_current", "localgeralvps_novibet_history"),
+        WorkerSpec(1, "localgeralvps_pinnacle_current", "localgeralvps_pinnacle_history"),
+        WorkerSpec(700, "localgeralvps_expekt_current", "localgeralvps_expekt_history"),
+        WorkerSpec(9, "localgeralvps_bwin_current", "localgeralvps_bwin_history"),
+        WorkerSpec(484, "localgeralvps_luvabet_current", "localgeralvps_luvabet_history"),
+    ],
+}
+
+def _safe_ident(name: str) -> str:
+    out = "".join(ch for ch in str(name or "") if ch.isalnum() or ch == "_")
+    if not out:
+        raise ValueError(f"Nome de tabela invalido: {name!r}")
+    return out
+
+
+def _normalize_name(text: str) -> str:
+    return "".join(ch.lower() for ch in str(text or "").strip() if ch.isalnum())
+
+
+def _to_int(value):
+    try:
+        if value is None:
+            return None
+        return int(str(value).strip())
+    except Exception:
+        return None
+
+
+def _env_flag(name: str, default: bool = False) -> bool:
+    raw = str(os.getenv(name, "1" if default else "0") or "").strip().lower()
+    return raw in {"1", "true", "yes", "on"}
+
+
+# Compatibilidade com o fluxo antigo: fallback ligado por padrao.
+# Ainda pode desativar via env (valor 0/false) se quiser modo estrito.
+ALLOW_SOURCE_LINK_FALLBACK = _env_flag("ALLOW_SOURCE_LINK_FALLBACK", True)
+ALLOW_ROOT_HOME_FALLBACK = _env_flag("ALLOW_ROOT_HOME_FALLBACK", True)
+# Quando habilitado, permite exibir nomes de casas-mae (ex.: bet365, pinnacle)
+# caso o catalogo de clones nao consiga resolver um nome "clone" para aquele link.
+ALLOW_PARENT_NAME_DISPLAY = _env_flag("ALLOW_PARENT_NAME_DISPLAY", False)
+
+
+def _is_event_url(url_text: str) -> bool:
+    txt = str(url_text or "").strip()
+    if not txt.startswith("http://") and not txt.startswith("https://"):
+        return False
+    low = txt.lower()
+
+    if "available_in_api_plan" in low:
+        return False
+    # Link intermediario do oddsrabbit nao deve ir para o app final.
+    if "oddsrabbit.org/bets/" in low:
+        return False
+    # /bets/<id> em casas BR costuma ser link intermediario/invalidado (gera 404/home).
+    if re.search(r"/bets/[a-z0-9]", low):
+        return False
+
+    if re.search(r"([?&]eventid=|[?&]bt-path=|[?&]bt_path=|/event/|/events?/|/odds/|#/ip/ev|/sportsbook/standard/.+/\d+|/esportes/\d+)", low):
+        return True
+
+    try:
+        p = urlsplit(txt)
+        path = (p.path or "").strip("/")
+        query = (p.query or "").strip()
+    except Exception:
+        return False
+
+    if not path and not query:
+        return False
+    if path in {"sports", "esportes", "sportsbook", "apostas"} and not query:
+        return False
+    return True
+
+
+def _is_publishable_url(url_text: str) -> bool:
+    txt = str(url_text or "").strip()
+    if not (txt.startswith("http://") or txt.startswith("https://")):
+        return False
+    low = txt.lower()
+    if "available_in_api_plan" in low:
+        return False
+    if "oddsrabbit.org" in low:
+        return False
+    if "betburger.com" in low and ("login" in low or "sign_in" in low):
+        return False
+    if re.search(r"/bets/[a-z0-9]", low):
+        return False
+    if "w3.org/tr/html4/strict.dtd" in low:
+        return False
+    return True
+
+
+def _odd_ok(value) -> bool:
+    try:
+        v = float(value)
+    except Exception:
+        return False
+    return v > 1.0
+
+
+def _is_publishable_arb(arb: dict) -> bool:
+    b1 = arb.get("bet1") if isinstance(arb.get("bet1"), dict) else {}
+    b2 = arb.get("bet2") if isinstance(arb.get("bet2"), dict) else {}
+
+    n1 = _normalize_name(b1.get("bookmaker"))
+    n2 = _normalize_name(b2.get("bookmaker"))
+    if not n1 or not n2 or n1 == n2:
+        return False
+
+    u1 = str(b1.get("url") or b1.get("eventUrl") or b1.get("link") or "").strip()
+    u2 = str(b2.get("url") or b2.get("eventUrl") or b2.get("link") or "").strip()
+    if not (_is_publishable_url(u1) and _is_publishable_url(u2)):
+        return False
+
+    return True
+
+
+PARENT_NAME_BLOCK = {
+    "bet7k",
+    "fortunejack",
+    "unibet",
+    "stoiximan",
+    "vbet",
+    "bwin",
+    "expekt",
+    "goldenpalace",
+    "betsson",
+    "novibet",
+    "pinnacle",
+    "vaidebet",
+    "bet365",
+    "bet365direct",
+    "superbetbr",
+    "betnacional",
+    "expektdk",
+    "1bet",
+    "lsbet",
+    "winner",
+    "rivalo",
+    "888sport",
+}
+
+PARENT_DOMAINS_BY_ROOT = {
+    447: set(),
+    10: {"bet365.bet.br"},
+    329: {"superbet.bet.br"},
+    61: {"goldenpalacesports.be"},
+    34: {"vbet.bet.br", "vbet.com"},
+    127: {"fortunejack.com"},
+    19: {"unibet.com"},
+    76: {"stoiximan.gr"},
+    488: {"vaidebet.bet.br"},
+    461: {"betnacional.bet.br"},
+    11: {"betfair.bet.br", "betfair.com"},
+    48: {"betsson.bet.br"},
+    83: {"novibet.bet.br", "novibet.com"},
+    1: {"pinnacle.com", "pinnacle.bet.br"},
+    700: {"expekt.dk", "betmgm.bet.br"},
+    9: {"sports.bwin.com"},
+    484: {"luva.bet.br"},
+}
+
+FALLBACK_HOME_BY_ROOT = {
+    447: ["https://7k.bet.br/"],
+    10: ["https://www.bet365.bet.br/"],
+    329: ["https://superbet.bet.br/"],
+    61: ["https://betfusion.bet.br/sports/"],
+    34: ["https://vbet.bet.br/"],
+    127: [
+        "https://blaze.bet.br/pt/sports",
+        "https://apostaganha.bet.br/esportes",
+        "https://betvip.bet.br/sports",
+    ],
+    19: ["https://www.unibet.com/"],
+    76: ["https://www.betano.bet.br/"],
+    488: ["https://vaidebet.bet.br/"],
+    461: ["https://betnacional.bet.br/"],
+    11: ["https://www.betfair.bet.br/"],
+    48: ["https://www.betsson.bet.br/apostas-esportivas"],
+    83: ["https://www.novibet.bet.br/apostas-ao-vivo"],
+    1: ["https://pinnacle.bet.br/"],
+    700: ["https://www.betmgm.bet.br/"],
+    9: ["https://sports.sportingbet.bet.br/pt-br/sports"],
+    484: ["https://luva.bet.br/"],
+}
+
+# Mantem alinhado com o teste individual sem estourar custo:
+# so faz fallback de resolve_oddsrabbit para raizes que mais sofrem com 404
+# quando o source vier como /bets/<id> do oddsrabbit.
+ODDSRABBIT_FALLBACK_ROOTS = {
+    1,    # Pinnacle
+    9,    # Bwin
+    10,   # Bet365
+    11,   # Betfair
+    19,   # Unibet
+    34,   # Vbet
+    48,   # Betsson
+    61,   # Goldenpalace
+    76,   # Stoiximan
+    83,   # Novibet
+    127,  # FortuneJack
+    329,  # SuperbetBR
+    447,  # Bet7k
+    461,  # BetNacional
+    484,  # Luvabet
+    488,  # Vaidebet
+    700,  # ExpektDk
+}
+ODDSRABBIT_FALLBACK_TIMEOUT_SEC = float(os.getenv("ODDSRABBIT_FALLBACK_TIMEOUT", "12"))
+_ODDSRABBIT_FALLBACK_CACHE: dict[str, str] = {}
+_ODDSRABBIT_PLAYWRIGHT_CACHE: dict[str, str] = {}
+ODDSRABBIT_PLAYWRIGHT_FALLBACK_ROOTS = {
+    1,    # Pinnacle
+    9,    # Bwin
+    34,   # Vbet
+    76,   # Stoiximan
+    127,  # FortuneJack
+    329,  # SuperbetBR
+    484,  # Luvabet
+}
+ODDSRABBIT_PLAYWRIGHT_TIMEOUT_SEC = float(os.getenv("ODDSRABBIT_PLAYWRIGHT_TIMEOUT", "12"))
+ODDSRABBIT_PLAYWRIGHT_FALLBACK_ENABLED = _env_flag("ODDSRABBIT_PLAYWRIGHT_FALLBACK", False)
+
+
+def _extract_side_event_id(row: dict, side: str, bet_obj: dict, source_link: str = "") -> str:
+    # 1) Melhor fonte: URL ja resolvida (mesma logica do bot individual).
+    src = str(source_link or "").strip()
+    if src:
+        from_source = extract_event_id_from_url(src, fallback_bookmaker_event_id="")
+        if from_source:
+            return from_source
+
+    # 2) Depois tenta o link bruto salvo na linha.
+    side_link = str(row.get(f"{side}_link") or "").strip()
+    from_row_link = extract_event_id_from_url(side_link, fallback_bookmaker_event_id="")
+    if from_row_link:
+        return from_row_link
+
+    # 3) IDs de evento do payload (evita usar bet_id para nao confundir).
+    for key in ("bookmaker_event_id", "event_id"):
+        val = bet_obj.get(key)
+        if val is not None and str(val).strip():
+            digits = re.sub(r"[^0-9]", "", str(val))
+            if digits:
+                return digits
+
+    # 4) Ultimo recurso: raw_id do payload (pode ser interno em algumas casas).
+    raw_val = bet_obj.get("raw_id")
+    if raw_val is not None and str(raw_val).strip():
+        digits = re.sub(r"[^0-9]", "", str(raw_val))
+        if digits:
+            return digits
+
+    return ""
+
+
+def _display_from_url(url_text: str) -> str:
+    host = normalize_host(url_text)
+    if not host:
+        return ""
+    return host
+
+
+def _resolve_row_sport_name(
+    row: dict,
+    p_arb: dict | None = None,
+    p_b1: dict | None = None,
+    p_b2: dict | None = None,
+) -> str:
+    p_arb = p_arb if isinstance(p_arb, dict) else {}
+    p_b1 = p_b1 if isinstance(p_b1, dict) else {}
+    p_b2 = p_b2 if isinstance(p_b2, dict) else {}
+
+    text_candidates = [
+        row.get("sport_name"),
+        row.get("sport"),
+        p_arb.get("sport_name"),
+        p_arb.get("sportName"),
+        p_b1.get("sport_name"),
+        p_b1.get("sportName"),
+        p_b2.get("sport_name"),
+        p_b2.get("sportName"),
+        p_arb.get("sport"),
+        p_b1.get("sport"),
+        p_b2.get("sport"),
+    ]
+    for raw_txt in text_candidates:
+        txt = str(raw_txt or "").strip()
+        if not txt:
+            continue
+        if _to_int(txt) is not None:
+            continue
+        return txt
+
+    id_candidates = [
+        row.get("sport_id"),
+        p_arb.get("sport_id"),
+        p_arb.get("sport"),
+        p_b1.get("sport_id"),
+        p_b1.get("sport"),
+        p_b2.get("sport_id"),
+        p_b2.get("sport"),
+    ]
+    for raw_id in id_candidates:
+        sid = _to_int(raw_id)
+        if sid is not None:
+            return f"Sport {sid}"
+    return ""
+
+
+def _pick_first_text(*values) -> str:
+    for v in values:
+        txt = str(v or "").strip()
+        if txt:
+            return txt
+    return ""
+
+
+def _is_placeholder_label(value: str) -> bool:
+    txt = str(value or "").strip()
+    if not txt:
+        return True
+    norm = re.sub(r"\s+", "", txt.lower())
+    return norm in {"-", "--", "—", "na", "n/a", "null", "none", "m1", "m2"}
+
+
+def _pick_first_int(*values):
+    for raw in values:
+        iv = _to_int(raw)
+        if iv is not None:
+            return iv
+    return None
+
+
+def _pick_raw_entry_label(row_entry, bet_obj: dict | None = None, arb_obj: dict | None = None, side_prefix: str = "") -> str:
+    bet_obj = bet_obj if isinstance(bet_obj, dict) else {}
+    arb_obj = arb_obj if isinstance(arb_obj, dict) else {}
+    side = str(side_prefix or "").strip()
+
+    candidates = (
+        row_entry,
+        bet_obj.get("bc_title"),
+        bet_obj.get("title"),
+        bet_obj.get("entryType"),
+        bet_obj.get("entry_type"),
+        arb_obj.get(f"{side}_bc_title") if side else "",
+        arb_obj.get(f"{side}_title") if side else "",
+        arb_obj.get(f"{side}_entry_type") if side else "",
+        arb_obj.get(f"{side}_entry") if side else "",
+    )
+    for raw in candidates:
+        txt = str(raw or "").strip()
+        if not txt:
+            continue
+        if _is_placeholder_label(txt):
+            continue
+        return txt
+    return ""
+
+
+def _pick_raw_period_name(period_title: str = "", bet_obj: dict | None = None, arb_obj: dict | None = None) -> str:
+    bet_obj = bet_obj if isinstance(bet_obj, dict) else {}
+    arb_obj = arb_obj if isinstance(arb_obj, dict) else {}
+    candidates = (
+        bet_obj.get("period_name"),
+        bet_obj.get("periodName"),
+        bet_obj.get("periodLabel"),
+        bet_obj.get("period_label"),
+        bet_obj.get("period_title"),
+        period_title,
+        arb_obj.get("period_name"),
+        arb_obj.get("periodName"),
+        arb_obj.get("periodLabel"),
+        arb_obj.get("period_label"),
+        arb_obj.get("period_title"),
+    )
+    for raw in candidates:
+        txt = str(raw or "").strip()
+        if not txt:
+            continue
+        if _is_placeholder_label(txt):
+            continue
+        return txt
+    return ""
+
+
+def _format_period_label(period_identifier, sport_text: str = "", period_title: str = "") -> str:
+    _ = period_identifier
+    _ = sport_text
+    return str(period_title or "").strip()
+
+
+def _is_parent_domain_for_root(root: int | None, url_text: str) -> bool:
+    if root is None:
+        return False
+    host = normalize_host(url_text)
+    if not host:
+        return False
+    domains = PARENT_DOMAINS_BY_ROOT.get(int(root), set())
+    return host in domains
+
+
+def _pick_source_link(row: dict, side: str, bet_obj: dict) -> str:
+    candidates = [
+        row.get(f"{side}_link"),
+        bet_obj.get("url"),
+        bet_obj.get("link"),
+        bet_obj.get("eventUrl"),
+        bet_obj.get("event_url"),
+        bet_obj.get("directLink"),
+        bet_obj.get("direct_link"),
+        row.get(f"{side}_oddsrabbit_url"),
+    ]
+
+    best_url = ""
+    best_score = (-1, -1)
+    for raw in candidates:
+        url_txt = str(raw or "").strip()
+        if not url_txt:
+            continue
+        low = url_txt.lower()
+        if re.search(r"([?&]bt-path=|[?&]bt_path=|[?&]btpath=)", low):
+            score = 4
+        elif _is_event_url(url_txt):
+            score = 3
+        elif "oddsrabbit.org/bets/" in low:
+            score = 2
+        elif _is_publishable_url(url_txt):
+            score = 1
+        else:
+            continue
+        key = (score, len(url_txt))
+        if key > best_score:
+            best_score = key
+            best_url = url_txt
+    return best_url
+
+
+def _resolve_source_link_like_individual(
+    row: dict,
+    side: str,
+    root: int | None,
+    source_link: str,
+    allow_oddsrabbit_resolve: bool = True,
+) -> str:
+    # Se ja e evento direto (nao oddsrabbit), nao mexe.
+    current = str(source_link or "").strip()
+    if current and "oddsrabbit.org/bets/" not in current.lower() and _is_event_url(current):
+        return current
+    if not allow_oddsrabbit_resolve:
+        return current
+
+    if root is not None and root not in ODDSRABBIT_FALLBACK_ROOTS:
+        return current
+
+    candidates = [current, str(row.get(f"{side}_oddsrabbit_url") or "").strip()]
+    had_oddsrabbit_candidate = False
+    for c in candidates:
+        low = c.lower()
+        if not c or "oddsrabbit.org/bets/" not in low:
+            continue
+        had_oddsrabbit_candidate = True
+
+        cached = _ODDSRABBIT_FALLBACK_CACHE.get(c)
+        if cached is not None:
+            return cached or current
+
+        try:
+            resolved = resolve_oddsrabbit(c, timeout_sec=ODDSRABBIT_FALLBACK_TIMEOUT_SEC)
+        except Exception:
+            _ODDSRABBIT_FALLBACK_CACHE[c] = ""
+            continue
+
+        final_url = str(
+            resolved.get("resolved_url")
+            or resolved.get("direct_link")
+            or resolved.get("final_url")
+            or ""
+        ).strip()
+
+        if (
+            final_url
+            and _is_publishable_url(final_url)
+            and "oddsrabbit.org/bets/" not in final_url.lower()
+        ):
+            _ODDSRABBIT_FALLBACK_CACHE[c] = final_url
+            return final_url
+
+        # Fallback Playwright para casas mais sensiveis a redirect JS.
+        if ODDSRABBIT_PLAYWRIGHT_FALLBACK_ENABLED and root in ODDSRABBIT_PLAYWRIGHT_FALLBACK_ROOTS:
+            pw_cached = _ODDSRABBIT_PLAYWRIGHT_CACHE.get(c)
+            if pw_cached is not None:
+                if pw_cached:
+                    _ODDSRABBIT_FALLBACK_CACHE[c] = pw_cached
+                    return pw_cached
+            else:
+                try:
+                    resolved_pw = resolve_oddsrabbit_playwright(c, timeout_sec=ODDSRABBIT_PLAYWRIGHT_TIMEOUT_SEC)
+                except Exception:
+                    resolved_pw = {}
+
+                final_pw = str(
+                    (resolved_pw or {}).get("resolved_url")
+                    or (resolved_pw or {}).get("direct_link")
+                    or (resolved_pw or {}).get("final_url")
+                    or ""
+                ).strip()
+                if (
+                    final_pw
+                    and _is_publishable_url(final_pw)
+                    and "oddsrabbit.org/bets/" not in final_pw.lower()
+                ):
+                    _ODDSRABBIT_PLAYWRIGHT_CACHE[c] = final_pw
+                    _ODDSRABBIT_FALLBACK_CACHE[c] = final_pw
+                    return final_pw
+                _ODDSRABBIT_PLAYWRIGHT_CACHE[c] = ""
+
+        _ODDSRABBIT_FALLBACK_CACHE[c] = ""
+
+    # Evita montar URL invalida /sportsbook/standard/bets/<id> (404).
+    # Se so havia oddsrabbit e nao foi possivel resolver, retorna vazio para cair no fallback/home.
+    if had_oddsrabbit_candidate and "oddsrabbit.org/bets/" in current.lower():
+        return ""
+    return current
+
+
+def _arb_quality_score(arb: dict) -> tuple[int, int, int]:
+    b1 = arb.get("bet1") if isinstance(arb.get("bet1"), dict) else {}
+    b2 = arb.get("bet2") if isinstance(arb.get("bet2"), dict) else {}
+    u1 = str(b1.get("url") or b1.get("link") or "").strip()
+    u2 = str(b2.get("url") or b2.get("link") or "").strip()
+
+    urls = [u1, u2]
+    event_count = sum(1 for u in urls if _is_event_url(u))
+    valid_count = sum(1 for u in urls if _is_publishable_url(u))
+    length_sum = sum(len(u) for u in urls)
+    return (event_count, valid_count, length_sum)
+
+
+def _build_side_clones(
+    row: dict,
+    side: str,
+    allow_oddsrabbit_resolve: bool = True,
+) -> list[dict]:
+    payload = row.get("payload") if isinstance(row.get("payload"), dict) else {}
+    bet_obj = payload.get(side) if isinstance(payload.get(side), dict) else {}
+    p_b1 = payload.get("bet1") if isinstance(payload.get("bet1"), dict) else {}
+    p_b2 = payload.get("bet2") if isinstance(payload.get("bet2"), dict) else {}
+    p_arb = payload.get("arb") if isinstance(payload.get("arb"), dict) else {}
+
+    root = _to_int(row.get(f"{side}_family_root"))
+    bookmaker_id = _to_int(row.get(f"{side}_bookmaker_id"))
+    bookmaker_name = str(row.get(f"{side}_bookmaker") or bet_obj.get("bookmaker") or "").strip()
+    source_link = _pick_source_link(row, side, bet_obj)
+    source_link = _resolve_source_link_like_individual(
+        row,
+        side,
+        root,
+        source_link,
+        allow_oddsrabbit_resolve=allow_oddsrabbit_resolve,
+    )
+    event_id = _extract_side_event_id(row, side, bet_obj, source_link=source_link)
+    sport_name = _resolve_row_sport_name(row, p_arb=p_arb, p_b1=p_b1, p_b2=p_b2)
+    event_name = str(
+        row.get("event_name")
+        or bet_obj.get("eventName")
+        or p_arb.get("event_name")
+        or p_arb.get("eventName")
+        or ""
+    ).strip()
+    league_text = str(bet_obj.get("league") or "").strip()
+    championship_id = str(
+        bet_obj.get("bookmaker_league_id")
+        or bet_obj.get("league_id")
+        or p_arb.get("league_id")
+        or ""
+    ).strip()
+    bet_sport_id = (
+        p_arb.get("sport_id")
+        or bet_obj.get("sport_id")
+        or p_b1.get("sport_id")
+        or p_b2.get("sport_id")
+    )
+    started_at_value = row.get("starts_at")
+    if isinstance(started_at_value, datetime):
+        started_at_ctx = int(started_at_value.astimezone(timezone.utc).timestamp())
+    else:
+        started_at_ctx = started_at_value
+
+    urls = []
+    if bookmaker_id is not None:
+        try:
+            urls = list(
+                build_clone_urls(
+                    bookmaker_id,
+                    event_id,
+                    source_url=source_link,
+                    league_text=league_text,
+                    sport_text=sport_name,
+                    championship_id=championship_id,
+                    event_name=event_name,
+                    started_at=started_at_ctx,
+                    bet_sport_id=bet_sport_id,
+                )
+                or []
+            )
+        except Exception:
+            urls = []
+
+    # Se nao montou evento, tenta montar ao menos homes de clones da familia.
+    if not urls and bookmaker_id is not None:
+        try:
+            urls = list(
+                build_clone_urls(
+                    bookmaker_id,
+                    "",
+                    source_url=source_link,
+                    league_text=league_text,
+                    sport_text=sport_name,
+                    championship_id=championship_id,
+                    event_name=event_name,
+                    started_at=started_at_ctx,
+                    bet_sport_id=bet_sport_id,
+                )
+                or []
+            )
+        except Exception:
+            urls = []
+
+    # O filtro da BetBurger ja define as casas-mae aceitas. Aqui a regra e outra:
+    # montar clones publicaveis. Se nao houver clone real, a linha sera descartada.
+
+    out = []
+    seen = set()
+    for u in urls:
+        url_txt = str(u or "").strip()
+        if not _is_publishable_url(url_txt):
+            continue
+        if root is not None and _is_parent_domain_for_root(root, url_txt):
+            # Se for mesma raiz/domÃ­nio, só bloqueia quando nÃ£o for rota de evento.
+            if not _is_event_url(url_txt):
+                continue
+        disp = _display_from_url(url_txt)
+        disp_norm = _normalize_name(disp)
+        if not disp_norm:
+            continue
+        if (not ALLOW_PARENT_NAME_DISPLAY) and (disp_norm in PARENT_NAME_BLOCK):
+            continue
+        key = (disp_norm, url_txt)
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append({
+            "bookmaker": disp,
+            "url": url_txt,
+            "is_event": _is_event_url(url_txt),
+        })
+
+    return out
+
+
+def _expand_row_to_clone_pairs(
+    row: dict,
+    allow_oddsrabbit_resolve: bool = True,
+) -> list[dict]:
+    payload = row.get("payload") if isinstance(row.get("payload"), dict) else {}
+    p_b1 = payload.get("bet1") if isinstance(payload.get("bet1"), dict) else {}
+    p_b2 = payload.get("bet2") if isinstance(payload.get("bet2"), dict) else {}
+    p_arb = payload.get("arb") if isinstance(payload.get("arb"), dict) else {}
+
+    event_name = str(row.get("event_name") or p_b1.get("eventName") or p_b2.get("eventName") or "").strip()
+    sport_name = _resolve_row_sport_name(row, p_arb=p_arb, p_b1=p_b1, p_b2=p_b2)
+    league1 = str(p_b1.get("league") or "")
+    league2 = str(p_b2.get("league") or "")
+    period_id1 = _pick_first_int(
+        row.get("bet1_period_identifier"),
+        p_b1.get("period_identifier"),
+        p_b1.get("periodIdentifier"),
+        p_b1.get("period_id"),
+        p_arb.get("bet1_period_identifier"),
+        p_arb.get("period_identifier"),
+        p_arb.get("periodIdentifier"),
+    )
+
+    period_id2 = _pick_first_int(
+        row.get("bet2_period_identifier"),
+        p_b2.get("period_identifier"),
+        p_b2.get("periodIdentifier"),
+        p_b2.get("period_id"),
+        p_arb.get("bet2_period_identifier"),
+        p_arb.get("period_identifier"),
+        p_arb.get("periodIdentifier"),
+    )
+
+    period_title1 = _pick_raw_period_name(
+        period_title=str(p_b1.get("period_title") or p_arb.get("period_title") or ""),
+        bet_obj=p_b1,
+        arb_obj=p_arb,
+    )
+    period_title2 = _pick_raw_period_name(
+        period_title=str(p_b2.get("period_title") or p_arb.get("period_title") or ""),
+        bet_obj=p_b2,
+        arb_obj=p_arb,
+    )
+    period_label1 = _format_period_label(
+        period_id1,
+        sport_text=sport_name,
+        period_title=period_title1,
+    )
+    period_label2 = _format_period_label(
+        period_id2,
+        sport_text=sport_name,
+        period_title=period_title2,
+    )
+    event_period_label = _pick_first_text(
+        p_arb.get("period_name"),
+        p_arb.get("periodName"),
+        p_arb.get("periodLabel"),
+        p_arb.get("period_label"),
+        period_label1,
+        period_label2,
+    )
+
+    clones1 = _build_side_clones(
+        row,
+        "bet1",
+        allow_oddsrabbit_resolve=allow_oddsrabbit_resolve,
+    )
+    clones2 = _build_side_clones(
+        row,
+        "bet2",
+        allow_oddsrabbit_resolve=allow_oddsrabbit_resolve,
+    )
+    if not clones1 or not clones2:
+        return []
+
+    received_at = row.get("captured_at")
+    if isinstance(received_at, datetime):
+        received_at = received_at.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+    else:
+        received_at = str(received_at or "")
+
+    starts_at = row.get("starts_at")
+    if isinstance(starts_at, datetime):
+        starts_at = starts_at.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+    else:
+        starts_at = str(starts_at or "")
+
+    out = []
+    seen_pairs = set()
+    for c1 in clones1:
+        for c2 in clones2:
+            n1 = _normalize_name(c1.get("bookmaker"))
+            n2 = _normalize_name(c2.get("bookmaker"))
+            if not n1 or not n2 or n1 == n2:
+                continue
+            pair_key = (n1, n2, str(row.get("arb_hash") or row.get("row_key") or ""))
+            if pair_key in seen_pairs:
+                continue
+            seen_pairs.add(pair_key)
+
+            market_code1 = _pick_first_int(
+                p_b1.get("market_and_bet_type"),
+                p_b1.get("marketTypeCode"),
+                p_b1.get("market_type_code"),
+                p_arb.get("bet1_market_and_bet_type"),
+                p_arb.get("bet1_marketTypeCode"),
+                p_arb.get("market_and_bet_type"),
+                p_arb.get("marketTypeCode"),
+            )
+            market_code2 = _pick_first_int(
+                p_b2.get("market_and_bet_type"),
+                p_b2.get("marketTypeCode"),
+                p_b2.get("market_type_code"),
+                p_arb.get("bet2_market_and_bet_type"),
+                p_arb.get("bet2_marketTypeCode"),
+                p_arb.get("market_and_bet_type"),
+                p_arb.get("marketTypeCode"),
+            )
+            market_param1 = _pick_first_text(
+                p_b1.get("market_and_bet_type_param"),
+                p_b1.get("marketParam"),
+                p_b1.get("market_param"),
+                p_arb.get("bet1_market_and_bet_type_param"),
+                p_arb.get("bet1_marketParam"),
+                p_arb.get("market_and_bet_type_param"),
+                p_arb.get("marketParam"),
+            )
+            market_param2 = _pick_first_text(
+                p_b2.get("market_and_bet_type_param"),
+                p_b2.get("marketParam"),
+                p_b2.get("market_param"),
+                p_arb.get("bet2_market_and_bet_type_param"),
+                p_arb.get("bet2_marketParam"),
+                p_arb.get("market_and_bet_type_param"),
+                p_arb.get("marketParam"),
+            )
+            bet1_id = str(row.get("bet1_bet_id") or p_b1.get("id") or p_b1.get("betId") or "").strip()
+            bet2_id = str(row.get("bet2_bet_id") or p_b2.get("id") or p_b2.get("betId") or "").strip()
+
+            bet1 = {
+                "bookmaker": str(c1.get("bookmaker") or ""),
+                "eventName": event_name,
+                "league": league1,
+                "odd": row.get("bet1_odd"),
+                "entryType": _pick_raw_entry_label(
+                    row.get("bet1_entry_type"),
+                    bet_obj=p_b1,
+                    arb_obj=p_arb,
+                    side_prefix="bet1",
+                ),
+                "periodIdentifier": period_id1,
+                "period_identifier": period_id1,
+                "periodLabel": period_label1,
+                "period_label": period_label1,
+                "periodName": period_title1,
+                "period_name": period_title1,
+                "marketTypeCode": market_code1,
+                "market_and_bet_type": market_code1,
+                "marketParam": market_param1,
+                "market_and_bet_type_param": market_param1,
+                "betId": bet1_id,
+                "title": str(p_b1.get("title") or "").strip(),
+                "bc_title": str(p_b1.get("bc_title") or "").strip(),
+                "url": str(c1.get("url") or ""),
+                "link": str(c1.get("url") or ""),
+                "eventUrl": str(c1.get("url") or ""),
+                "event_url": str(c1.get("url") or ""),
+                "directLink": str(c1.get("url") or ""),
+                "direct_link": str(c1.get("url") or ""),
+                "is_event": bool(c1.get("is_event")),
+                "bookmakerHomeUrl": str(c1.get("url") or ""),
+                "bookmakerUrl": str(c1.get("url") or ""),
+            }
+            bet2 = {
+                "bookmaker": str(c2.get("bookmaker") or ""),
+                "eventName": event_name,
+                "league": league2,
+                "odd": row.get("bet2_odd"),
+                "entryType": _pick_raw_entry_label(
+                    row.get("bet2_entry_type"),
+                    bet_obj=p_b2,
+                    arb_obj=p_arb,
+                    side_prefix="bet2",
+                ),
+                "periodIdentifier": period_id2,
+                "period_identifier": period_id2,
+                "periodLabel": period_label2,
+                "period_label": period_label2,
+                "periodName": period_title2,
+                "period_name": period_title2,
+                "marketTypeCode": market_code2,
+                "market_and_bet_type": market_code2,
+                "marketParam": market_param2,
+                "market_and_bet_type_param": market_param2,
+                "betId": bet2_id,
+                "title": str(p_b2.get("title") or "").strip(),
+                "bc_title": str(p_b2.get("bc_title") or "").strip(),
+                "url": str(c2.get("url") or ""),
+                "link": str(c2.get("url") or ""),
+                "eventUrl": str(c2.get("url") or ""),
+                "event_url": str(c2.get("url") or ""),
+                "directLink": str(c2.get("url") or ""),
+                "direct_link": str(c2.get("url") or ""),
+                "is_event": bool(c2.get("is_event")),
+                "bookmakerHomeUrl": str(c2.get("url") or ""),
+                "bookmakerUrl": str(c2.get("url") or ""),
+            }
+
+            arb_id = str(row.get("arb_hash") or row.get("row_key") or "").strip()
+            out.append({
+                "arbId": arb_id,
+                "isLive": bool(row.get("is_live")),
+                "receivedAt": received_at,
+                "startsAt": starts_at,
+                "sportName": sport_name,
+                "percentage": row.get("percentage"),
+                "bookmakerFamilyRoot1": row.get("bet1_family_root"),
+                "bookmakerFamilyRoot2": row.get("bet2_family_root"),
+                "periodIdentifier": period_id1 if period_id1 is not None else period_id2,
+                "periodLabel": event_period_label,
+                "bet1": bet1,
+                "bet2": bet2,
+                "bet1_clones": clones1,
+                "bet2_clones": clones2,
+            })
+    return out
+
+
+def _make_cache_key(arb: dict) -> str:
+    b1 = arb.get("bet1") if isinstance(arb.get("bet1"), dict) else {}
+    b2 = arb.get("bet2") if isinstance(arb.get("bet2"), dict) else {}
+    parts = [
+        str(arb.get("arbId") or arb.get("arb_hash") or ""),
+        _normalize_name(b1.get("bookmaker")),
+        _normalize_name(b2.get("bookmaker")),
+        str(b1.get("entryType") or ""),
+        str(b2.get("entryType") or ""),
+    ]
+    return "||".join(parts)
+
+
+def _hash_payload(arb: dict) -> str:
+    try:
+        raw = json.dumps(arb, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
+    except Exception:
+        raw = str(arb)
+    return hashlib.sha1(raw.encode("utf-8", errors="replace")).hexdigest()
+
+
+def _to_dt(value):
+    if value is None or value == "":
+        return None
+    try:
+        if isinstance(value, (int, float)):
+            n = float(value)
+            if n > 1e12:
+                n /= 1000.0
+            return datetime.fromtimestamp(n, timezone.utc)
+        txt = str(value).strip()
+        if not txt:
+            return None
+        try:
+            n = float(txt)
+            if n > 1e12:
+                n /= 1000.0
+            return datetime.fromtimestamp(n, timezone.utc)
+        except Exception:
+            pass
+        if txt.endswith("Z"):
+            txt = txt[:-1] + "+00:00"
+        dt = datetime.fromisoformat(txt)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc)
+    except Exception:
+        return None
+
+
+def _build_pg_tuple(cache_key: str, arb: dict, now_dt: datetime):
+    bet1 = arb.get("bet1") if isinstance(arb.get("bet1"), dict) else {}
+    bet2 = arb.get("bet2") if isinstance(arb.get("bet2"), dict) else {}
+    return (
+        cache_key,
+        _hash_payload(arb),
+        now_dt,
+        now_dt,
+        now_dt,
+        str(arb.get("arbId") or ""),
+        bool(arb.get("isLive")) if isinstance(arb.get("isLive"), bool) else None,
+        _to_dt(arb.get("receivedAt")),
+        _to_dt(arb.get("startsAt")),
+        str(arb.get("sportName") or ""),
+        str(bet1.get("eventName") or bet2.get("eventName") or "")[:512],
+        float(arb.get("percentage")) if arb.get("percentage") is not None else None,
+        str(bet1.get("bookmaker") or "")[:255],
+        float(bet1.get("odd")) if bet1.get("odd") is not None else None,
+        str(bet1.get("entryType") or "")[:255],
+        str(bet2.get("bookmaker") or "")[:255],
+        float(bet2.get("odd")) if bet2.get("odd") is not None else None,
+        str(bet2.get("entryType") or "")[:255],
+        int(arb.get("bookmakerFamilyRoot1")) if arb.get("bookmakerFamilyRoot1") is not None else None,
+        int(arb.get("bookmakerFamilyRoot2")) if arb.get("bookmakerFamilyRoot2") is not None else None,
+        Json(arb),
+    )
+
+
+def ensure_v2_schema(conn):
+    ddl = """
+    CREATE TABLE IF NOT EXISTS arbs_current (
+        cache_key TEXT PRIMARY KEY,
+        row_hash TEXT NOT NULL,
+        first_seen TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        last_seen TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        arb_id TEXT,
+        is_live BOOLEAN,
+        received_at TIMESTAMPTZ NULL,
+        starts_at TIMESTAMPTZ NULL,
+        sport_name TEXT,
+        event_name TEXT,
+        percentage DOUBLE PRECISION NULL,
+        bookmaker1 TEXT,
+        odd1 DOUBLE PRECISION NULL,
+        entry1 TEXT,
+        bookmaker2 TEXT,
+        odd2 DOUBLE PRECISION NULL,
+        entry2 TEXT,
+        family_root1 BIGINT NULL,
+        family_root2 BIGINT NULL,
+        payload JSONB NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_arbs_current_last_seen ON arbs_current(last_seen DESC);
+    """
+    with conn.cursor() as cur:
+        cur.execute(ddl)
+    conn.commit()
+
+
+def _row_to_v2_arb(row: dict) -> dict:
+    payload = row.get("payload")
+    p_b1 = payload.get("bet1") if isinstance(payload, dict) and isinstance(payload.get("bet1"), dict) else {}
+    p_b2 = payload.get("bet2") if isinstance(payload, dict) and isinstance(payload.get("bet2"), dict) else {}
+    p_arb = payload.get("arb") if isinstance(payload, dict) and isinstance(payload.get("arb"), dict) else {}
+    sport_name = _resolve_row_sport_name(row, p_arb=p_arb, p_b1=p_b1, p_b2=p_b2)
+
+    period_id1 = _pick_first_int(
+        row.get("bet1_period_identifier"),
+        p_b1.get("period_identifier"),
+        p_b1.get("periodIdentifier"),
+        p_b1.get("period_id"),
+        p_arb.get("bet1_period_identifier"),
+        p_arb.get("period_identifier"),
+        p_arb.get("periodIdentifier"),
+    )
+
+    period_id2 = _pick_first_int(
+        row.get("bet2_period_identifier"),
+        p_b2.get("period_identifier"),
+        p_b2.get("periodIdentifier"),
+        p_b2.get("period_id"),
+        p_arb.get("bet2_period_identifier"),
+        p_arb.get("period_identifier"),
+        p_arb.get("periodIdentifier"),
+    )
+
+    period_title1 = _pick_raw_period_name(
+        period_title=str(p_b1.get("period_title") or p_arb.get("period_title") or ""),
+        bet_obj=p_b1,
+        arb_obj=p_arb,
+    )
+    period_title2 = _pick_raw_period_name(
+        period_title=str(p_b2.get("period_title") or p_arb.get("period_title") or ""),
+        bet_obj=p_b2,
+        arb_obj=p_arb,
+    )
+    period_label1 = _format_period_label(
+        period_id1,
+        sport_text=sport_name,
+        period_title=period_title1,
+    )
+    period_label2 = _format_period_label(
+        period_id2,
+        sport_text=sport_name,
+        period_title=period_title2,
+    )
+
+    b1_url = str(row.get("bet1_link") or p_b1.get("url") or p_b1.get("link") or "").strip()
+    b2_url = str(row.get("bet2_link") or p_b2.get("url") or p_b2.get("link") or "").strip()
+    market_code1 = _pick_first_int(
+        p_b1.get("market_and_bet_type"),
+        p_b1.get("marketTypeCode"),
+        p_b1.get("market_type_code"),
+        p_arb.get("bet1_market_and_bet_type"),
+        p_arb.get("bet1_marketTypeCode"),
+        p_arb.get("market_and_bet_type"),
+        p_arb.get("marketTypeCode"),
+    )
+    market_code2 = _pick_first_int(
+        p_b2.get("market_and_bet_type"),
+        p_b2.get("marketTypeCode"),
+        p_b2.get("market_type_code"),
+        p_arb.get("bet2_market_and_bet_type"),
+        p_arb.get("bet2_marketTypeCode"),
+        p_arb.get("market_and_bet_type"),
+        p_arb.get("marketTypeCode"),
+    )
+    market_param1 = _pick_first_text(
+        p_b1.get("market_and_bet_type_param"),
+        p_b1.get("marketParam"),
+        p_b1.get("market_param"),
+        p_arb.get("bet1_market_and_bet_type_param"),
+        p_arb.get("bet1_marketParam"),
+        p_arb.get("market_and_bet_type_param"),
+        p_arb.get("marketParam"),
+    )
+    market_param2 = _pick_first_text(
+        p_b2.get("market_and_bet_type_param"),
+        p_b2.get("marketParam"),
+        p_b2.get("market_param"),
+        p_arb.get("bet2_market_and_bet_type_param"),
+        p_arb.get("bet2_marketParam"),
+        p_arb.get("market_and_bet_type_param"),
+        p_arb.get("marketParam"),
+    )
+    bet1_id = str(row.get("bet1_bet_id") or p_b1.get("id") or p_b1.get("betId") or "").strip()
+    bet2_id = str(row.get("bet2_bet_id") or p_b2.get("id") or p_b2.get("betId") or "").strip()
+
+    bet1 = {
+        "bookmaker": str(row.get("bet1_bookmaker") or p_b1.get("bookmaker") or ""),
+        "eventName": str(row.get("event_name") or p_b1.get("eventName") or ""),
+        "league": str(p_b1.get("league") or ""),
+        "odd": row.get("bet1_odd"),
+        "entryType": _pick_raw_entry_label(
+            row.get("bet1_entry_type"),
+            bet_obj=p_b1,
+            arb_obj=p_arb,
+            side_prefix="bet1",
+        ),
+        "periodIdentifier": period_id1,
+        "period_identifier": period_id1,
+        "periodLabel": period_label1,
+        "period_label": period_label1,
+        "periodName": period_title1,
+        "period_name": period_title1,
+        "marketTypeCode": market_code1,
+        "market_and_bet_type": market_code1,
+        "marketParam": market_param1,
+        "market_and_bet_type_param": market_param1,
+        "betId": bet1_id,
+        "title": str(p_b1.get("title") or "").strip(),
+        "bc_title": str(p_b1.get("bc_title") or "").strip(),
+    }
+    bet2 = {
+        "bookmaker": str(row.get("bet2_bookmaker") or p_b2.get("bookmaker") or ""),
+        "eventName": str(row.get("event_name") or p_b2.get("eventName") or ""),
+        "league": str(p_b2.get("league") or ""),
+        "odd": row.get("bet2_odd"),
+        "entryType": _pick_raw_entry_label(
+            row.get("bet2_entry_type"),
+            bet_obj=p_b2,
+            arb_obj=p_arb,
+            side_prefix="bet2",
+        ),
+        "periodIdentifier": period_id2,
+        "period_identifier": period_id2,
+        "periodLabel": period_label2,
+        "period_label": period_label2,
+        "periodName": period_title2,
+        "period_name": period_title2,
+        "marketTypeCode": market_code2,
+        "market_and_bet_type": market_code2,
+        "marketParam": market_param2,
+        "market_and_bet_type_param": market_param2,
+        "betId": bet2_id,
+        "title": str(p_b2.get("title") or "").strip(),
+        "bc_title": str(p_b2.get("bc_title") or "").strip(),
+    }
+    if b1_url:
+        for k in ("url", "link", "eventUrl", "event_url", "directLink", "direct_link"):
+            bet1[k] = b1_url
+    if b2_url:
+        for k in ("url", "link", "eventUrl", "event_url", "directLink", "direct_link"):
+            bet2[k] = b2_url
+
+    received_at = row.get("captured_at")
+    if isinstance(received_at, datetime):
+        received_at = received_at.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+    else:
+        received_at = str(received_at or "")
+
+    starts_at = row.get("starts_at")
+    if isinstance(starts_at, datetime):
+        starts_at = starts_at.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+    else:
+        starts_at = str(starts_at or "")
+
+    arb_id = str(row.get("arb_hash") or row.get("row_key") or "").strip()
+    return {
+        "arbId": arb_id,
+        "isLive": bool(row.get("is_live")),
+        "receivedAt": received_at,
+        "startsAt": starts_at,
+        "sportName": sport_name,
+        "percentage": row.get("percentage"),
+        "bookmakerFamilyRoot1": row.get("bet1_family_root"),
+        "bookmakerFamilyRoot2": row.get("bet2_family_root"),
+        "periodIdentifier": period_id1 if period_id1 is not None else period_id2,
+        "periodLabel": _pick_first_text(
+            p_arb.get("period_name"),
+            p_arb.get("periodName"),
+            p_arb.get("periodLabel"),
+            p_arb.get("period_label"),
+            period_label1,
+            period_label2,
+        ),
+        "bet1": bet1,
+        "bet2": bet2,
+    }
+
+
+def read_worker_payloads(
+    conn,
+    workers: Iterable[WorkerSpec],
+    updated_since: datetime | None = None,
+    fast_mode: bool = False,
+) -> list[dict]:
+    all_rows: dict[str, dict] = {}
+    warned_missing_tables: set[str] = set()
+    for worker in workers:
+        table = _safe_ident(worker.table_current)
+        sql = f"""
+            SELECT
+                row_key,
+                captured_at,
+                updated_at,
+                is_live,
+                arb_hash,
+                event_name,
+                sport_name,
+                percentage,
+                starts_at,
+                bet1_bookmaker_id,
+                bet1_bookmaker,
+                bet1_family_root,
+                bet1_casa_mae_id,
+                bet1_casa_mae,
+                bet1_odd,
+                bet1_entry_type,
+                bet1_bet_id,
+                bet1_link,
+                bet1_oddsrabbit_url,
+                bet2_bookmaker_id,
+                bet2_bookmaker,
+                bet2_family_root,
+                bet2_casa_mae_id,
+                bet2_casa_mae,
+                bet2_odd,
+                bet2_entry_type,
+                bet2_bet_id,
+                bet2_link,
+                bet2_oddsrabbit_url,
+                payload
+            FROM {table}
+        """
+        try:
+            with conn.cursor() as cur:
+                cur.execute(sql)
+                colnames = [d.name for d in cur.description]
+                rows = cur.fetchall()
+        except Exception as e:
+            err_name = type(e).__name__
+            if err_name == "UndefinedTable":
+                if table not in warned_missing_tables:
+                    print(f"sync_skip_missing_table={table}")
+                    warned_missing_tables.add(table)
+                try:
+                    conn.rollback()
+                except Exception:
+                    pass
+                continue
+            raise
+        for values in rows:
+            row = dict(zip(colnames, values))
+            row_updated = row.get("updated_at")
+            if updated_since is not None and isinstance(row_updated, datetime):
+                if row_updated <= updated_since:
+                    continue
+            expanded = _expand_row_to_clone_pairs(
+                row,
+                allow_oddsrabbit_resolve=(not fast_mode),
+            )
+            for arb in expanded:
+                key = _make_cache_key(arb)
+                if key:
+                    existing = all_rows.get(key)
+                    if existing is None or _arb_quality_score(arb) > _arb_quality_score(existing):
+                        all_rows[key] = arb
+    return list(all_rows.values())
+
+
+def upsert_arbs_current(conn, payloads: list[dict], replace_current: bool = True):
+    now_dt = datetime.now(timezone.utc)
+    tuples = []
+    key_order = []
+    for arb in payloads:
+        key = _make_cache_key(arb)
+        if not key:
+            continue
+        key_order.append(key)
+        tuples.append(_build_pg_tuple(key, arb, now_dt))
+
+    if not tuples:
+        if replace_current:
+            with conn.cursor() as cur:
+                cur.execute("DELETE FROM arbs_current")
+            conn.commit()
+        return
+
+    upsert_sql = """
+    INSERT INTO arbs_current (
+        cache_key, row_hash, first_seen, last_seen, updated_at,
+        arb_id, is_live, received_at, starts_at, sport_name, event_name, percentage,
+        bookmaker1, odd1, entry1, bookmaker2, odd2, entry2, family_root1, family_root2, payload
+    ) VALUES %s
+    ON CONFLICT (cache_key) DO UPDATE SET
+        row_hash = EXCLUDED.row_hash,
+        last_seen = EXCLUDED.last_seen,
+        updated_at = CASE
+            WHEN arbs_current.row_hash IS DISTINCT FROM EXCLUDED.row_hash THEN EXCLUDED.updated_at
+            ELSE arbs_current.updated_at
+        END,
+        arb_id = EXCLUDED.arb_id,
+        is_live = EXCLUDED.is_live,
+        received_at = EXCLUDED.received_at,
+        starts_at = EXCLUDED.starts_at,
+        sport_name = EXCLUDED.sport_name,
+        event_name = EXCLUDED.event_name,
+        percentage = EXCLUDED.percentage,
+        bookmaker1 = EXCLUDED.bookmaker1,
+        odd1 = EXCLUDED.odd1,
+        entry1 = EXCLUDED.entry1,
+        bookmaker2 = EXCLUDED.bookmaker2,
+        odd2 = EXCLUDED.odd2,
+        entry2 = EXCLUDED.entry2,
+        family_root1 = EXCLUDED.family_root1,
+        family_root2 = EXCLUDED.family_root2,
+        payload = EXCLUDED.payload
+    """
+    with conn.cursor() as cur:
+        execute_values(cur, upsert_sql, tuples, page_size=1000)
+        if replace_current:
+            unique_keys = list(dict.fromkeys(key_order))
+            cur.execute("DELETE FROM arbs_current WHERE cache_key <> ALL(%s)", (unique_keys,))
+    conn.commit()
+
+
+def _build_pipeline_cmd(root_dir: Path, workers: list[WorkerSpec], args) -> list[str]:
+    cmd = [
+        sys.executable,
+        str(root_dir / "run_local_pipeline.py"),
+        "--cycles",
+        "1",
+        "--interval",
+        str(args.interval),
+    ]
+    if args.token:
+        cmd.extend(["--token", args.token])
+    if args.target_side_only:
+        cmd.append("--target-side-only")
+    if args.no_link_resolve:
+        cmd.append("--no-link-resolve")
+    for worker in workers:
+        cmd.append(f"--workers={worker.root}:{worker.table_current}:{worker.table_history}")
+    return cmd
+
+
+def run_pipeline_once(root_dir: Path, workers: list[WorkerSpec], args):
+    return subprocess.call(_build_pipeline_cmd(root_dir, workers, args))
+
+
+def run_pipeline_once_with_partial_sync(
+    root_dir: Path,
+    workers: list[WorkerSpec],
+    args,
+    conn,
+    partial_sync_interval_sec: float,
+    max_cycle_seconds: float | None = None,
+) -> tuple[int, int]:
+    """
+    Roda 1 ciclo do pipeline e sincroniza arbs_current durante a execucao.
+    - Sync parcial: replace_current=False (nao remove linhas antigas no meio do ciclo).
+    - Sync final: feito no fluxo principal com replace_current=True.
+    """
+    cmd = _build_pipeline_cmd(root_dir, workers, args)
+    cycle_started_at = datetime.now(timezone.utc)
+    t0 = time.time()
+    proc = subprocess.Popen(cmd)
+
+    interval = max(0.20, float(partial_sync_interval_sec or 0.0))
+    next_sync = time.time() + interval
+    partial_ticks = 0
+    last_rows_logged = -1
+
+    while True:
+        code = proc.poll()
+        now = time.time()
+
+        if now >= next_sync:
+            try:
+                payloads = read_worker_payloads(
+                    conn,
+                    workers,
+                    updated_since=cycle_started_at,
+                    fast_mode=True,
+                )
+                if payloads:
+                    upsert_arbs_current(conn, payloads, replace_current=False)
+                    partial_ticks += 1
+                    rows_now = len(payloads)
+                    if rows_now != last_rows_logged:
+                        print(f"sync_arbs_current_partial={rows_now}")
+                        last_rows_logged = rows_now
+            except Exception as e:
+                try:
+                    conn.rollback()
+                except Exception:
+                    pass
+                print(f"sync_arbs_current_partial_warn={type(e).__name__}: {e}")
+            next_sync = now + interval
+
+        if code is not None:
+            return int(code), partial_ticks
+
+        if max_cycle_seconds and max_cycle_seconds > 0:
+            if (now - t0) >= max_cycle_seconds:
+                try:
+                    proc.terminate()
+                    proc.wait(timeout=5)
+                except Exception:
+                    try:
+                        proc.kill()
+                    except Exception:
+                        pass
+                print(f"pipeline_timeout_sec={int(max_cycle_seconds)}")
+                return 124, partial_ticks
+
+        time.sleep(0.20)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Distribuidor unico por familias: resolve por worker e sincroniza arbs_current (Electron)."
+    )
+    parser.add_argument("--preset", default="plus", choices=sorted(PRESETS.keys()))
+    parser.add_argument("--cycles", type=int, default=0, help="0=infinito")
+    parser.add_argument("--interval", type=float, default=2.0)
+    parser.add_argument("--token", default=os.getenv("BETBURGER_ACCESS_TOKEN", "").strip())
+    parser.add_argument("--target-side-only", action="store_true")
+    parser.add_argument("--no-link-resolve", action="store_true")
+    parser.add_argument(
+        "--partial-sync-interval",
+        type=float,
+        default=float(os.getenv("SYNC_PARTIAL_INTERVAL_SEC", "1.0")),
+        help="Intervalo (s) para sync parcial em arbs_current durante o ciclo.",
+    )
+    parser.add_argument(
+        "--no-partial-sync",
+        action="store_true",
+        help="Desativa sync parcial durante o ciclo (mantem somente sync final).",
+    )
+    parser.add_argument(
+        "--max-cycle-seconds",
+        type=float,
+        default=float(os.getenv("MAX_PIPELINE_CYCLE_SECONDS", "180")),
+        help="Timeout de seguranca por ciclo do pipeline (0 desativa).",
+    )
+    parser.add_argument(
+        "--replace-current",
+        action="store_true",
+        help="Forca replace completo de arbs_current no sync final do ciclo.",
+    )
+    parser.add_argument(
+        "--no-replace-current",
+        action="store_true",
+        help="Desativa replace completo no sync final (mantem linhas antigas).",
+    )
+    parser.add_argument("--pg-host", default=os.getenv("PG_HOST", "127.0.0.1"))
+    parser.add_argument("--pg-port", default=os.getenv("PG_PORT", "5432"))
+    parser.add_argument("--pg-db", default=os.getenv("PG_DB", "surebet"))
+    parser.add_argument("--pg-user", default=os.getenv("PG_USER", "postgres"))
+    parser.add_argument("--pg-password", default=os.getenv("PG_PASSWORD", "postgres"))
+    args = parser.parse_args()
+
+    if not args.token:
+        print("erro=token_nao_informado")
+        return 2
+
+    # Padrao seguro: snapshot final completo por ciclo.
+    # Isso evita acumulacao de linhas antigas em arbs_current.
+    replace_current_final = True
+    if bool(args.no_replace_current):
+        replace_current_final = False
+    elif bool(args.replace_current):
+        replace_current_final = True
+
+    workers = PRESETS[args.preset]
+    source_worker = WorkerSpec(
+        -1,
+        os.getenv("PG_TABLE_CURRENT", "localgeralvps_arbs_current"),
+        os.getenv("PG_TABLE_HISTORY", "localgeralvps_arbs_history"),
+    )
+    pipeline_workers = [source_worker]
+    root_dir = Path(__file__).resolve().parent
+    print("========================================")
+    print("BOT DISTRIBUIDOR FAMILIAS")
+    print(f"preset={args.preset} workers={len(workers)} interval={args.interval} cycles={args.cycles}")
+    print(f"betburger_filter_source=1 pipeline_workers=1 pipeline_table={source_worker.table_current}")
+    print("family_prefilter=0 clone_missing=discard")
+    print(
+        "local_filter=env_only "
+        f"allowed_roots={os.getenv('BETBURGER_ALLOWED_ROOTS', '') or '-'} "
+        f"min_live={os.getenv('BETBURGER_MIN_PERCENT_LIVE')} "
+        f"min_prematch={os.getenv('BETBURGER_MIN_PERCENT_PREMATCH')} "
+        f"max_live={os.getenv('BETBURGER_MAX_PERCENT_LIVE')} "
+        f"max_prematch={os.getenv('BETBURGER_MAX_PERCENT_PREMATCH')}"
+    )
+    print(f"target_side_only={1 if args.target_side_only else 0} link_resolve={0 if args.no_link_resolve else 1}")
+    print(
+        f"partial_sync={0 if args.no_partial_sync else 1} "
+        f"partial_interval={max(0.20, float(args.partial_sync_interval or 0.0)):.2f}s"
+    )
+    print(
+        f"playwright_fallback={1 if ODDSRABBIT_PLAYWRIGHT_FALLBACK_ENABLED else 0} "
+        f"max_cycle_seconds={int(args.max_cycle_seconds) if args.max_cycle_seconds else 0}"
+    )
+    print("source_link_fallback=0 root_home_fallback=0")
+    print(f"replace_current={1 if replace_current_final else 0}")
+    print("sync_target=arbs_current")
+    print("========================================")
+
+    pg_host = str(args.pg_host or "").strip() or "127.0.0.1"
+    pg_port_raw = str(args.pg_port or "").strip() or "5432"
+    pg_db = str(args.pg_db or "").strip() or "surebet"
+    pg_user = str(args.pg_user or "").strip() or "postgres"
+    pg_password = str(args.pg_password or "").strip()
+    pg_sslmode = str(os.getenv("PG_SSLMODE", "prefer") or "prefer").strip() or "prefer"
+    try:
+        pg_port = int(pg_port_raw)
+    except Exception:
+        pg_port = 5432
+
+    conn = psycopg2.connect(
+        host=pg_host,
+        port=pg_port,
+        dbname=pg_db,
+        user=pg_user,
+        password=pg_password,
+        sslmode=pg_sslmode,
+    )
+    conn.autocommit = False
+    ensure_v2_schema(conn)
+
+    try:
+        cycle = 0
+        while True:
+            cycle += 1
+            cycle_started_at = datetime.now(timezone.utc)
+            print(f"\n[ciclo] {cycle} start={cycle_started_at.isoformat()}")
+            if args.no_partial_sync:
+                code = run_pipeline_once(root_dir, pipeline_workers, args)
+                partial_ticks = 0
+            else:
+                code, partial_ticks = run_pipeline_once_with_partial_sync(
+                    root_dir=root_dir,
+                    workers=pipeline_workers,
+                    args=args,
+                    conn=conn,
+                    partial_sync_interval_sec=args.partial_sync_interval,
+                    max_cycle_seconds=args.max_cycle_seconds,
+                )
+            if code != 0:
+                print(f"pipeline_exit_code={code}")
+            # Sync final precisa considerar snapshot completo das tabelas de workers.
+            # Se limitar por updated_since, ficamos apenas com "delta do ciclo",
+            # reduzindo o volume para poucos itens e derrubando a paginação.
+            payloads = read_worker_payloads(
+                conn,
+                pipeline_workers,
+                updated_since=None,
+                fast_mode=False,
+            )
+            if payloads:
+                # Default: replace completo no fim do ciclo (snapshot atual).
+                # Use --no-replace-current apenas para diagnostico.
+                upsert_arbs_current(conn, payloads, replace_current=replace_current_final)
+                print(f"sync_arbs_current_ok={len(payloads)} partial_ticks={partial_ticks}")
+            else:
+                if replace_current_final:
+                    # Snapshot semantics: sem payload no ciclo => current deve ficar vazio.
+                    upsert_arbs_current(conn, [], replace_current=True)
+                    print(f"sync_arbs_current_ok=0 partial_ticks={partial_ticks} current_limpa=1")
+                else:
+                    print("sync_arbs_current_skip=sem_rows_novas_no_ciclo")
+
+            if args.cycles > 0 and cycle >= args.cycles:
+                break
+            if args.interval > 0:
+                time.sleep(args.interval)
+    except KeyboardInterrupt:
+        print("interrompido=1")
+        return 130
+    finally:
+        conn.close()
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+
+
+

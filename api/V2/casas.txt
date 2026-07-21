@@ -1,0 +1,614 @@
+ {
+        "id": 10,
+        "name": "Bet365",
+        "url": "http://www.bet365.com/en/",
+        "affiliate_url": "",
+        "bk_settings": 1048575
+      },
+
+
+
+{
+        "id": 447,
+        "name": "Bet7k",
+        "url": "https://7k.bet.br/",
+        "affiliate_url": "",
+        "bk_settings": 802035
+      },
+
+{
+      "id": 1318,
+      "name": "Esportiva.bet.br",
+      "url": "https://esportiva.bet.br/",
+      "bookmaker_id": 61,
+      "primary_mask": 0,
+      "active": 12
+    },
+{
+      "id": 1307,
+      "name": "Sortenabet.bet.br",
+      "url": "http://sortenabet.bet.br/",
+      "bookmaker_id": 447,
+      "primary_mask": 0,
+      "active": 12
+    },
+{
+      "id": 1420,
+      "name": "Verabet",
+      "url": "https://vera.bet.br/",
+      "bookmaker_id": 447,
+      "primary_mask": 0,
+      "active": 12
+    },
+{
+      "id": 1424,
+      "name": "Brxbet",
+      "url": "https://brx.bet.br/",
+      "bookmaker_id": 447,
+      "primary_mask": 0,
+      "active": 12
+    },
+{
+      "id": 1315,
+      "name": "Bateu.bet.br",
+      "url": "https://bateu.bet.br/",
+      "bookmaker_id": 61,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 1313,
+      "name": "Bullsbet.bet.br",
+      "url": "https://bullsbet.bet.br/",
+      "bookmaker_id": 447,
+      "primary_mask": 0,
+      "active": 12
+    },
+{
+      "id": 1319,
+      "name": "Pagol.bet.br",
+      "url": "https://pagol.bet.br/",
+      "bookmaker_id": 61,
+      "primary_mask": 0,
+      "active": 12
+    },
+
+ {
+      "id": 1502,
+      "name": "Betdasorte",
+      "url": "https://betdasorte.bet.br",
+      "bookmaker_id": 447,
+      "primary_mask": 0,
+      "active": 12
+    },
+
+{
+      "id": 1305,
+      "name": "Cassino.bet.br ",
+      "url": "http://cassino.bet.br/",
+      "bookmaker_id": 447,
+      "primary_mask": 0,
+      "active": 12
+    },
+
+ {
+      "id": 1532,
+      "name": "PixbetBR",
+      "url": "https://pix.bet.br",
+      "bookmaker_id": 447,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 1423,
+      "name": "Betmillion",
+      "url": "https://betmillion.io/",
+      "bookmaker_id": 447,
+      "primary_mask": 0,
+      "active": 12
+    },
+
+
+{
+      "id": 1312,
+      "name": "Donald.bet.br",
+      "url": "https://donald.bet.br/",
+      "bookmaker_id": 447,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 1418,
+      "name": "Ricobet",
+      "url": "https://rico.bet.br/",
+      "bookmaker_id": 447,
+      "primary_mask": 0,
+      "active": 12
+    },
+
+{
+      "id": 1468,
+      "name": "NovibetGR",
+      "url": "https://www.novibet.gr",
+      "bookmaker_id": 83,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+    "id": 1381,
+    "bookmaker": "Pinnacle",
+    "node": "Live",
+    "issue_type": "Scanning Delay",
+    "description": "Pinnacle Live is experiencing a scanning delay",
+    "color": "red",
+    "status": "deleted",
+    "updated_at": 1767370562
+  },
+ {
+    "id": 1367,
+    "bookmaker": "Betano",
+    "node": "Live",
+    "issue_type": "Scanning Delay",
+    "description": "Betano Live scanning delay issue resolved",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1766484493
+  },
+{
+        "id": 488,
+        "name": "Vaidebet",
+        "url": "https://vaidebet.bet.br/",
+        "affiliate_url": "",
+        "bk_settings": 3315
+      },
+{
+        "id": 466,
+        "name": "BetFast",
+        "url": "https://betfast.bet.br/",
+        "affiliate_url": "",
+        "bk_settings": 3315
+      },
+{
+      "id": 19061,
+      "name": "Faz1.bet.br",
+      "url": "https://faz1.bet.br/",
+      "bookmaker_id": 466,
+      "primary_mask": 0,
+      "active": 12
+    },
+{
+      "id": 19062,
+      "name": "Tivo.bet.br",
+      "url": "https://tivo.bet.br/",
+      "bookmaker_id": 466,
+      "primary_mask": 0,
+      "active": 12
+    },
+{
+      "id": 1507,
+      "name": "BetfairBR",
+      "url": "https://www.betfair.bet.br",
+      "bookmaker_id": 11,
+      "primary_mask": 0,
+      "active": 8
+    },
+{
+      "id": 1501,
+      "name": "BetssonBR",
+      "url": "https://www.betsson.bet.br",
+      "bookmaker_id": 48,
+      "primary_mask": 0,
+      "active": 60
+    },
+  {
+      "id": 1419,
+      "name": "Betfusion",
+      "url": "https://betfusion.bet.br/",
+      "bookmaker_id": 61,
+      "primary_mask": 0,
+      "active": 12
+    },
+{
+      "id": 1206,
+      "name": "Jogodeouro",
+      "url": "https://jogodeouro.bet.br/",
+      "bookmaker_id": 61,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 1151,
+      "name": "Br4bet",
+      "url": "https://br4.bet.br/",
+      "bookmaker_id": 61,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 1452,
+      "name": "LotogreenBR",
+      "url": "https://lotogreen.bet.br",
+      "bookmaker_id": 61,
+      "primary_mask": 0,
+      "active": 12
+    },
+
+{
+      "id": 1293,
+      "name": "Mcgames.bet.br",
+      "url": "https://mcgames.bet.br/",
+      "bookmaker_id": 61,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 1414,
+      "name": "EstrelaBet",
+      "url": "https://www.estrelabet.bet.br/",
+      "bookmaker_id": 61,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+        "id": 329,
+        "name": "SuperbetBR",
+        "url": "https://superbet.com/en-br/",
+        "affiliate_url": "",
+        "bk_settings": 798963
+      },
+{
+        "id": 34,
+        "name": "Vbet",
+        "url": "http://www.vbet.com/",
+        "affiliate_url": "",
+        "bk_settings": 1048575
+      },
+{
+      "id": 1283,
+      "name": "Betao.bet.br",
+      "url": "https://betao.bet.br",
+      "bookmaker_id": 34,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 1024,
+      "name": "7games",
+      "url": "https://www.7games.bet/",
+      "bookmaker_id": 34,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 1449,
+      "name": "r7.bet.br",
+      "url": "https://r7.bet.br",
+      "bookmaker_id": 34,
+      "primary_mask": 0,
+      "active": 8
+    },
+ {
+      "id": 1505,
+      "name": "MaximaBet",
+      "url": "https://www.maxima.bet.br",
+      "bookmaker_id": 34,
+      "primary_mask": 0,
+      "active": 8
+    },
+ {
+      "id": 960,
+      "name": "Playpix",
+      "url": "https://www.playpix.com/",
+      "bookmaker_id": 34,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 1176,
+      "name": "Supremabet",
+      "url": "https://suprema.bet.br",
+      "bookmaker_id": 34,
+      "primary_mask": 0,
+      "active": 8
+    },
+ {
+      "id": 19021,
+      "name": "Seguro.bet.br",
+      "url": "https://www.seguro.bet.br/",
+      "bookmaker_id": 34,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 19022,
+      "name": "Ultra.bet.br",
+      "url": "https://ultra.bet.br/",
+      "bookmaker_id": 34,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 19023,
+      "name": "Bravo.bet.br",
+      "url": "https://www.bravo.bet.br/",
+      "bookmaker_id": 34,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 19024,
+      "name": "H2.bet.br",
+      "url": "https://www.h2.bet.br/",
+      "bookmaker_id": 34,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 19025,
+      "name": "Seu.bet.br",
+      "url": "https://www.seu.bet.br/",
+      "bookmaker_id": 34,
+      "primary_mask": 0,
+      "active": 12
+    },
+
+ {
+      "id": 1284,
+      "name": "Sportingbet.bet.br",
+      "url": "https://sports.sportingbet.bet.br",
+      "bookmaker_id": 9,
+      "primary_mask": 0,
+      "active": 12
+    },
+{
+      "id": 388,
+      "name": "Betboo",
+      "url": "http://betboo.bet.br",
+      "bookmaker_id": 9,
+      "primary_mask": 0,
+      "active": 12
+    },
+{
+      "id": 1635,
+      "name": "LuvaBet",
+      "url": "https://luva.bet.br/",
+      "bookmaker_id": 484,
+      "primary_mask": 1,
+      "active": 12
+    },
+ {
+      "id": 1727,
+      "name": "1pra1",
+      "url": "https://1pra1.bet.br",
+      "bookmaker_id": 484,
+      "primary_mask": 0,
+      "active": 12
+    },
+{
+      "id": 1729,
+      "name": "Esporte365",
+      "url": "https://esporte365.bet.br",
+      "bookmaker_id": 484,
+      "primary_mask": 0,
+      "active": 12
+    },
+{
+      "id": 1799,
+      "name": "Onabet",
+      "url": "https://ona.bet.br",
+      "bookmaker_id": 484,
+      "primary_mask": 0,
+      "active": 12
+    },
+{
+      "id": 1730,
+      "name": "Start",
+      "url": "https://start.bet.br",
+      "bookmaker_id": 484,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 19015,
+      "name": "Big.bet.br",
+      "url": "https://big.bet.br/",
+      "bookmaker_id": 484,
+      "primary_mask": 0,
+      "active": 12
+    },
+  {
+        "id": 461,
+        "name": "BetNacional",
+        "url": "https://betnacional.bet.br/",
+        "affiliate_url": "",
+        "bk_settings": 802803
+      },
+ {
+      "id": 19026,
+      "name": "Aposta.bet.br",
+      "url": "https://aposta.bet.br/",
+      "bookmaker_id": 461,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 19027,
+      "name": "Fazo.bet.br",
+      "url": "https://fazo.bet.br/",
+      "bookmaker_id": 461,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 19028,
+      "name": "Bet4.bet.br",
+      "url": "https://bet4.bet.br/",
+      "bookmaker_id": 461,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 19029,
+      "name": "Sporty.bet.br",
+      "url": "https://www.sporty.bet.br/",
+      "bookmaker_id": 461,
+      "primary_mask": 0,
+      "active": 12
+    },
+
+{
+      "id": 1802,
+      "name": "BetmgmBR",
+      "url": "https://www.betmgm.bet.br",
+      "bookmaker_id": 700,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 1271,
+      "name": "Blaze.bet.br",
+      "url": "https://blaze.bet.br/",
+      "bookmaker_id": 127,
+      "primary_mask": 0,
+      "active": 12
+    },
+{
+      "id": 1783,
+      "name": "Apostaganha",
+      "url": "https://apostaganha.bet.br/esportes",
+      "bookmaker_id": 127,
+      "primary_mask": 0,
+      "active": 12
+    },
+{
+      "id": 1306,
+      "name": "Betvip",
+      "url": "https://betvip.bet.br",
+      "bookmaker_id": 447,
+      "primary_mask": 0,
+      "active": 63
+    },
+ {
+      "id": 1180,
+      "name": "Flabet",
+      "url": "https://flabet.bet.br",
+      "bookmaker_id": 127,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 19011,
+      "name": "Jonbet.bet.br",
+      "url": "https://jonbet.bet.br/",
+      "bookmaker_id": 127,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 19012,
+      "name": "Reals.bet.br",
+      "url": "https://reals.bet.br/",
+      "bookmaker_id": 127,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 19013,
+      "name": "Bingo.bet.br",
+      "url": "https://bingo.bet.br/",
+      "bookmaker_id": 127,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 19014,
+      "name": "Pin.bet.br",
+      "url": "https://pin.bet.br/",
+      "bookmaker_id": 127,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+        "id": 19,
+        "name": "Unibet",
+        "url": "https://www.unibet.com/",
+        "affiliate_url": "",
+        "bk_settings": 1048319
+      },
+{
+      "id": 599,
+      "name": "Betwarrior",
+      "url": "https://international.betwarrior.bet",
+      "bookmaker_id": 19,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 1282,
+      "name": "Kto.bet.br",
+      "url": "https://www.kto.bet.br/",
+      "bookmaker_id": 19,
+      "primary_mask": 0,
+      "active": 12
+    },
+ {
+      "id": 1277,
+      "name": "Stake.bet.br",
+      "url": "https://stake.bet.br",
+      "bookmaker_id": 19,
+      "primary_mask": 0,
+      "active": 12
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+aletario entre todas as casas
+
+
+
+
+LuvaBet -  10  1 2 3 - 1 1 1 2 2 3  
+Sharpay, Victor - Melashenko, Aleksandr
+World. Setka Cup. Singles
+Team1 Win
+4.19
+
+Novibet - 9 1 2 3 - 1 2 3 2 3
+Viktor Sharpai - Oleksandr Melashenko

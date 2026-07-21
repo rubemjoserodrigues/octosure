@@ -1,0 +1,20 @@
+=== COMO USAR O SISTEMA SUREBET (VERSAO FÁCIL) ===
+
+Siga a ordem numérica dos arquivos:
+
+1. Dê dois cliques em "1_LIGAR_MOTOR.bat"
+   - Isso liga o Scraper que pega os dados da BetBurger.
+   - Na primeira vez, vai pedir seu Token.
+   - DEIXE A JANELA PRETA ABERTA.
+
+2. Dê dois cliques em "2_LIGAR_ANTENA.bat"
+   - Isso liga o servidor que manda os dados pro App.
+   - DEIXE A JANELA PRETA ABERTA.
+
+3. Dê dois cliques em "3_ABRIR_TELA.bat"
+   - Isso abre o App Visual (Electron).
+   - Ele vai conectar sozinho e mostrar as apostas.
+
+=== DICAS ===
+- Para fechar tudo, basta fechar as janelas pretas.
+- Se o App fechar sozinho, abra o arquivo 3 novamente.

@@ -1,0 +1,70 @@
+[START] 01/04/2026  8:28:15,46 
+[INFO] Environment: 
+ALLUSERSPROFILE=C:\ProgramData
+AMDRMPATH=C:\Program Files\AMD\RyzenMaster\
+APPDATA=C:\Users\Micro\AppData\Roaming
+APP_DIR=c:\Users\Micro\Desktop\RUBEMSUREBETSCRAPING\JA EXISTIA\electron-scrapper-main\electron-scrapper-main
+BETBURGER_ACCESS_TOKEN=c54b35a4ee28384e6457eb9951bf5df5
+ChocolateyInstall=C:\ProgramData\chocolatey
+ChocolateyLastPathUpdate=133865191603528517
+CommonProgramFiles=C:\Program Files\Common Files
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+CommonProgramW6432=C:\Program Files\Common Files
+COMPUTERNAME=DESKTOP-KIHR09B
+ComSpec=C:\WINDOWS\system32\cmd.exe
+DriverData=C:\Windows\System32\Drivers\DriverData
+HOMEDRIVE=C:
+HOMEPATH=\Users\Micro
+LOCALAPPDATA=C:\Users\Micro\AppData\Local
+LOGONSERVER=\\DESKTOP-KIHR09B
+LOG_FILE="C:\Users\Micro\Desktop\RUBEMSUREBETSCRAPING\V2\electron_crash.log"
+NPM=C:\Users\Micro\AppData\Roaming\npm
+NUMBER_OF_PROCESSORS=16
+OneDrive=C:\Users\Micro\OneDrive
+OS=Windows_NT
+Path=C:\Program Files (x86)\Embarcadero\Studio\23.0\bin;C:\Users\Public\Documents\Embarcadero\Studio\23.0\Bpl;C:\Program Files (x86)\Embarcadero\Studio\23.0\bin64;C:\Users\Public\Documents\Embarcadero\Studio\23.0\Bpl\Win64;C:\Python313\Scripts\;C:\Python313\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Cloudflare\Cloudflare WARP\;c:\Users\Micro\AppData\Local\Programs\cursor\resources\app\bin;C:\dev\flutter\bin;C:\Program Files\dotnet\;C:\platform-tools;C:\Program Files\PuTTY\;C:\php;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\MySQL\MySQL Shell 9.4\bin\;C:\Users\Micro\AppData\Local\Microsoft\WindowsApps;C:\Users\Micro\AppData\Roaming\npm;C:\Program Files\Java\jdk-23\bin;C:\Program Files\Java\jdk-17\bin;C:\Users\Micro\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Micro\AppData\Local\Programs\cursor\resources\app\bin;C:\dev\flutter\bin;C:\Program Files\mitmproxy\bin;C:\Users\Micro\.dotnet\tools;C:\drm-tools;C:\php8.5;C:\Program Files\Git\cmd;C:\Python313\Scripts\;C:\Python313\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\dev\flutter\bin;C:\Program Files\dotnet\;C:\platform-tools;C:\Program Files\PuTTY\;C:\php;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\MySQL\MySQL Shell 9.4\bin\;C:\Users\Micro\AppData\Local\Microsoft\WindowsApps;C:\Users\Micro\AppData\Roaming\npm;C:\Program Files\Java\jdk-23\bin;C:\Program Files\Java\jdk-17\bin;C:\Users\Micro\AppData\Local\Programs\Microsoft VS Code\bin;C:\dev\flutter\bin;C:\Users\Micro\.dotnet\tools;C:\drm-tools;C:\Program Files\Go\bin;C:\Users\Micro\Desktop\A;C:\Users\Micro\AppData\Local\Programs\Antigravity\bin;C:\Users\Micro\AppData\Local\Microsoft\WinGet\Packages\BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe\mingw64\bin;C:\Users\Micro\.dotnet\tools
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW
+PROCESSOR_ARCHITECTURE=AMD64
+PROCESSOR_IDENTIFIER=AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD
+PROCESSOR_LEVEL=25
+PROCESSOR_REVISION=5000
+ProgramData=C:\ProgramData
+ProgramFiles=C:\Program Files
+ProgramFiles(x86)=C:\Program Files (x86)
+ProgramW6432=C:\Program Files
+PROMPT=$P$G
+PSModulePath=C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+PUBLIC=C:\Users\Public
+SESSIONNAME=Console
+SystemDrive=C:
+SystemRoot=C:\WINDOWS
+TEMP=C:\Users\Micro\AppData\Local\Temp
+TMP=C:\Users\Micro\AppData\Local\Temp
+USERDOMAIN=DESKTOP-KIHR09B
+USERDOMAIN_ROAMINGPROFILE=DESKTOP-KIHR09B
+USERNAME=Micro
+USERPROFILE=C:\Users\Micro
+windir=C:\WINDOWS
+WSLENV=WT_SESSION:WT_PROFILE_ID:
+WT_PROFILE_ID={0caa0dad-35be-5f56-a8ff-afceeeaa6101}
+WT_SESSION=97ec9018-8b91-4642-8634-a4a8c8ccb292
+[INFO] Setting SOCKET_URL=https://octosure.net 
+[INFO] Running 'npm start --verbose'... 
+npm verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+npm info using npm@10.9.2
+npm info using node@v22.14.0
+npm verbose title npm start
+npm verbose argv "start" "--loglevel" "verbose"
+npm verbose logfile logs-max:10 dir:C:\Users\Micro\AppData\Local\npm-cache\_logs\2026-04-01T11_28_15_949Z-
+npm verbose logfile C:\Users\Micro\AppData\Local\npm-cache\_logs\2026-04-01T11_28_15_949Z-debug-0.log
+
+> polvo@1.0.0 start
+> electron .
+
+
+npm verbose cwd c:\Users\Micro\Desktop\RUBEMSUREBETSCRAPING\JA EXISTIA\electron-scrapper-main\electron-scrapper-main
+npm verbose os Windows_NT 10.0.26200
+npm verbose node v22.14.0
+npm verbose npm  v10.9.2
+npm verbose exit 0
+npm info ok

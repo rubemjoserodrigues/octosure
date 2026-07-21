@@ -1,0 +1,3237 @@
+========================================
+LOCALGERALVPS
+inicio=2026-03-18T13:13:02.819982+00:00
+reference_file=C:\Users\Micro\Desktop\RUBEMSUREBETSCRAPING\ARQUIVOSDAVPS\bot\TODASURLSEFORMATOS.txt
+bookmakers_map=866 sports_map=67
+fetch_live=1 fetch_prematch=1
+interval=2.0 timeout=20.0
+workers_distribuidor=3 tables=['localgeralvps_bet7k_current', 'localgeralvps_bet365_current', 'localgeralvps_goldenpalace_current']
+link_resolve=1
+========================================
+postgres=on host=127.0.0.1:5432 db=surebet write_history=0 workers=3
+
+[ciclo] 2026-03-18T13:13:03.017909+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=8 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=16 still_empty=0
+total_rows=8
+live_rows=0
+prematch_rows=8
+top_casas_mae:
+  - 1bet: 8
+  - Bet7k: 8
+worker_root=447 postgres_upsert_ok=8
+family_root=10 target_side_only=0 rows_filtered=11 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=22 normalized_existing=0 still_empty=0
+total_rows=11
+live_rows=11
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 11
+  - SuperbetBR: 8
+  - 888Sport: 1
+  - 1bet: 1
+  - Winner: 1
+worker_root=10 postgres_upsert_ok=11
+family_root=61 target_side_only=0 rows_filtered=17 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=24 normalized_existing=10 still_empty=0
+total_rows=17
+live_rows=17
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 17
+  - Pinnacle: 7
+  - SuperbetBR: 5
+  - Rivalo: 3
+  - Vbet: 2
+worker_root=61 postgres_upsert_ok=17
+
+[ciclo] 2026-03-18T13:13:37.995214+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=4 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=8 still_empty=0
+total_rows=4
+live_rows=0
+prematch_rows=4
+top_casas_mae:
+  - 1bet: 4
+  - Bet7k: 4
+worker_root=447 postgres_upsert_ok=4
+family_root=10 target_side_only=0 rows_filtered=17 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=31 normalized_existing=3 still_empty=0
+total_rows=17
+live_rows=17
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 17
+  - LSBet: 6
+  - Goldenpalace: 5
+  - 888Sport: 2
+  - Winner: 2
+  - SuperbetBR: 1
+  - Rivalo: 1
+worker_root=10 postgres_upsert_ok=17
+family_root=61 target_side_only=0 rows_filtered=13 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=26 normalized_existing=0 still_empty=0
+total_rows=13
+live_rows=13
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 13
+  - Vbet: 8
+  - Bet365: 5
+worker_root=61 postgres_upsert_ok=13
+
+[ciclo] 2026-03-18T13:14:06.391760+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=5 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=10 still_empty=0
+total_rows=5
+live_rows=0
+prematch_rows=5
+top_casas_mae:
+  - 1bet: 5
+  - Bet7k: 5
+worker_root=447 postgres_upsert_ok=5
+family_root=10 target_side_only=0 rows_filtered=7 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=11 normalized_existing=3 still_empty=0
+total_rows=7
+live_rows=7
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 7
+  - FortuneJack: 3
+  - Stoiximan: 3
+  - SuperbetBR: 1
+worker_root=10 postgres_upsert_ok=7
+family_root=61 target_side_only=0 rows_filtered=0 table_current=localgeralvps_goldenpalace_current
+total_rows=0
+worker_root=61 postgres_upsert_skip=1 (sem rows)
+
+[ciclo] 2026-03-18T13:14:29.876267+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=13 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=16 normalized_existing=10 still_empty=0
+total_rows=13
+live_rows=8
+prematch_rows=5
+top_casas_mae:
+  - Bet7k: 13
+  - SuperbetBR: 8
+  - 1bet: 5
+worker_root=447 postgres_upsert_ok=13
+family_root=10 target_side_only=0 rows_filtered=0 table_current=localgeralvps_bet365_current
+total_rows=0
+worker_root=10 postgres_upsert_skip=1 (sem rows)
+family_root=61 target_side_only=0 rows_filtered=4 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=8 normalized_existing=0 still_empty=0
+total_rows=4
+live_rows=4
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 4
+  - Betsson: 2
+  - Pinnacle: 2
+worker_root=61 postgres_upsert_ok=4
+
+[ciclo] 2026-03-18T13:14:53.109169+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=10 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=12 normalized_existing=8 still_empty=0
+total_rows=10
+live_rows=6
+prematch_rows=4
+top_casas_mae:
+  - Bet7k: 10
+  - SuperbetBR: 5
+  - 1bet: 4
+  - Betsson: 1
+worker_root=447 postgres_upsert_ok=10
+family_root=10 target_side_only=0 rows_filtered=4 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=8 normalized_existing=0 still_empty=0
+total_rows=4
+live_rows=4
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 4
+  - Winner: 3
+  - Stoiximan: 1
+worker_root=10 postgres_upsert_ok=4
+family_root=61 target_side_only=0 rows_filtered=0 table_current=localgeralvps_goldenpalace_current
+total_rows=0
+worker_root=61 postgres_upsert_skip=1 (sem rows)
+
+[ciclo] 2026-03-18T13:15:17.630946+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=9 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=18 still_empty=0
+total_rows=9
+live_rows=3
+prematch_rows=6
+top_casas_mae:
+  - Bet7k: 9
+  - 1bet: 6
+  - Pinnacle: 3
+worker_root=447 postgres_upsert_ok=9
+family_root=10 target_side_only=0 rows_filtered=7 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=10 normalized_existing=4 still_empty=0
+total_rows=7
+live_rows=7
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 7
+  - 1bet: 3
+  - Pinnacle: 2
+  - Winner: 1
+  - FortuneJack: 1
+worker_root=10 postgres_upsert_ok=7
+family_root=61 target_side_only=0 rows_filtered=3 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=0 normalized_existing=6 still_empty=0
+total_rows=3
+live_rows=3
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 3
+  - SuperbetBR: 3
+worker_root=61 postgres_upsert_ok=3
+
+[ciclo] 2026-03-18T13:15:49.230964+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=3 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=6 still_empty=0
+total_rows=3
+live_rows=0
+prematch_rows=3
+top_casas_mae:
+  - 1bet: 3
+  - Bet7k: 3
+worker_root=447 postgres_upsert_ok=3
+family_root=10 target_side_only=0 rows_filtered=5 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=10 normalized_existing=0 still_empty=0
+total_rows=5
+live_rows=5
+prematch_rows=0
+top_casas_mae:
+  - 1bet: 5
+  - Bet365: 5
+worker_root=10 postgres_upsert_ok=5
+family_root=61 target_side_only=0 rows_filtered=13 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=17 normalized_existing=9 still_empty=0
+total_rows=13
+live_rows=13
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 13
+  - FortuneJack: 7
+  - Vbet: 3
+  - Pinnacle: 3
+worker_root=61 postgres_upsert_ok=13
+
+[ciclo] 2026-03-18T13:16:25.129384+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=12 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=12 normalized_existing=12 still_empty=0
+total_rows=12
+live_rows=6
+prematch_rows=6
+top_casas_mae:
+  - Bet7k: 12
+  - 1bet: 12
+worker_root=447 postgres_upsert_ok=12
+family_root=10 target_side_only=0 rows_filtered=3 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=6 normalized_existing=0 still_empty=0
+total_rows=3
+live_rows=3
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 3
+  - Goldenpalace: 2
+  - Betsson: 1
+worker_root=10 postgres_upsert_ok=3
+family_root=61 target_side_only=0 rows_filtered=9 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=16 normalized_existing=2 still_empty=0
+total_rows=9
+live_rows=9
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 9
+  - 888Sport: 5
+  - 1bet: 2
+  - Bet365: 2
+worker_root=61 postgres_upsert_ok=9
+
+[ciclo] 2026-03-18T13:16:56.002270+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=9 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=4 normalized_existing=14 still_empty=0
+total_rows=9
+live_rows=4
+prematch_rows=5
+top_casas_mae:
+  - Bet7k: 9
+  - 1bet: 5
+  - SuperbetBR: 3
+  - Rivalo: 1
+worker_root=447 postgres_upsert_ok=9
+family_root=10 target_side_only=0 rows_filtered=8 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=14 normalized_existing=2 still_empty=0
+total_rows=8
+live_rows=8
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 8
+  - FortuneJack: 7
+  - Winner: 1
+worker_root=10 postgres_upsert_ok=8
+family_root=61 target_side_only=0 rows_filtered=3 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=6 normalized_existing=0 still_empty=0
+total_rows=3
+live_rows=3
+prematch_rows=0
+top_casas_mae:
+  - Pinnacle: 3
+  - Goldenpalace: 3
+worker_root=61 postgres_upsert_ok=3
+
+[ciclo] 2026-03-18T13:17:28.794870+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=8 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=12 normalized_existing=4 still_empty=0
+total_rows=8
+live_rows=6
+prematch_rows=2
+top_casas_mae:
+  - Bet7k: 8
+  - SuperbetBR: 6
+  - 1bet: 2
+worker_root=447 postgres_upsert_ok=8
+family_root=10 target_side_only=0 rows_filtered=12 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=13 normalized_existing=11 still_empty=0
+total_rows=12
+live_rows=12
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 12
+  - Pinnacle: 8
+  - Goldenpalace: 3
+  - 1bet: 1
+worker_root=10 postgres_upsert_ok=12
+family_root=61 target_side_only=0 rows_filtered=12 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=21 normalized_existing=3 still_empty=0
+total_rows=12
+live_rows=12
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 12
+  - Vbet: 4
+  - Stoiximan: 3
+  - Bet365: 3
+  - 1bet: 1
+  - FortuneJack: 1
+worker_root=61 postgres_upsert_ok=12
+
+[ciclo] 2026-03-18T13:18:10.567027+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=11 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=16 normalized_existing=6 still_empty=0
+total_rows=11
+live_rows=8
+prematch_rows=3
+top_casas_mae:
+  - Bet7k: 11
+  - LSBet: 8
+  - 1bet: 3
+worker_root=447 postgres_upsert_ok=11
+family_root=10 target_side_only=0 rows_filtered=11 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=11 normalized_existing=11 still_empty=0
+total_rows=11
+live_rows=11
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 11
+  - Winner: 7
+  - Goldenpalace: 4
+worker_root=10 postgres_upsert_ok=11
+family_root=61 target_side_only=0 rows_filtered=4 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=4 normalized_existing=4 still_empty=0
+total_rows=4
+live_rows=4
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 4
+  - Bet365: 4
+worker_root=61 postgres_upsert_ok=4
+
+[ciclo] 2026-03-18T13:18:35.457372+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=5 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=10 still_empty=0
+total_rows=5
+live_rows=0
+prematch_rows=5
+top_casas_mae:
+  - 1bet: 5
+  - Bet7k: 5
+worker_root=447 postgres_upsert_ok=5
+family_root=10 target_side_only=0 rows_filtered=4 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=8 normalized_existing=0 still_empty=0
+total_rows=4
+live_rows=4
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 4
+  - 1bet: 4
+worker_root=10 postgres_upsert_ok=4
+family_root=61 target_side_only=0 rows_filtered=2 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=4 normalized_existing=0 still_empty=0
+total_rows=2
+live_rows=2
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 2
+  - Vbet: 1
+  - Betsson: 1
+worker_root=61 postgres_upsert_ok=2
+
+[ciclo] 2026-03-18T13:19:04.187707+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=5 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=10 still_empty=0
+total_rows=5
+live_rows=0
+prematch_rows=5
+top_casas_mae:
+  - 1bet: 5
+  - Bet7k: 5
+worker_root=447 postgres_upsert_ok=5
+family_root=10 target_side_only=0 rows_filtered=14 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=27 normalized_existing=1 still_empty=0
+total_rows=14
+live_rows=14
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 14
+  - 1bet: 6
+  - Pinnacle: 5
+  - 888Sport: 3
+worker_root=10 postgres_upsert_ok=14
+family_root=61 target_side_only=0 rows_filtered=25 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=42 normalized_existing=8 still_empty=0
+total_rows=25
+live_rows=25
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 25
+  - Betsson: 8
+  - Vbet: 8
+  - SuperbetBR: 8
+  - 888Sport: 1
+worker_root=61 postgres_upsert_ok=25
+
+[ciclo] 2026-03-18T13:19:38.105085+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=5 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=10 still_empty=0
+total_rows=5
+live_rows=0
+prematch_rows=5
+top_casas_mae:
+  - 1bet: 5
+  - Bet7k: 5
+worker_root=447 postgres_upsert_ok=5
+family_root=10 target_side_only=0 rows_filtered=12 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=24 normalized_existing=0 still_empty=0
+total_rows=12
+live_rows=12
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 12
+  - 888Sport: 6
+  - FortuneJack: 4
+  - Vbet: 1
+  - 1bet: 1
+worker_root=10 postgres_upsert_ok=12
+family_root=61 target_side_only=0 rows_filtered=5 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=5 normalized_existing=5 still_empty=0
+total_rows=5
+live_rows=5
+prematch_rows=0
+top_casas_mae:
+  - Pinnacle: 5
+  - Goldenpalace: 5
+worker_root=61 postgres_upsert_ok=5
+
+[ciclo] 2026-03-18T13:20:10.521399+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=8 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=4 normalized_existing=12 still_empty=0
+total_rows=8
+live_rows=4
+prematch_rows=4
+top_casas_mae:
+  - Bet7k: 8
+  - 1bet: 8
+worker_root=447 postgres_upsert_ok=8
+family_root=10 target_side_only=0 rows_filtered=5 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=10 normalized_existing=0 still_empty=0
+total_rows=5
+live_rows=5
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 5
+  - FortuneJack: 3
+  - Stoiximan: 2
+worker_root=10 postgres_upsert_ok=5
+family_root=61 target_side_only=0 rows_filtered=11 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=22 normalized_existing=0 still_empty=0
+total_rows=11
+live_rows=11
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 11
+  - SuperbetBR: 6
+  - Vbet: 4
+  - Betsson: 1
+worker_root=61 postgres_upsert_ok=11
+
+[ciclo] 2026-03-18T13:20:34.952872+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=5 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=10 still_empty=0
+total_rows=5
+live_rows=0
+prematch_rows=5
+top_casas_mae:
+  - 1bet: 5
+  - Bet7k: 5
+worker_root=447 postgres_upsert_ok=5
+family_root=10 target_side_only=0 rows_filtered=11 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=22 normalized_existing=0 still_empty=0
+total_rows=11
+live_rows=11
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 11
+  - FortuneJack: 5
+  - Goldenpalace: 3
+  - 888Sport: 3
+worker_root=10 postgres_upsert_ok=11
+family_root=61 target_side_only=0 rows_filtered=23 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=38 normalized_existing=8 still_empty=0
+total_rows=23
+live_rows=23
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 23
+  - SuperbetBR: 8
+  - FortuneJack: 8
+  - Vbet: 4
+  - Bet365: 3
+worker_root=61 postgres_upsert_ok=23
+
+[ciclo] 2026-03-18T13:21:07.247981+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=8 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=4 normalized_existing=12 still_empty=0
+total_rows=8
+live_rows=2
+prematch_rows=6
+top_casas_mae:
+  - Bet7k: 8
+  - 1bet: 7
+  - Vbet: 1
+worker_root=447 postgres_upsert_ok=8
+family_root=10 target_side_only=0 rows_filtered=6 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=8 normalized_existing=4 still_empty=0
+total_rows=6
+live_rows=6
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 6
+  - FortuneJack: 3
+  - Goldenpalace: 2
+  - 1bet: 1
+worker_root=10 postgres_upsert_ok=6
+family_root=61 target_side_only=0 rows_filtered=8 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=14 normalized_existing=2 still_empty=0
+total_rows=8
+live_rows=8
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 8
+  - Vbet: 6
+  - Bet365: 2
+worker_root=61 postgres_upsert_ok=8
+
+[ciclo] 2026-03-18T13:21:34.379299+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=7 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=14 still_empty=0
+total_rows=7
+live_rows=0
+prematch_rows=7
+top_casas_mae:
+  - 1bet: 7
+  - Bet7k: 7
+worker_root=447 postgres_upsert_ok=7
+family_root=10 target_side_only=0 rows_filtered=11 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=21 normalized_existing=1 still_empty=0
+total_rows=11
+live_rows=11
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 11
+  - Pinnacle: 8
+  - FortuneJack: 2
+  - LSBet: 1
+worker_root=10 postgres_upsert_ok=11
+family_root=61 target_side_only=0 rows_filtered=7 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=14 normalized_existing=0 still_empty=0
+total_rows=7
+live_rows=7
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 7
+  - Winner: 3
+  - Pinnacle: 2
+  - 1bet: 1
+  - Stoiximan: 1
+worker_root=61 postgres_upsert_ok=7
+
+[ciclo] 2026-03-18T13:22:04.937660+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=4 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=8 still_empty=0
+total_rows=4
+live_rows=0
+prematch_rows=4
+top_casas_mae:
+  - 1bet: 4
+  - Bet7k: 4
+worker_root=447 postgres_upsert_ok=4
+family_root=10 target_side_only=0 rows_filtered=0 table_current=localgeralvps_bet365_current
+total_rows=0
+worker_root=10 postgres_upsert_skip=1 (sem rows)
+family_root=61 target_side_only=0 rows_filtered=6 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=6 normalized_existing=6 still_empty=0
+total_rows=6
+live_rows=6
+prematch_rows=0
+top_casas_mae:
+  - Winner: 6
+  - Goldenpalace: 6
+worker_root=61 postgres_upsert_ok=6
+
+[ciclo] 2026-03-18T13:22:23.676951+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=6 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=12 still_empty=0
+total_rows=6
+live_rows=0
+prematch_rows=6
+top_casas_mae:
+  - 1bet: 6
+  - Bet7k: 6
+worker_root=447 postgres_upsert_ok=6
+family_root=10 target_side_only=0 rows_filtered=4 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=8 normalized_existing=0 still_empty=0
+total_rows=4
+live_rows=4
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 4
+  - SuperbetBR: 2
+  - 888Sport: 1
+  - FortuneJack: 1
+worker_root=10 postgres_upsert_ok=4
+family_root=61 target_side_only=0 rows_filtered=14 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=22 normalized_existing=6 still_empty=0
+total_rows=14
+live_rows=14
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 14
+  - Vbet: 7
+  - SuperbetBR: 3
+  - Betsson: 2
+  - FortuneJack: 2
+worker_root=61 postgres_upsert_ok=14
+
+[ciclo] 2026-03-18T13:22:50.843568+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=4 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=8 still_empty=0
+total_rows=4
+live_rows=0
+prematch_rows=4
+top_casas_mae:
+  - 1bet: 4
+  - Bet7k: 4
+worker_root=447 postgres_upsert_ok=4
+family_root=10 target_side_only=0 rows_filtered=21 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=39 normalized_existing=3 still_empty=0
+total_rows=21
+live_rows=21
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 21
+  - SuperbetBR: 5
+  - 888Sport: 5
+  - Stoiximan: 5
+  - Rivalo: 3
+  - LSBet: 2
+  - 1bet: 1
+worker_root=10 postgres_upsert_ok=21
+family_root=61 target_side_only=0 rows_filtered=19 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=38 normalized_existing=0 still_empty=0
+total_rows=19
+live_rows=19
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 19
+  - Winner: 10
+  - Vbet: 7
+  - Pinnacle: 2
+worker_root=61 postgres_upsert_ok=19
+
+[ciclo] 2026-03-18T13:23:28.676895+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=14 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=14 normalized_existing=14 still_empty=0
+total_rows=14
+live_rows=7
+prematch_rows=7
+top_casas_mae:
+  - Bet7k: 14
+  - 1bet: 7
+  - Goldenpalace: 6
+  - Betsson: 1
+worker_root=447 postgres_upsert_ok=14
+family_root=10 target_side_only=0 rows_filtered=7 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=14 normalized_existing=0 still_empty=0
+total_rows=7
+live_rows=7
+prematch_rows=0
+top_casas_mae:
+  - 888Sport: 7
+  - Bet365: 7
+worker_root=10 postgres_upsert_ok=7
+family_root=61 target_side_only=0 rows_filtered=24 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=46 normalized_existing=2 still_empty=0
+total_rows=24
+live_rows=24
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 24
+  - Pinnacle: 9
+  - Vbet: 8
+  - Bet7k: 6
+  - 888Sport: 1
+worker_root=61 postgres_upsert_ok=24
+
+[ciclo] 2026-03-18T13:23:59.890185+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=2 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=4 still_empty=0
+total_rows=2
+live_rows=0
+prematch_rows=2
+top_casas_mae:
+  - 1bet: 2
+  - Bet7k: 2
+worker_root=447 postgres_upsert_ok=2
+family_root=10 target_side_only=0 rows_filtered=23 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=44 normalized_existing=2 still_empty=0
+total_rows=23
+live_rows=23
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 23
+  - 888Sport: 7
+  - Goldenpalace: 7
+  - SuperbetBR: 4
+  - Pinnacle: 3
+  - Winner: 2
+worker_root=10 postgres_upsert_ok=23
+family_root=61 target_side_only=0 rows_filtered=13 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=26 normalized_existing=0 still_empty=0
+total_rows=13
+live_rows=13
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 13
+  - Bet365: 7
+  - Vbet: 6
+worker_root=61 postgres_upsert_ok=13
+
+[ciclo] 2026-03-18T13:24:30.245963+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=8 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=9 normalized_existing=7 still_empty=0
+total_rows=8
+live_rows=5
+prematch_rows=3
+top_casas_mae:
+  - Bet7k: 8
+  - Goldenpalace: 4
+  - 1bet: 3
+  - FortuneJack: 1
+worker_root=447 postgres_upsert_ok=8
+family_root=10 target_side_only=0 rows_filtered=21 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=41 normalized_existing=1 still_empty=0
+total_rows=21
+live_rows=21
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 21
+  - Stoiximan: 8
+  - 888Sport: 8
+  - Pinnacle: 3
+  - Vbet: 2
+worker_root=10 postgres_upsert_ok=21
+family_root=61 target_side_only=0 rows_filtered=15 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=30 normalized_existing=0 still_empty=0
+total_rows=15
+live_rows=15
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 15
+  - Vbet: 8
+  - Bet7k: 4
+  - SuperbetBR: 3
+worker_root=61 postgres_upsert_ok=15
+
+[ciclo] 2026-03-18T13:25:01.265342+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=6 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=12 still_empty=0
+total_rows=6
+live_rows=0
+prematch_rows=6
+top_casas_mae:
+  - 1bet: 6
+  - Bet7k: 6
+worker_root=447 postgres_upsert_ok=6
+family_root=10 target_side_only=0 rows_filtered=9 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=18 normalized_existing=0 still_empty=0
+total_rows=9
+live_rows=9
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 9
+  - 888Sport: 5
+  - LSBet: 2
+  - Stoiximan: 2
+worker_root=10 postgres_upsert_ok=9
+family_root=61 target_side_only=0 rows_filtered=12 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=22 normalized_existing=2 still_empty=0
+total_rows=12
+live_rows=12
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 12
+  - Vbet: 8
+  - Rivalo: 2
+  - Betsson: 2
+worker_root=61 postgres_upsert_ok=12
+
+[ciclo] 2026-03-18T13:25:30.297328+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=4 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=8 still_empty=0
+total_rows=4
+live_rows=0
+prematch_rows=4
+top_casas_mae:
+  - 1bet: 4
+  - Bet7k: 4
+worker_root=447 postgres_upsert_ok=4
+family_root=10 target_side_only=0 rows_filtered=7 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=8 normalized_existing=6 still_empty=0
+total_rows=7
+live_rows=7
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 7
+  - SuperbetBR: 6
+  - Winner: 1
+worker_root=10 postgres_upsert_ok=7
+family_root=61 target_side_only=0 rows_filtered=16 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=29 normalized_existing=3 still_empty=0
+total_rows=16
+live_rows=16
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 16
+  - Winner: 7
+  - Vbet: 6
+  - FortuneJack: 3
+worker_root=61 postgres_upsert_ok=16
+
+[ciclo] 2026-03-18T13:26:01.156814+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=7 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=14 still_empty=0
+total_rows=7
+live_rows=0
+prematch_rows=7
+top_casas_mae:
+  - 1bet: 7
+  - Bet7k: 7
+worker_root=447 postgres_upsert_ok=7
+family_root=10 target_side_only=0 rows_filtered=30 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=56 normalized_existing=4 still_empty=0
+total_rows=30
+live_rows=30
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 30
+  - 888Sport: 13
+  - Stoiximan: 5
+  - Pinnacle: 5
+  - FortuneJack: 3
+  - LSBet: 2
+  - 1bet: 1
+  - Vbet: 1
+worker_root=10 postgres_upsert_ok=30
+family_root=61 target_side_only=0 rows_filtered=18 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=36 normalized_existing=0 still_empty=0
+total_rows=18
+live_rows=18
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 18
+  - Vbet: 8
+  - 1bet: 7
+  - SuperbetBR: 3
+worker_root=61 postgres_upsert_ok=18
+
+[ciclo] 2026-03-18T13:26:40.692358+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=11 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=12 normalized_existing=10 still_empty=0
+total_rows=11
+live_rows=6
+prematch_rows=5
+top_casas_mae:
+  - Bet7k: 11
+  - FortuneJack: 6
+  - 1bet: 5
+worker_root=447 postgres_upsert_ok=11
+family_root=10 target_side_only=0 rows_filtered=8 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=16 normalized_existing=0 still_empty=0
+total_rows=8
+live_rows=8
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 8
+  - FortuneJack: 5
+  - 888Sport: 1
+  - Stoiximan: 1
+  - Betsson: 1
+worker_root=10 postgres_upsert_ok=8
+family_root=61 target_side_only=0 rows_filtered=10 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=18 normalized_existing=2 still_empty=0
+total_rows=10
+live_rows=10
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 10
+  - Winner: 5
+  - Vbet: 2
+  - Betsson: 2
+  - Stoiximan: 1
+worker_root=61 postgres_upsert_ok=10
+
+[ciclo] 2026-03-18T13:27:15.401929+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=4 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=8 still_empty=0
+total_rows=4
+live_rows=0
+prematch_rows=4
+top_casas_mae:
+  - 1bet: 4
+  - Bet7k: 4
+worker_root=447 postgres_upsert_ok=4
+family_root=10 target_side_only=0 rows_filtered=2 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=4 normalized_existing=0 still_empty=0
+total_rows=2
+live_rows=2
+prematch_rows=0
+top_casas_mae:
+  - Winner: 2
+  - Bet365: 2
+worker_root=10 postgres_upsert_ok=2
+family_root=61 target_side_only=0 rows_filtered=21 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=42 normalized_existing=0 still_empty=0
+total_rows=21
+live_rows=21
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 21
+  - Stoiximan: 6
+  - Betsson: 6
+  - FortuneJack: 6
+  - Winner: 2
+  - Vbet: 1
+worker_root=61 postgres_upsert_ok=21
+
+[ciclo] 2026-03-18T13:27:44.667040+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=7 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=2 normalized_existing=12 still_empty=0
+total_rows=7
+live_rows=1
+prematch_rows=6
+top_casas_mae:
+  - Bet7k: 7
+  - 1bet: 6
+  - LSBet: 1
+worker_root=447 postgres_upsert_ok=7
+family_root=10 target_side_only=0 rows_filtered=21 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=41 normalized_existing=1 still_empty=0
+total_rows=21
+live_rows=21
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 21
+  - Stoiximan: 8
+  - 888Sport: 8
+  - FortuneJack: 3
+  - Pinnacle: 1
+  - Vbet: 1
+worker_root=10 postgres_upsert_ok=21
+family_root=61 target_side_only=0 rows_filtered=12 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=21 normalized_existing=3 still_empty=0
+total_rows=12
+live_rows=12
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 12
+  - Vbet: 8
+  - FortuneJack: 3
+  - Winner: 1
+worker_root=61 postgres_upsert_ok=12
+
+[ciclo] 2026-03-18T13:28:15.314248+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=2 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=2 normalized_existing=2 still_empty=0
+total_rows=2
+live_rows=1
+prematch_rows=1
+top_casas_mae:
+  - Bet7k: 2
+  - Goldenpalace: 1
+  - 1bet: 1
+worker_root=447 postgres_upsert_ok=2
+family_root=10 target_side_only=0 rows_filtered=3 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=6 normalized_existing=0 still_empty=0
+total_rows=3
+live_rows=3
+prematch_rows=0
+top_casas_mae:
+  - 1bet: 3
+  - Bet365: 3
+worker_root=10 postgres_upsert_ok=3
+family_root=61 target_side_only=0 rows_filtered=17 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=27 normalized_existing=7 still_empty=0
+total_rows=17
+live_rows=17
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 17
+  - Betsson: 7
+  - Vbet: 6
+  - Stoiximan: 3
+  - Bet7k: 1
+worker_root=61 postgres_upsert_ok=17
+
+[ciclo] 2026-03-18T13:28:46.799372+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=7 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=4 normalized_existing=10 still_empty=0
+total_rows=7
+live_rows=2
+prematch_rows=5
+top_casas_mae:
+  - Bet7k: 7
+  - 1bet: 7
+worker_root=447 postgres_upsert_ok=7
+family_root=10 target_side_only=0 rows_filtered=5 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=10 normalized_existing=0 still_empty=0
+total_rows=5
+live_rows=5
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 5
+  - 888Sport: 3
+  - FortuneJack: 1
+  - LSBet: 1
+worker_root=10 postgres_upsert_ok=5
+family_root=61 target_side_only=0 rows_filtered=21 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=37 normalized_existing=5 still_empty=0
+total_rows=21
+live_rows=21
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 21
+  - Stoiximan: 8
+  - Pinnacle: 8
+  - LSBet: 5
+worker_root=61 postgres_upsert_ok=21
+
+[ciclo] 2026-03-18T13:29:17.296711+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=1 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=2 normalized_existing=0 still_empty=0
+total_rows=1
+live_rows=1
+prematch_rows=0
+top_casas_mae:
+  - FortuneJack: 1
+  - Bet7k: 1
+worker_root=447 postgres_upsert_ok=1
+family_root=10 target_side_only=0 rows_filtered=15 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=22 normalized_existing=8 still_empty=0
+total_rows=15
+live_rows=15
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 15
+  - Vbet: 7
+  - Pinnacle: 5
+  - FortuneJack: 1
+  - Rivalo: 1
+  - LSBet: 1
+worker_root=10 postgres_upsert_ok=15
+family_root=61 target_side_only=0 rows_filtered=13 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=26 normalized_existing=0 still_empty=0
+total_rows=13
+live_rows=13
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 13
+  - Stoiximan: 8
+  - Vbet: 5
+worker_root=61 postgres_upsert_ok=13
+
+[ciclo] 2026-03-18T13:29:52.575106+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=1 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=2 normalized_existing=0 still_empty=0
+total_rows=1
+live_rows=1
+prematch_rows=0
+top_casas_mae:
+  - Betsson: 1
+  - Bet7k: 1
+worker_root=447 postgres_upsert_ok=1
+family_root=10 target_side_only=0 rows_filtered=10 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=20 normalized_existing=0 still_empty=0
+total_rows=10
+live_rows=10
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 10
+  - Winner: 8
+  - FortuneJack: 2
+worker_root=10 postgres_upsert_ok=10
+family_root=61 target_side_only=0 rows_filtered=11 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=22 normalized_existing=0 still_empty=0
+total_rows=11
+live_rows=11
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 11
+  - Stoiximan: 8
+  - FortuneJack: 2
+  - Vbet: 1
+worker_root=61 postgres_upsert_ok=11
+
+[ciclo] 2026-03-18T13:30:21.323915+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=1 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=2 normalized_existing=0 still_empty=0
+total_rows=1
+live_rows=1
+prematch_rows=0
+top_casas_mae:
+  - SuperbetBR: 1
+  - Bet7k: 1
+worker_root=447 postgres_upsert_ok=1
+family_root=10 target_side_only=0 rows_filtered=2 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=2 normalized_existing=2 still_empty=0
+total_rows=2
+live_rows=2
+prematch_rows=0
+top_casas_mae:
+  - LSBet: 2
+  - Bet365: 2
+worker_root=10 postgres_upsert_ok=2
+family_root=61 target_side_only=0 rows_filtered=23 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=38 normalized_existing=8 still_empty=0
+total_rows=23
+live_rows=23
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 23
+  - FortuneJack: 8
+  - Vbet: 8
+  - 888Sport: 7
+worker_root=61 postgres_upsert_ok=23
+
+[ciclo] 2026-03-18T13:30:45.984254+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=0 table_current=localgeralvps_bet7k_current
+total_rows=0
+worker_root=447 postgres_upsert_skip=1 (sem rows)
+family_root=10 target_side_only=0 rows_filtered=3 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=3 normalized_existing=3 still_empty=0
+total_rows=3
+live_rows=3
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 3
+  - Rivalo: 3
+worker_root=10 postgres_upsert_ok=3
+family_root=61 target_side_only=0 rows_filtered=0 table_current=localgeralvps_goldenpalace_current
+total_rows=0
+worker_root=61 postgres_upsert_skip=1 (sem rows)
+
+[ciclo] 2026-03-18T13:31:10.024369+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=0 table_current=localgeralvps_bet7k_current
+total_rows=0
+worker_root=447 postgres_upsert_skip=1 (sem rows)
+family_root=10 target_side_only=0 rows_filtered=21 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=31 normalized_existing=11 still_empty=0
+total_rows=21
+live_rows=21
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 21
+  - Pinnacle: 8
+  - 888Sport: 5
+  - SuperbetBR: 4
+  - Stoiximan: 3
+  - FortuneJack: 1
+worker_root=10 postgres_upsert_ok=21
+family_root=61 target_side_only=0 rows_filtered=12 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=16 normalized_existing=8 still_empty=0
+total_rows=12
+live_rows=12
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 12
+  - Winner: 8
+  - LSBet: 4
+worker_root=61 postgres_upsert_ok=12
+
+[ciclo] 2026-03-18T13:31:50.328479+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=0 table_current=localgeralvps_bet7k_current
+total_rows=0
+worker_root=447 postgres_upsert_skip=1 (sem rows)
+family_root=10 target_side_only=0 rows_filtered=23 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=43 normalized_existing=3 still_empty=0
+total_rows=23
+live_rows=23
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 23
+  - 888Sport: 12
+  - 1bet: 8
+  - FortuneJack: 3
+worker_root=10 postgres_upsert_ok=23
+family_root=61 target_side_only=0 rows_filtered=1 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=2 normalized_existing=0 still_empty=0
+total_rows=1
+live_rows=1
+prematch_rows=0
+top_casas_mae:
+  - 888Sport: 1
+  - Goldenpalace: 1
+worker_root=61 postgres_upsert_ok=1
+
+[ciclo] 2026-03-18T13:32:18.662239+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=9 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=18 normalized_existing=0 still_empty=0
+total_rows=9
+live_rows=9
+prematch_rows=0
+top_casas_mae:
+  - Bet7k: 9
+  - LSBet: 8
+  - Bet365: 1
+worker_root=447 postgres_upsert_ok=9
+family_root=10 target_side_only=0 rows_filtered=14 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=28 normalized_existing=0 still_empty=0
+total_rows=14
+live_rows=14
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 14
+  - Winner: 4
+  - SuperbetBR: 4
+  - 1bet: 2
+  - FortuneJack: 2
+  - LSBet: 1
+  - Bet7k: 1
+worker_root=10 postgres_upsert_ok=14
+family_root=61 target_side_only=0 rows_filtered=9 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=16 normalized_existing=2 still_empty=0
+total_rows=9
+live_rows=9
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 9
+  - Pinnacle: 4
+  - 888Sport: 3
+  - FortuneJack: 2
+worker_root=61 postgres_upsert_ok=9
+
+[ciclo] 2026-03-18T13:32:54.564387+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=1 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=2 normalized_existing=0 still_empty=0
+total_rows=1
+live_rows=1
+prematch_rows=0
+top_casas_mae:
+  - Bet7k: 1
+  - Stoiximan: 1
+worker_root=447 postgres_upsert_ok=1
+family_root=10 target_side_only=0 rows_filtered=16 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=24 normalized_existing=8 still_empty=0
+total_rows=16
+live_rows=16
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 16
+  - LSBet: 6
+  - SuperbetBR: 3
+  - Betsson: 3
+  - Goldenpalace: 2
+  - Winner: 1
+  - Stoiximan: 1
+worker_root=10 postgres_upsert_ok=16
+family_root=61 target_side_only=0 rows_filtered=9 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=16 normalized_existing=2 still_empty=0
+total_rows=9
+live_rows=9
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 9
+  - 888Sport: 6
+  - Bet365: 2
+  - LSBet: 1
+worker_root=61 postgres_upsert_ok=9
+
+[ciclo] 2026-03-18T13:33:32.372029+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=1 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=2 normalized_existing=0 still_empty=0
+total_rows=1
+live_rows=1
+prematch_rows=0
+top_casas_mae:
+  - FortuneJack: 1
+  - Bet7k: 1
+worker_root=447 postgres_upsert_ok=1
+family_root=10 target_side_only=0 rows_filtered=19 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=38 normalized_existing=0 still_empty=0
+total_rows=19
+live_rows=19
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 19
+  - 888Sport: 8
+  - Pinnacle: 8
+  - Stoiximan: 2
+  - FortuneJack: 1
+worker_root=10 postgres_upsert_ok=19
+family_root=61 target_side_only=0 rows_filtered=9 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=16 normalized_existing=2 still_empty=0
+total_rows=9
+live_rows=9
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 9
+  - Pinnacle: 7
+  - LSBet: 1
+  - FortuneJack: 1
+worker_root=61 postgres_upsert_ok=9
+
+[ciclo] 2026-03-18T13:34:03.477078+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=0 table_current=localgeralvps_bet7k_current
+total_rows=0
+worker_root=447 postgres_upsert_skip=1 (sem rows)
+family_root=10 target_side_only=0 rows_filtered=10 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=20 normalized_existing=0 still_empty=0
+total_rows=10
+live_rows=10
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 10
+  - LSBet: 4
+  - 1bet: 4
+  - 888Sport: 1
+  - FortuneJack: 1
+worker_root=10 postgres_upsert_ok=10
+family_root=61 target_side_only=0 rows_filtered=15 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=30 normalized_existing=0 still_empty=0
+total_rows=15
+live_rows=15
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 15
+  - SuperbetBR: 8
+  - 888Sport: 7
+worker_root=61 postgres_upsert_ok=15
+
+[ciclo] 2026-03-18T13:34:32.486547+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=1 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=2 normalized_existing=0 still_empty=0
+total_rows=1
+live_rows=1
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 1
+  - Bet7k: 1
+worker_root=447 postgres_upsert_ok=1
+family_root=10 target_side_only=0 rows_filtered=21 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=30 normalized_existing=12 still_empty=0
+total_rows=21
+live_rows=21
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 21
+  - Rivalo: 12
+  - 1bet: 7
+  - 888Sport: 1
+  - FortuneJack: 1
+worker_root=10 postgres_upsert_ok=21
+family_root=61 target_side_only=0 rows_filtered=1 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=2 normalized_existing=0 still_empty=0
+total_rows=1
+live_rows=1
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 1
+  - Bet7k: 1
+worker_root=61 postgres_upsert_ok=1
+
+[ciclo] 2026-03-18T13:35:06.602177+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=0 table_current=localgeralvps_bet7k_current
+total_rows=0
+worker_root=447 postgres_upsert_skip=1 (sem rows)
+family_root=10 target_side_only=0 rows_filtered=11 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=20 normalized_existing=2 still_empty=0
+total_rows=11
+live_rows=11
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 11
+  - Goldenpalace: 5
+  - 1bet: 3
+  - Betsson: 2
+  - 888Sport: 1
+worker_root=10 postgres_upsert_ok=11
+family_root=61 target_side_only=0 rows_filtered=6 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=11 normalized_existing=1 still_empty=0
+total_rows=6
+live_rows=6
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 6
+  - Bet365: 5
+  - Rivalo: 1
+worker_root=61 postgres_upsert_ok=6
+
+[ciclo] 2026-03-18T13:35:40.541596+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=1 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=2 normalized_existing=0 still_empty=0
+total_rows=1
+live_rows=1
+prematch_rows=0
+top_casas_mae:
+  - Bet7k: 1
+  - FortuneJack: 1
+worker_root=447 postgres_upsert_ok=1
+family_root=10 target_side_only=0 rows_filtered=3 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=6 normalized_existing=0 still_empty=0
+total_rows=3
+live_rows=3
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 3
+  - Betsson: 2
+  - Winner: 1
+worker_root=10 postgres_upsert_ok=3
+family_root=61 target_side_only=0 rows_filtered=1 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=2 normalized_existing=0 still_empty=0
+total_rows=1
+live_rows=1
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 1
+  - Pinnacle: 1
+worker_root=61 postgres_upsert_ok=1
+
+[ciclo] 2026-03-18T13:36:09.436676+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=5 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=10 normalized_existing=0 still_empty=0
+total_rows=5
+live_rows=5
+prematch_rows=0
+top_casas_mae:
+  - Bet7k: 5
+  - Winner: 5
+worker_root=447 postgres_upsert_ok=5
+family_root=10 target_side_only=0 rows_filtered=4 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=6 normalized_existing=2 still_empty=0
+total_rows=4
+live_rows=4
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 4
+  - Rivalo: 2
+  - 1bet: 1
+  - SuperbetBR: 1
+worker_root=10 postgres_upsert_ok=4
+family_root=61 target_side_only=0 rows_filtered=0 table_current=localgeralvps_goldenpalace_current
+total_rows=0
+worker_root=61 postgres_upsert_skip=1 (sem rows)
+
+[ciclo] 2026-03-18T13:36:38.128854+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=7 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=14 normalized_existing=0 still_empty=0
+total_rows=7
+live_rows=7
+prematch_rows=0
+top_casas_mae:
+  - Bet7k: 7
+  - FortuneJack: 4
+  - Winner: 3
+worker_root=447 postgres_upsert_ok=7
+family_root=10 target_side_only=0 rows_filtered=13 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=25 normalized_existing=1 still_empty=0
+total_rows=13
+live_rows=13
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 13
+  - Pinnacle: 9
+  - 888Sport: 4
+worker_root=10 postgres_upsert_ok=13
+family_root=61 target_side_only=0 rows_filtered=4 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=8 normalized_existing=0 still_empty=0
+total_rows=4
+live_rows=4
+prematch_rows=0
+top_casas_mae:
+  - 888Sport: 4
+  - Goldenpalace: 4
+worker_root=61 postgres_upsert_ok=4
+
+[ciclo] 2026-03-18T13:37:06.514070+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=1 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=2 normalized_existing=0 still_empty=0
+total_rows=1
+live_rows=1
+prematch_rows=0
+top_casas_mae:
+  - Bet7k: 1
+  - LSBet: 1
+worker_root=447 postgres_upsert_ok=1
+family_root=10 target_side_only=0 rows_filtered=3 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=6 normalized_existing=0 still_empty=0
+total_rows=3
+live_rows=3
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 3
+  - FortuneJack: 3
+worker_root=10 postgres_upsert_ok=3
+family_root=61 target_side_only=0 rows_filtered=0 table_current=localgeralvps_goldenpalace_current
+total_rows=0
+worker_root=61 postgres_upsert_skip=1 (sem rows)
+
+[ciclo] 2026-03-18T13:37:31.169202+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=0 table_current=localgeralvps_bet7k_current
+total_rows=0
+worker_root=447 postgres_upsert_skip=1 (sem rows)
+family_root=10 target_side_only=0 rows_filtered=20 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=33 normalized_existing=7 still_empty=0
+total_rows=20
+live_rows=20
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 20
+  - FortuneJack: 8
+  - Vbet: 6
+  - 888Sport: 5
+  - LSBet: 1
+worker_root=10 postgres_upsert_ok=20
+family_root=61 target_side_only=0 rows_filtered=5 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=10 normalized_existing=0 still_empty=0
+total_rows=5
+live_rows=5
+prematch_rows=0
+top_casas_mae:
+  - Stoiximan: 5
+  - Goldenpalace: 5
+worker_root=61 postgres_upsert_ok=5
+
+[ciclo] 2026-03-18T13:38:07.537270+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=0 table_current=localgeralvps_bet7k_current
+total_rows=0
+worker_root=447 postgres_upsert_skip=1 (sem rows)
+family_root=10 target_side_only=0 rows_filtered=8 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=16 normalized_existing=0 still_empty=0
+total_rows=8
+live_rows=8
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 8
+  - SuperbetBR: 4
+  - FortuneJack: 2
+  - Pinnacle: 1
+  - 1bet: 1
+worker_root=10 postgres_upsert_ok=8
+family_root=61 target_side_only=0 rows_filtered=7 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=11 normalized_existing=3 still_empty=0
+total_rows=7
+live_rows=7
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 7
+  - FortuneJack: 3
+  - Betsson: 3
+  - Stoiximan: 1
+worker_root=61 postgres_upsert_ok=7
+
+[ciclo] 2026-03-18T13:38:42.668301+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=0 table_current=localgeralvps_bet7k_current
+total_rows=0
+worker_root=447 postgres_upsert_skip=1 (sem rows)
+family_root=10 target_side_only=0 rows_filtered=20 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=26 normalized_existing=14 still_empty=0
+total_rows=20
+live_rows=20
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 20
+  - 1bet: 8
+  - Pinnacle: 8
+  - Vbet: 2
+  - Stoiximan: 2
+worker_root=10 postgres_upsert_ok=20
+family_root=61 target_side_only=0 rows_filtered=0 table_current=localgeralvps_goldenpalace_current
+total_rows=0
+worker_root=61 postgres_upsert_skip=1 (sem rows)
+
+[ciclo] 2026-03-18T13:39:11.522136+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=0 table_current=localgeralvps_bet7k_current
+total_rows=0
+worker_root=447 postgres_upsert_skip=1 (sem rows)
+family_root=10 target_side_only=0 rows_filtered=9 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=17 normalized_existing=1 still_empty=0
+total_rows=9
+live_rows=9
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 9
+  - 888Sport: 8
+  - Rivalo: 1
+worker_root=10 postgres_upsert_ok=9
+family_root=61 target_side_only=0 rows_filtered=2 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=2 normalized_existing=2 still_empty=0
+total_rows=2
+live_rows=2
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 2
+  - FortuneJack: 2
+worker_root=61 postgres_upsert_ok=2
+
+[ciclo] 2026-03-18T13:39:38.980884+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=1 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=2 normalized_existing=0 still_empty=0
+total_rows=1
+live_rows=1
+prematch_rows=0
+top_casas_mae:
+  - Bet7k: 1
+  - Vbet: 1
+worker_root=447 postgres_upsert_ok=1
+family_root=10 target_side_only=0 rows_filtered=8 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=16 normalized_existing=0 still_empty=0
+total_rows=8
+live_rows=8
+prematch_rows=0
+top_casas_mae:
+  - SuperbetBR: 8
+  - Bet365: 8
+worker_root=10 postgres_upsert_ok=8
+family_root=61 target_side_only=0 rows_filtered=6 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=6 normalized_existing=6 still_empty=0
+total_rows=6
+live_rows=6
+prematch_rows=0
+top_casas_mae:
+  - FortuneJack: 6
+  - Goldenpalace: 6
+worker_root=61 postgres_upsert_ok=6
+
+[ciclo] 2026-03-18T13:40:08.511016+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=0 table_current=localgeralvps_bet7k_current
+total_rows=0
+worker_root=447 postgres_upsert_skip=1 (sem rows)
+family_root=10 target_side_only=0 rows_filtered=15 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=27 normalized_existing=3 still_empty=0
+total_rows=15
+live_rows=15
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 15
+  - FortuneJack: 12
+  - Goldenpalace: 3
+worker_root=10 postgres_upsert_ok=15
+family_root=61 target_side_only=0 rows_filtered=9 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=12 normalized_existing=6 still_empty=0
+total_rows=9
+live_rows=9
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 9
+  - Bet365: 3
+  - Betsson: 3
+  - FortuneJack: 2
+  - LSBet: 1
+worker_root=61 postgres_upsert_ok=9
+
+[ciclo] 2026-03-18T13:40:40.505896+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=10 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=20 normalized_existing=0 still_empty=0
+total_rows=10
+live_rows=10
+prematch_rows=0
+top_casas_mae:
+  - Bet7k: 10
+  - Stoiximan: 10
+worker_root=447 postgres_upsert_ok=10
+family_root=10 target_side_only=0 rows_filtered=21 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=42 normalized_existing=0 still_empty=0
+total_rows=21
+live_rows=21
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 21
+  - Pinnacle: 8
+  - 1bet: 8
+  - 888Sport: 5
+worker_root=10 postgres_upsert_ok=21
+family_root=61 target_side_only=0 rows_filtered=0 table_current=localgeralvps_goldenpalace_current
+total_rows=0
+worker_root=61 postgres_upsert_skip=1 (sem rows)
+
+[ciclo] 2026-03-18T13:41:07.986836+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=3 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=6 normalized_existing=0 still_empty=0
+total_rows=3
+live_rows=3
+prematch_rows=0
+top_casas_mae:
+  - Bet7k: 3
+  - Vbet: 2
+  - LSBet: 1
+worker_root=447 postgres_upsert_ok=3
+family_root=10 target_side_only=0 rows_filtered=18 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=35 normalized_existing=1 still_empty=0
+total_rows=18
+live_rows=18
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 18
+  - Pinnacle: 8
+  - 888Sport: 4
+  - Betsson: 3
+  - Vbet: 2
+  - Rivalo: 1
+worker_root=10 postgres_upsert_ok=18
+family_root=61 target_side_only=0 rows_filtered=4 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=6 normalized_existing=2 still_empty=0
+total_rows=4
+live_rows=4
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 4
+  - LSBet: 2
+  - SuperbetBR: 1
+  - Pinnacle: 1
+worker_root=61 postgres_upsert_ok=4
+
+[ciclo] 2026-03-18T13:41:43.208742+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=3 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=6 normalized_existing=0 still_empty=0
+total_rows=3
+live_rows=3
+prematch_rows=0
+top_casas_mae:
+  - Bet7k: 3
+  - Vbet: 3
+worker_root=447 postgres_upsert_ok=3
+family_root=10 target_side_only=0 rows_filtered=22 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=33 normalized_existing=11 still_empty=0
+total_rows=22
+live_rows=22
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 22
+  - Winner: 6
+  - Vbet: 6
+  - 888Sport: 4
+  - Goldenpalace: 4
+  - Rivalo: 2
+worker_root=10 postgres_upsert_ok=22
+family_root=61 target_side_only=0 rows_filtered=15 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=30 normalized_existing=0 still_empty=0
+total_rows=15
+live_rows=15
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 15
+  - 888Sport: 6
+  - Bet365: 4
+  - Betsson: 2
+  - Stoiximan: 2
+  - LSBet: 1
+worker_root=61 postgres_upsert_ok=15
+
+[ciclo] 2026-03-18T13:42:23.213416+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=6 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=6 normalized_existing=6 still_empty=0
+total_rows=6
+live_rows=3
+prematch_rows=3
+top_casas_mae:
+  - Bet7k: 6
+  - Goldenpalace: 3
+  - 1bet: 3
+worker_root=447 postgres_upsert_ok=6
+family_root=10 target_side_only=0 rows_filtered=7 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=14 normalized_existing=0 still_empty=0
+total_rows=7
+live_rows=7
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 7
+  - Winner: 5
+  - 888Sport: 2
+worker_root=10 postgres_upsert_ok=7
+family_root=61 target_side_only=0 rows_filtered=5 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=10 normalized_existing=0 still_empty=0
+total_rows=5
+live_rows=5
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 5
+  - Bet7k: 3
+  - 888Sport: 1
+  - FortuneJack: 1
+worker_root=61 postgres_upsert_ok=5
+
+[ciclo] 2026-03-18T13:42:53.449474+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=3 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=6 normalized_existing=0 still_empty=0
+total_rows=3
+live_rows=3
+prematch_rows=0
+top_casas_mae:
+  - Bet7k: 3
+  - Pinnacle: 3
+worker_root=447 postgres_upsert_ok=3
+family_root=10 target_side_only=0 rows_filtered=13 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=20 normalized_existing=6 still_empty=0
+total_rows=13
+live_rows=13
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 13
+  - Rivalo: 3
+  - Betsson: 3
+  - SuperbetBR: 2
+  - 1bet: 2
+  - 888Sport: 2
+  - Stoiximan: 1
+worker_root=10 postgres_upsert_ok=13
+family_root=61 target_side_only=0 rows_filtered=7 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=14 normalized_existing=0 still_empty=0
+total_rows=7
+live_rows=7
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 7
+  - 888Sport: 6
+  - LSBet: 1
+worker_root=61 postgres_upsert_ok=7
+
+[ciclo] 2026-03-18T13:43:33.936621+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=4 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=8 still_empty=0
+total_rows=4
+live_rows=0
+prematch_rows=4
+top_casas_mae:
+  - 1bet: 4
+  - Bet7k: 4
+worker_root=447 postgres_upsert_ok=4
+family_root=10 target_side_only=0 rows_filtered=1 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=2 normalized_existing=0 still_empty=0
+total_rows=1
+live_rows=1
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 1
+  - LSBet: 1
+worker_root=10 postgres_upsert_ok=1
+family_root=61 target_side_only=0 rows_filtered=0 table_current=localgeralvps_goldenpalace_current
+total_rows=0
+worker_root=61 postgres_upsert_skip=1 (sem rows)
+
+[ciclo] 2026-03-18T13:43:56.197457+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=4 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=4 normalized_existing=4 still_empty=0
+total_rows=4
+live_rows=2
+prematch_rows=2
+top_casas_mae:
+  - Bet7k: 4
+  - LSBet: 2
+  - 1bet: 2
+worker_root=447 postgres_upsert_ok=4
+family_root=10 target_side_only=0 rows_filtered=18 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=34 normalized_existing=2 still_empty=0
+total_rows=18
+live_rows=18
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 18
+  - Winner: 8
+  - 888Sport: 8
+  - FortuneJack: 2
+worker_root=10 postgres_upsert_ok=18
+family_root=61 target_side_only=0 rows_filtered=2 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=2 normalized_existing=2 still_empty=0
+total_rows=2
+live_rows=2
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 2
+  - FortuneJack: 2
+worker_root=61 postgres_upsert_ok=2
+
+[ciclo] 2026-03-18T13:44:26.703709+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=3 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=2 normalized_existing=4 still_empty=0
+total_rows=3
+live_rows=1
+prematch_rows=2
+top_casas_mae:
+  - Bet7k: 3
+  - 1bet: 2
+  - LSBet: 1
+worker_root=447 postgres_upsert_ok=3
+family_root=10 target_side_only=0 rows_filtered=23 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=39 normalized_existing=7 still_empty=0
+total_rows=23
+live_rows=23
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 23
+  - 1bet: 8
+  - 888Sport: 8
+  - Rivalo: 7
+worker_root=10 postgres_upsert_ok=23
+family_root=61 target_side_only=0 rows_filtered=6 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=10 normalized_existing=2 still_empty=0
+total_rows=6
+live_rows=6
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 6
+  - Winner: 4
+  - SuperbetBR: 1
+  - LSBet: 1
+worker_root=61 postgres_upsert_ok=6
+
+[ciclo] 2026-03-18T13:45:04.398076+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=17 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=28 normalized_existing=6 still_empty=0
+total_rows=17
+live_rows=14
+prematch_rows=3
+top_casas_mae:
+  - Bet7k: 17
+  - Vbet: 13
+  - 1bet: 3
+  - Winner: 1
+worker_root=447 postgres_upsert_ok=17
+family_root=10 target_side_only=0 rows_filtered=19 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=38 normalized_existing=0 still_empty=0
+total_rows=19
+live_rows=19
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 19
+  - 1bet: 8
+  - Winner: 8
+  - Pinnacle: 3
+worker_root=10 postgres_upsert_ok=19
+family_root=61 target_side_only=0 rows_filtered=7 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=14 normalized_existing=0 still_empty=0
+total_rows=7
+live_rows=7
+prematch_rows=0
+top_casas_mae:
+  - 888Sport: 7
+  - Goldenpalace: 7
+worker_root=61 postgres_upsert_ok=7
+
+[ciclo] 2026-03-18T13:45:39.274136+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=3 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=6 still_empty=0
+total_rows=3
+live_rows=0
+prematch_rows=3
+top_casas_mae:
+  - 1bet: 3
+  - Bet7k: 3
+worker_root=447 postgres_upsert_ok=3
+family_root=10 target_side_only=0 rows_filtered=24 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=48 normalized_existing=0 still_empty=0
+total_rows=24
+live_rows=24
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 24
+  - 888Sport: 13
+  - 1bet: 7
+  - Stoiximan: 2
+  - Goldenpalace: 2
+worker_root=10 postgres_upsert_ok=24
+family_root=61 target_side_only=0 rows_filtered=11 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=22 normalized_existing=0 still_empty=0
+total_rows=11
+live_rows=11
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 11
+  - Betsson: 8
+  - Bet365: 2
+  - Pinnacle: 1
+worker_root=61 postgres_upsert_ok=11
+
+[ciclo] 2026-03-18T13:46:14.472452+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=23 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=26 normalized_existing=20 still_empty=0
+total_rows=23
+live_rows=16
+prematch_rows=7
+top_casas_mae:
+  - Bet7k: 23
+  - Winner: 8
+  - 1bet: 7
+  - Rivalo: 6
+  - Stoiximan: 2
+worker_root=447 postgres_upsert_ok=23
+family_root=10 target_side_only=0 rows_filtered=18 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=36 normalized_existing=0 still_empty=0
+total_rows=18
+live_rows=18
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 18
+  - 1bet: 11
+  - SuperbetBR: 4
+  - FortuneJack: 2
+  - 888Sport: 1
+worker_root=10 postgres_upsert_ok=18
+family_root=61 target_side_only=0 rows_filtered=6 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=12 normalized_existing=0 still_empty=0
+total_rows=6
+live_rows=6
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 6
+  - 888Sport: 6
+worker_root=61 postgres_upsert_ok=6
+
+[ciclo] 2026-03-18T13:46:52.299836+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=7 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=2 normalized_existing=12 still_empty=0
+total_rows=7
+live_rows=2
+prematch_rows=5
+top_casas_mae:
+  - Bet7k: 7
+  - 1bet: 5
+  - Rivalo: 2
+worker_root=447 postgres_upsert_ok=7
+family_root=10 target_side_only=0 rows_filtered=14 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=19 normalized_existing=9 still_empty=0
+total_rows=14
+live_rows=14
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 14
+  - FortuneJack: 8
+  - LSBet: 4
+  - 1bet: 1
+  - SuperbetBR: 1
+worker_root=10 postgres_upsert_ok=14
+family_root=61 target_side_only=0 rows_filtered=4 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=8 normalized_existing=0 still_empty=0
+total_rows=4
+live_rows=4
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 4
+  - Vbet: 3
+  - SuperbetBR: 1
+worker_root=61 postgres_upsert_ok=4
+
+[ciclo] 2026-03-18T13:47:25.946268+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=3 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=0 normalized_existing=6 still_empty=0
+total_rows=3
+live_rows=1
+prematch_rows=2
+top_casas_mae:
+  - Bet7k: 3
+  - 1bet: 2
+  - Vbet: 1
+worker_root=447 postgres_upsert_ok=3
+family_root=10 target_side_only=0 rows_filtered=12 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=22 normalized_existing=2 still_empty=0
+total_rows=12
+live_rows=12
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 12
+  - SuperbetBR: 9
+  - LSBet: 2
+  - Betsson: 1
+worker_root=10 postgres_upsert_ok=12
+family_root=61 target_side_only=0 rows_filtered=2 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=3 normalized_existing=1 still_empty=0
+total_rows=2
+live_rows=2
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 2
+  - 1bet: 1
+  - Vbet: 1
+worker_root=61 postgres_upsert_ok=2
+
+[ciclo] 2026-03-18T13:47:58.877855+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20
+[PREMATCH] page=4 arbs=10 bets=20
+[PREMATCH] page=5 arbs=10 bets=20
+[PREMATCH] page=6 arbs=10 bets=20
+[PREMATCH] page=7 arbs=10 bets=20
+[PREMATCH] page=8 arbs=10 bets=20
+family_root=447 target_side_only=0 rows_filtered=7 table_current=localgeralvps_bet7k_current
+worker_root=447 link_resolver resolved_from_oddsrabbit=3 normalized_existing=11 still_empty=0
+total_rows=7
+live_rows=2
+prematch_rows=5
+top_casas_mae:
+  - Bet7k: 7
+  - 1bet: 5
+  - Betsson: 1
+  - LSBet: 1
+worker_root=447 postgres_upsert_ok=7
+family_root=10 target_side_only=0 rows_filtered=21 table_current=localgeralvps_bet365_current
+worker_root=10 link_resolver resolved_from_oddsrabbit=36 normalized_existing=6 still_empty=0
+total_rows=21
+live_rows=21
+prematch_rows=0
+top_casas_mae:
+  - Bet365: 21
+  - Goldenpalace: 6
+  - 888Sport: 5
+  - Winner: 4
+  - Stoiximan: 4
+  - LSBet: 2
+worker_root=10 postgres_upsert_ok=21
+family_root=61 target_side_only=0 rows_filtered=15 table_current=localgeralvps_goldenpalace_current
+worker_root=61 link_resolver resolved_from_oddsrabbit=24 normalized_existing=6 still_empty=0
+total_rows=15
+live_rows=15
+prematch_rows=0
+top_casas_mae:
+  - Goldenpalace: 15
+  - Bet365: 6
+  - FortuneJack: 4
+  - 888Sport: 3
+  - 1bet: 2
+worker_root=61 postgres_upsert_ok=15
+
+[ciclo] 2026-03-18T13:48:37.364059+00:00
+[LIVE] page=1 arbs=10 bets=20
+[LIVE] page=2 arbs=10 bets=20
+[LIVE] page=3 arbs=10 bets=20
+[LIVE] page=4 arbs=10 bets=20
+[LIVE] page=5 arbs=10 bets=20
+[LIVE] page=6 arbs=10 bets=20
+[LIVE] page=7 arbs=10 bets=20
+[LIVE] page=8 arbs=10 bets=20
+[PREMATCH] page=1 arbs=10 bets=20
+[PREMATCH] page=2 arbs=10 bets=20
+[PREMATCH] page=3 arbs=10 bets=20^C

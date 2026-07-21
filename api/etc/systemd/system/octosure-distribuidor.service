@@ -1,0 +1,16 @@
+[Unit]
+Description=Octosure Distribuidor Familias
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/octosure
+EnvironmentFile=/opt/octosure/.env.octosure
+ExecStart=/opt/octosure/.venv/bin/python /opt/octosure/LOCALGERALVPS/run_bot_distribuidor_familias.py --preset all_with_luva --interval 40 --cycles 0
+Restart=always
+RestartSec=3
+User=root
+
+[Install]
+WantedBy=multi-user.target

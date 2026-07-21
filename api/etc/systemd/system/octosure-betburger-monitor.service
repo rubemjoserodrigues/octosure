@@ -1,0 +1,19 @@
+[Unit]
+Description=Octosure BetBurger Telegram Monitor
+After=network.target octosure-api.service octosure-distribuidor.service
+Wants=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/octosure/LOCALGERALVPS
+EnvironmentFile=/opt/octosure/.env.octosure
+EnvironmentFile=/opt/octosure/LOCALGERALVPS/.env
+Environment=TELEGRAM_BOT_TOKEN=8276726135:AAGiYDOR0pLm-mVirg7UaZ4ai_owpM84ccg
+Environment=TELEGRAM_CHAT_ID=-1003810322408
+ExecStart=/opt/octosure/.venv/bin/python /opt/octosure/LOCALGERALVPS/monitor_betburger_telegram.py --interval 60 --fail-cycles 3 --max-age-sec 180
+Restart=always
+RestartSec=10
+User=root
+
+[Install]
+WantedBy=multi-user.target

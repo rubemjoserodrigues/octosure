@@ -1,0 +1,17 @@
+>>> Iniciando Scraper "Foda" BetBurger <<<
+    Intervalo: 0.0s | Max Paginas: 1
+    Deep Dive: DESATIVADO
+    Saida: surebets_live.json (Live) | surebets_history.csv (Historico)
+    Search Filters LIVE: 2028569
+    Search Filters PREMATCH: 1296400
+    bk_ids[] global: DESATIVADO
+    Postgres Feed: ATIVADO (127.0.0.1:5432/surebet)
+    JSON Snapshot: DESATIVADO
+    Debug Counters: ATIVADO
+    Mapa Sports: 67 | Mapa Bookmakers: 871
+    Filtro Casas: IDs=60 Nomes=52 (casas.txt)
+[2026-02-22T17:06:47.469874+00:00] Pagina 1... Vazia/Fim.
+    [Debug] page=1 api_arbs=40 payload_items=40 kept=0 drop_house=40 drop_percent=0 drop_bad_percent=0
+[2026-02-22T17:06:50.333549+00:00] Nada encontrado.
+    [Debug-Cycle] api_arbs=40 api_bets=80 payload_items=40 kept=0 drop_house=40 drop_percent=0 drop_bad_percent=0
+[2026-02-22T17:06:51.440428+00:00] Pagina 1... 

@@ -1,0 +1,1002 @@
+[
+  {
+    "id": 1485,
+    "bookmaker": "BetinAsia",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "BetinAsia Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1774003111
+  },
+  {
+    "id": 1490,
+    "bookmaker": "ExpektDK",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "ExpektDK Prematch temporarily not working",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1774003095
+  },
+  {
+    "id": 1489,
+    "bookmaker": "Mozzartbet",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "Mozzartbet Prematch temporarily not working",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1774003043
+  },
+  {
+    "id": 1486,
+    "bookmaker": "Sportmarket",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Sportmarket Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1773996233
+  },
+  {
+    "id": 1488,
+    "bookmaker": "Eurobet",
+    "node": "Prematch",
+    "issue_type": "Scanning Delay",
+    "description": "Eurobet Prematch is experiencing a scanning delay",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1773920987
+  },
+  {
+    "id": 1487,
+    "bookmaker": "BFSportsbook",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "BFSportsbook Prematch temporarily not working",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1773850453
+  },
+  {
+    "id": 1484,
+    "bookmaker": "Skybet",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "Skybet Prematch temporarily not working",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1773847120
+  },
+  {
+    "id": 1482,
+    "bookmaker": "PariMatch",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "PariMatch Live+Prematch temporarily not working",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1773842933
+  },
+  {
+    "id": 1483,
+    "bookmaker": "Sazka",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Sazka Live+Prematch temporarily not working",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1773831514
+  },
+  {
+    "id": 1478,
+    "bookmaker": "LuvaBet",
+    "node": "Live",
+    "issue_type": "Scanning Delay",
+    "description": "LuvaBet Live is experiencing a scanning delay",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1773603060
+  },
+  {
+    "id": 1456,
+    "bookmaker": "SuperbetBR",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "SuperbetBR Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1773596063
+  },
+  {
+    "id": 1481,
+    "bookmaker": "Winlinebet",
+    "node": "Prematch",
+    "issue_type": "Scanning Delay",
+    "description": "Winlinebet Prematch is experiencing a scanning delay",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1773566727
+  },
+  {
+    "id": 1480,
+    "bookmaker": "DafabetOW",
+    "node": "Live",
+    "issue_type": "Scanning Delay",
+    "description": "DafabetOW Live is experiencing a scanning delay",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1773565294
+  },
+  {
+    "id": 1463,
+    "bookmaker": "BFSportsbook",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "BFSportsbook Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1773484469
+  },
+  {
+    "id": 1479,
+    "bookmaker": "LSBet",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "LSBet Prematch temporarily not working",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1773309062
+  },
+  {
+    "id": 1447,
+    "bookmaker": "Codere",
+    "node": "Live",
+    "issue_type": "Scanning Delay",
+    "description": "Codere Live scanning delay issue resolved",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1773308558
+  },
+  {
+    "id": 1474,
+    "bookmaker": "Vaidebet",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "Vaidebet Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1773307772
+  },
+  {
+    "id": 1477,
+    "bookmaker": "Stoiximan",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "Stoiximan Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1773236534
+  },
+  {
+    "id": 1475,
+    "bookmaker": "Pamestoixima",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "Pamestoixima Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1773166398
+  },
+  {
+    "id": 1476,
+    "bookmaker": "BookmakerXYZ",
+    "node": "Live",
+    "issue_type": "Scanning Delay",
+    "description": "BookmakerXYZ Live is experiencing a scanning delay",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1773166236
+  },
+  {
+    "id": 1470,
+    "bookmaker": "Pokerstars",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "Pokerstars Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1773157082
+  },
+  {
+    "id": 1469,
+    "bookmaker": "1xbet",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "1xbet Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1773139869
+  },
+  {
+    "id": 1467,
+    "bookmaker": "Totosi",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "Totosi Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1773042892
+  },
+  {
+    "id": 1462,
+    "bookmaker": "Skybet",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Skybet Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1773001814
+  },
+  {
+    "id": 1465,
+    "bookmaker": "FanDuel",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "FanDuel Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1773001583
+  },
+  {
+    "id": 1460,
+    "bookmaker": "Stake",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Stake Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1773001520
+  },
+  {
+    "id": 1468,
+    "bookmaker": "DafaSports",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "DafaSports Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1773001391
+  },
+  {
+    "id": 1471,
+    "bookmaker": "Polymarket",
+    "node": "Live",
+    "issue_type": "Scanning Delay",
+    "description": "Polymarket Live scanning delay issue resolved",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1773001071
+  },
+  {
+    "id": 1472,
+    "bookmaker": "WinMasters",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "WinMasters Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1773000086
+  },
+  {
+    "id": 1426,
+    "bookmaker": "BetOnline",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "BetOnline Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1772998512
+  },
+  {
+    "id": 1449,
+    "bookmaker": "Favbet",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Favbet Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1772998000
+  },
+  {
+    "id": 1473,
+    "bookmaker": "ArtlineBet",
+    "node": "Prematch",
+    "issue_type": "Scanning Delay",
+    "description": "ArtlineBet Prematch is experiencing a scanning delay",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1772968293
+  },
+  {
+    "id": 1466,
+    "bookmaker": "Tipsport",
+    "node": "Prematch",
+    "issue_type": "Scanning Delay",
+    "description": "Tipsport Prematch scanning delay issue resolved",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1772871959
+  },
+  {
+    "id": 1464,
+    "bookmaker": "Sbobet",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Sbobet Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1772704468
+  },
+  {
+    "id": 1461,
+    "bookmaker": "Domusbet",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "Domusbet Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1772530455
+  },
+  {
+    "id": 1455,
+    "bookmaker": "BFSportsbook",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "BFSportsbook Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1772436851
+  },
+  {
+    "id": 1457,
+    "bookmaker": "Goldbetshop",
+    "node": "Prematch",
+    "issue_type": "Scanning Delay",
+    "description": "Goldbetshop Prematch scanning delay issue resolved",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1772436741
+  },
+  {
+    "id": 1458,
+    "bookmaker": "Tipsport",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Tipsport Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1772366701
+  },
+  {
+    "id": 1459,
+    "bookmaker": "PaddyPower",
+    "node": "Live",
+    "issue_type": "Scanning Delay",
+    "description": "PaddyPower Live is experiencing a scanning delay",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1772287997
+  },
+  {
+    "id": 1421,
+    "bookmaker": "LuvaBet",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "LuvaBet Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1772128076
+  },
+  {
+    "id": 1453,
+    "bookmaker": "Pinnacle",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Pinnacle Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1772092231
+  },
+  {
+    "id": 1373,
+    "bookmaker": "Mozzartbet",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "Mozzartbet Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1772030805
+  },
+  {
+    "id": 1444,
+    "bookmaker": "BetNacional",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "BetNacional Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1772028402
+  },
+  {
+    "id": 1446,
+    "bookmaker": "Sisal",
+    "node": "Live",
+    "issue_type": "Scanning Delay",
+    "description": "Sisal Live scanning delay issue resolved",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1772022754
+  },
+  {
+    "id": 1417,
+    "bookmaker": "Interwetten",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "Interwetten Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1771939261
+  },
+  {
+    "id": 1452,
+    "bookmaker": "DafaSports",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "DafaSports Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1771922382
+  },
+  {
+    "id": 1439,
+    "bookmaker": "OvertimeMarkets",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "OvertimeMarkets Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1771922304
+  },
+  {
+    "id": 1451,
+    "bookmaker": "Totosi",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "Totosi Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1771872868
+  },
+  {
+    "id": 1450,
+    "bookmaker": "Eplay24",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Eplay24 Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1771855298
+  },
+  {
+    "id": 1448,
+    "bookmaker": "Tipsport",
+    "node": "Prematch",
+    "issue_type": "Scanning Delay",
+    "description": "Tipsport Prematch scanning delay issue resolved",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1771843828
+  },
+  {
+    "id": 1443,
+    "bookmaker": "Vbet",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "Vbet Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1771783380
+  },
+  {
+    "id": 1445,
+    "bookmaker": "Eurobet",
+    "node": "Live",
+    "issue_type": "Scanning Delay",
+    "description": "Eurobet Live scanning delay issue resolved",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1771682583
+  },
+  {
+    "id": 1435,
+    "bookmaker": "Winbet",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "Winbet Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1771596052
+  },
+  {
+    "id": 1442,
+    "bookmaker": "1xbet",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "1xbet Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1771431403
+  },
+  {
+    "id": 1399,
+    "bookmaker": "StakeCO",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "StakeCO Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1771334525
+  },
+  {
+    "id": 1441,
+    "bookmaker": "Tipsport",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Tipsport Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1771255519
+  },
+  {
+    "id": 1440,
+    "bookmaker": "StanleybetIT",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "StanleybetIT Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1771228812
+  },
+  {
+    "id": 1433,
+    "bookmaker": "Vincitu",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "Vincitu Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770970831
+  },
+  {
+    "id": 1437,
+    "bookmaker": "BetssonIT",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "BetssonIT Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770970319
+  },
+  {
+    "id": 1438,
+    "bookmaker": "Stoiximan",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "Stoiximan Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770970274
+  },
+  {
+    "id": 1436,
+    "bookmaker": "Zamba",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Zamba Live+Prematch temporarily not working",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1770830047
+  },
+  {
+    "id": 1434,
+    "bookmaker": "Sisal",
+    "node": "Live",
+    "issue_type": "Scanning Delay",
+    "description": "Sisal Live scanning delay issue resolved",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770799412
+  },
+  {
+    "id": 1430,
+    "bookmaker": "WilliamHill",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "WilliamHill Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770656138
+  },
+  {
+    "id": 1428,
+    "bookmaker": "Merkurbets",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "Merkurbets Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770638726
+  },
+  {
+    "id": 1432,
+    "bookmaker": "Snai",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "Snai Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770638563
+  },
+  {
+    "id": 1415,
+    "bookmaker": "DafaSports",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "DafaSports Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770577184
+  },
+  {
+    "id": 1427,
+    "bookmaker": "Pokerstars",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "Pokerstars Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770573484
+  },
+  {
+    "id": 1429,
+    "bookmaker": "Sbobet",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Sbobet Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770573079
+  },
+  {
+    "id": 1431,
+    "bookmaker": "Stake",
+    "node": "Live",
+    "issue_type": "Scanning Delay",
+    "description": "Stake Live scanning delay issue resolved",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770572859
+  },
+  {
+    "id": 1403,
+    "bookmaker": "Favbet",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Favbet Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770369067
+  },
+  {
+    "id": 1379,
+    "bookmaker": "BetinAsia",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "BetinAsia Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770367841
+  },
+  {
+    "id": 1380,
+    "bookmaker": "Sportmarket",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Sportmarket Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770367822
+  },
+  {
+    "id": 1424,
+    "bookmaker": "Sportsbet",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "Sportsbet Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770366974
+  },
+  {
+    "id": 1216,
+    "bookmaker": "Bet365 (Fast)",
+    "node": "Prematch",
+    "issue_type": "Scanning Delay",
+    "description": "Bet365 (Fast) Prematch is experiencing a scanning delay",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1770315248
+  },
+  {
+    "id": 1236,
+    "bookmaker": "Bet365",
+    "node": "Prematch",
+    "issue_type": "Scanning Delay",
+    "description": "Bet365 Prematch is experiencing a scanning delay",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1770315231
+  },
+  {
+    "id": 1425,
+    "bookmaker": "Coolbet",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Coolbet Live+Prematch temporarily not working",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1770113364
+  },
+  {
+    "id": 1408,
+    "bookmaker": "Meridianbet",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Meridianbet Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770042132
+  },
+  {
+    "id": 1400,
+    "bookmaker": "Iforbet",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "Iforbet Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770042041
+  },
+  {
+    "id": 1423,
+    "bookmaker": "QuinnBet",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "QuinnBet Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770038035
+  },
+  {
+    "id": 1422,
+    "bookmaker": "Sbobet",
+    "node": "Prematch",
+    "issue_type": "Scanning Delay",
+    "description": "Sbobet Prematch scanning delay issue resolved",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1770032561
+  },
+  {
+    "id": 1286,
+    "bookmaker": "NorskTipping",
+    "node": "Live",
+    "issue_type": "Scanning Delay",
+    "description": "NorskTipping Live is experiencing a scanning delay",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1769969927
+  },
+  {
+    "id": 1411,
+    "bookmaker": "1win",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "1win Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1769969465
+  },
+  {
+    "id": 1414,
+    "bookmaker": "Pokerstars",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "Pokerstars Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1769969442
+  },
+  {
+    "id": 1419,
+    "bookmaker": "Bovada",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "Bovada Live temporarily not working",
+    "color": "red",
+    "status": "deleted",
+    "updated_at": 1769969173
+  },
+  {
+    "id": 1418,
+    "bookmaker": "Lvbet",
+    "node": "Live",
+    "issue_type": "Scanning Delay",
+    "description": "Lvbet Live is experiencing a scanning delay",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1769969038
+  },
+  {
+    "id": 1416,
+    "bookmaker": "Meridianbet",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Meridianbet Live+Prematch temporarily not working",
+    "color": "red",
+    "status": "deleted",
+    "updated_at": 1769957525
+  },
+  {
+    "id": 1407,
+    "bookmaker": "Sbobet",
+    "node": "Prematch",
+    "issue_type": "Scanning Delay",
+    "description": "Sbobet Prematch scanning delay issue resolved",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1769679831
+  },
+  {
+    "id": 1409,
+    "bookmaker": "Snai",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Snai Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1769678874
+  },
+  {
+    "id": 1412,
+    "bookmaker": "Eplay24",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "Eplay24 Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1769675642
+  },
+  {
+    "id": 1413,
+    "bookmaker": "Totosi",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "Totosi Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1769675605
+  },
+  {
+    "id": 1410,
+    "bookmaker": "BetfairIT",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "BetfairIT Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1769591913
+  },
+  {
+    "id": 1341,
+    "bookmaker": "Matchbook",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "Matchbook Live+Prematch temporarily not working",
+    "color": "red",
+    "status": "active",
+    "updated_at": 1769370734
+  },
+  {
+    "id": 1329,
+    "bookmaker": "Matchbook",
+    "node": "Live",
+    "issue_type": "Scanning Delay",
+    "description": "Matchbook Live is experiencing a scanning delay",
+    "color": "red",
+    "status": "deleted",
+    "updated_at": 1769370709
+  },
+  {
+    "id": 1405,
+    "bookmaker": "Winamax",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "Winamax Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1769370612
+  },
+  {
+    "id": 1406,
+    "bookmaker": "Tipsport",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "Tipsport Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1769370353
+  },
+  {
+    "id": 1404,
+    "bookmaker": "Stoiximan",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "Stoiximan Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1768992925
+  },
+  {
+    "id": 1402,
+    "bookmaker": "DaznbetIT",
+    "node": "Live+Prematch",
+    "issue_type": "Not Working",
+    "description": "DaznbetIT Live+Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1768982586
+  },
+  {
+    "id": 1397,
+    "bookmaker": "Sbobet",
+    "node": "Prematch",
+    "issue_type": "Not Working",
+    "description": "Sbobet Prematch is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1768831010
+  },
+  {
+    "id": 1401,
+    "bookmaker": "188bet",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "188bet Live is working now",
+    "color": "green",
+    "status": "active",
+    "updated_at": 1768829071
+  },
+  {
+    "id": 1271,
+    "bookmaker": "Codere",
+    "node": "Live",
+    "issue_type": "Not Working",
+    "description": "Codere Live temporarily not working",
+    "color": "red",
+    "status": "deleted",
+    "updated_at": 1768764398
+  }
+]
